@@ -1,0 +1,9 @@
+[
+  {
+    "context": [
+      "/user"
+    ],
+    "target": "http://localhost:8080/lux/",
+    "secure": false
+  }
+]

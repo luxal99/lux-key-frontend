@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "ng serve --watch"
+    "start": "ng serve --watch --proxy-config proxy.config.json"
   },
   "dependencies": {
     "@angular/animations": "~11.2.11",

@@ -5,9 +5,9 @@
       <img src="assets/img/logo-with-letters.png" class="img-fluid" width="150px">
       <app-form-input [group]="loginForm" label="Username" icon="account_circle" appearance=""
                       [config]="usernameInputConfig"></app-form-input>
-      <app-form-input  [group]="loginForm" appearance="" label="Password" icon="lock"
+      <app-form-input [group]="loginForm" appearance="" label="Password" icon="lock"
                       [config]="passwordInputConfig"></app-form-input>
-      <button class="default-btn w-100" mat-button [disabled]="!loginForm.valid">Login</button>
+      <button class="default-btn w-100" mat-button [disabled]="!loginForm.valid" (click)="auth()">Login</button>
     </div>
     <div class="col-4"></div>
   </div>

@@ -6,6 +6,7 @@ import {FormGroup} from '@angular/forms';
 import {FormControl} from '@angular/forms';
 import {Validators} from '@angular/forms';
 import {FormControlNames, InputTypes} from '../../constant/const';
+import {AuthService} from '../../service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -25,13 +26,15 @@ export class LoginComponent implements OnInit {
   passwordInputConfig: FieldConfig = {type: InputTypes.PASSWORD, name: FormControlNames.PASSWORD_NAME_FORM_CONTROL};
 
 
-  constructor() {
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit(): void {
   }
 
   auth(): void {
-
+    this.authService.auth(this.loginForm.getRawValue()).subscribe((token) => {
+      sessionStorage.setItem('token', token);
+    });
   }
 }

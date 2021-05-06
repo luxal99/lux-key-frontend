@@ -8,6 +8,7 @@ import {LoginComponent} from './components/login/login.component';
 import {MaterialModule} from './material.module';
 import {FormInputComponent} from './components/form-components/form-input/form-input.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
+    HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],

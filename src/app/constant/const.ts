@@ -7,3 +7,8 @@ export class InputTypes {
   static TEXT = 'text';
   static PASSWORD = 'password';
 }
+
+export class RestRoutes {
+  static API = 'http://localhost:8080/lux/';
+  static USER = '/user';
+}
