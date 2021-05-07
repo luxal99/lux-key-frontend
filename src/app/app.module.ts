@@ -12,9 +12,9 @@ import {HttpClientModule} from '@angular/common/http';
 import {AdminComponent} from './components/admin/admin.component';
 import {DashboardComponent} from './components/admin/dashboard/dashboard.component';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { ComponentActivatorComponent } from './components/component-activator/component-activator.component';
-import { CodeBookComponent } from './components/admin/code-book/code-book.component';
+import {NavbarComponent} from './components/navbar/navbar.component';
+import {ComponentActivatorComponent} from './components/component-activator/component-activator.component';
+import {CodeBookComponent} from './components/admin/code-book/code-book.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,7 @@ import { CodeBookComponent } from './components/admin/code-book/code-book.compon
     BrowserAnimationsModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
-  entryComponents: [DashboardComponent],
+  entryComponents: [CodeBookComponent, DashboardComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

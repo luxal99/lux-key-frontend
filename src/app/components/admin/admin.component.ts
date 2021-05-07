@@ -1,6 +1,8 @@
 import {Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {LazyLoadComponentsUtil} from '../../util/lazy-loading-components';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import {ComponentType} from '@angular/cdk/portal';
+import {CodeBookComponent} from './code-book/code-book.component';
 
 @Component({
   selector: 'app-admin',
@@ -30,7 +32,7 @@ export class AdminComponent implements OnInit {
   }
 
   loadDashboardComponent(): void {
-    LazyLoadComponentsUtil.loadComponent(DashboardComponent, this.entry, this.resolver);
+    this.lazyLoad(DashboardComponent);
   }
 
 
@@ -44,6 +46,10 @@ export class AdminComponent implements OnInit {
   }
 
   loadCodeBookComponent(): void {
+    this.lazyLoad(CodeBookComponent);
+  }
 
+  lazyLoad(component: ComponentType<any>): void {
+    LazyLoadComponentsUtil.loadComponent(component, this.entry, this.resolver);
   }
 }
