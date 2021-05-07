@@ -18,6 +18,8 @@ import {CodeBookComponent} from './components/admin/code-book/code-book.componen
 import {DynamicFieldDirective} from './directive/dynamic-field.directive';
 import {FormSelectComponent} from './components/form-components/form-select/form-select.component';
 import { ElementBindingComponent } from './components/element-binding/element-binding.component';
+import { CarBrandOverviewComponent } from './components/admin/code-book/car-brand-overview/car-brand-overview.component';
+import { CarModelOverviewComponent } from './components/admin/code-book/car-model-overview/car-model-overview.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { ElementBindingComponent } from './components/element-binding/element-bi
     CodeBookComponent,
     DynamicFieldDirective,
     FormSelectComponent,
-    ElementBindingComponent
+    ElementBindingComponent,
+    CarBrandOverviewComponent,
+    CarModelOverviewComponent
   ],
   imports: [
     BrowserModule,
