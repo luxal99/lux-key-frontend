@@ -11,16 +11,15 @@ import {
   ViewChild
 } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {GenericService} from '../../../service/generic.service';
-import {FieldConfig} from '../../../models/FIeldConfig';
+import {FieldConfig} from 'src/app/models/FieldConfig';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {AuthGuard} from '../../../guards/auth.guard';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {FormBuilderConfig} from '../../../models/FormBuilderConfig';
-import {SnackBarUtil} from '../../../util/snack-bar-uitl';
-import {Message} from '../../../const/const';
-import {SpinnerService} from '../../../service/spinner.service';
+import {SnackBarUtil} from 'src/app/util/snackbar-util';
+import {Message} from 'src/app/constant/const';
+import {SpinnerService} from 'src/app/service/spinner-service.service';
 import {MatSpinner} from '@angular/material/progress-spinner';
+import {FormBuilderConfig} from '../../../models/FormBuilderConfig';
 
 @Component({
   selector: 'app-form-builder',

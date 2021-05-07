@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -15,7 +15,8 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {ComponentActivatorComponent} from './components/component-activator/component-activator.component';
 import {CodeBookComponent} from './components/admin/code-book/code-book.component';
-import { DynamicFieldDirective } from './directive/dynamic-field.directive';
+import {DynamicFieldDirective} from './directive/dynamic-field.directive';
+import {FormSelectComponent} from './components/form-components/form-select/form-select.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { DynamicFieldDirective } from './directive/dynamic-field.directive';
     NavbarComponent,
     ComponentActivatorComponent,
     CodeBookComponent,
-    DynamicFieldDirective
+    DynamicFieldDirective,
+    FormSelectComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,8 @@ import { DynamicFieldDirective } from './directive/dynamic-field.directive';
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   entryComponents: [CodeBookComponent, DashboardComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {
 }

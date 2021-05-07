@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
 import {Field} from '../../../models/Field';
-import {FieldConfig} from '../../../models/FIeldConfig';
+import {FieldConfig} from '../../../models/FieldConfig';
 import {FormGroup} from '@angular/forms';
 import {EventEmitter} from '@angular/core';
 
@@ -33,11 +33,7 @@ export class FormSelectComponent implements Field, OnInit {
 
   ngOnInit(): void {
   }
-
   onOptionClick(): void {
     this.onChange.emit(true);
-  }
-
-  onSelectionChange(): void {
   }
 }

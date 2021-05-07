@@ -26,3 +26,8 @@ export class PageRoutes {
   static LOGIN = '/';
   static ADMIN = '/admin';
 }
+
+export class Message {
+  static SUCCESS = 'Uspešno';
+  static ERR = 'Dogodila se greška';
+}

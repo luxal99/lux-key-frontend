@@ -1,4 +1,4 @@
-import {ComponentFactoryResolver, ComponentRef, Directive, Input, OnChanges, OnInit, ViewContainerRef} from '@angular/core';
+import {ComponentFactoryResolver, ComponentRef, Directive, Input, OnChanges, OnInit, Type, ViewContainerRef} from '@angular/core';
 import {Field} from '../models/Field';
 import {FieldConfig} from '../models/FieldConfig';
 import {FormGroup} from '@angular/forms';
