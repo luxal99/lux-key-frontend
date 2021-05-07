@@ -15,6 +15,7 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {ComponentActivatorComponent} from './components/component-activator/component-activator.component';
 import {CodeBookComponent} from './components/admin/code-book/code-book.component';
+import { DynamicFieldDirective } from './directive/dynamic-field.directive';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {CodeBookComponent} from './components/admin/code-book/code-book.componen
     DashboardComponent,
     NavbarComponent,
     ComponentActivatorComponent,
-    CodeBookComponent
+    CodeBookComponent,
+    DynamicFieldDirective
   ],
   imports: [
     BrowserModule,
