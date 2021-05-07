@@ -28,7 +28,7 @@ export class GenericService<T> {
   }
 
   getAll(): Observable<T[]> {
-    return this.http.get<T[]>(`${RestRoutes.API}${this.route}`, {
+    return this.http.get<T[]>(`${this.route}`, {
       responseType: 'json',
       headers: {Authorization: sessionStorage.getItem(TOKEN_NAME)}
     });

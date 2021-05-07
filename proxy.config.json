@@ -1,7 +1,8 @@
 [
   {
     "context": [
-      "/user"
+      "/user",
+      "/car-brand"
     ],
     "target": "http://localhost:8080/lux/",
     "secure": false

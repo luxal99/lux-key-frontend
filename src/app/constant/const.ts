@@ -11,6 +11,7 @@ export class InputTypes {
 export class RestRoutes {
   static API = 'http://localhost:8080/lux/';
   static USER = '/user';
+  static CAR_BRAND = '/car-brand';
 }
 
 export class SpinnerOptions {

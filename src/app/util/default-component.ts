@@ -7,12 +7,13 @@ import {Crud} from './crud-interface';
 import {Observable} from 'rxjs';
 
 @Component({
-  template: ''
+  template: '',
+  providers: [SpinnerService]
 })
 export abstract class DefaultComponent<T> implements OnInit, Crud {
 
-  @Injectable() private spinnerService: SpinnerService;
-  @Injectable() private snackBar: MatSnackBar;
+  @Injectable() private spinnerService: SpinnerService = new SpinnerService();
+  private snackBar: MatSnackBar;
   @ViewChild('spinner') spinner: MatSpinner;
 
   private listOfItems: T[] = [];
@@ -42,6 +43,10 @@ export abstract class DefaultComponent<T> implements OnInit, Crud {
   }
 
   delete(): void {
+  }
+
+  set setSnackBar(snackBar: MatSnackBar) {
+    this.snackBar = snackBar;
   }
 
   getAll(): void {
