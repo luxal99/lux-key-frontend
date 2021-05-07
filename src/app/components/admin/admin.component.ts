@@ -17,9 +17,18 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openDashboardComponent(): void {
+  loadDashboardComponent(): void {
     LazyLoadComponentsUtil.loadComponent(DashboardComponent, this.entry, this.resolver);
   }
 
+
+  changeColor(e: any): void {
+    const element = document.querySelectorAll('.active');
+    [].forEach.call(element, (el: any) => {
+      el.classList.remove('active');
+      el.classList.add('inactive');
+    });
+    e.target.className = 'active';
+  }
 
 }

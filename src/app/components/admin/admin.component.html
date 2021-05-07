@@ -1,11 +1,16 @@
-<mat-drawer-container class="example-container"fullscreen hasBackdrop="false">
+<mat-drawer-container class="example-container" fullscreen hasBackdrop="false">
   <mat-drawer #drawer mode="side" opened>
     <div class="text-center">
-      <img class="img-fluid" src="assets/img/logo-with-letters.png">
+      <!--      <img class="img-fluid" src="assets/img/logo-with-letters.png">-->
+      <a (click)="loadDashboardComponent()">
+        <h5 (click)="changeColor($event)" id="overview-btn">
+          <i class="fa fa-eye"></i> Pregled
+        </h5>
+      </a>
     </div>
   </mat-drawer>
   <mat-drawer-content>
-    <button mat-raised-button (click)="drawer.toggle()">Toggle drawer</button>
+    <button class="m-3" mat-icon-button (click)="drawer.toggle()"><mat-icon>drag_handle</mat-icon></button>
     <div #target></div>
   </mat-drawer-content>
 </mat-drawer-container>
