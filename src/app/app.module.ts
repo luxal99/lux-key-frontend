@@ -13,6 +13,7 @@ import {AdminComponent} from './components/admin/admin.component';
 import {DashboardComponent} from './components/admin/dashboard/dashboard.component';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ComponentActivatorComponent } from './components/component-activator/component-activator.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     FormInputComponent,
     AdminComponent,
     DashboardComponent,
-    NavbarComponent
+    NavbarComponent,
+    ComponentActivatorComponent
   ],
   imports: [
     BrowserModule,

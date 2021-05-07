@@ -10,11 +10,23 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 export class AdminComponent implements OnInit {
 
   @ViewChild('target', {read: ViewContainerRef, static: false}) entry!: ViewContainerRef;
+  header = 'Pregled';
 
   constructor(private resolver: ComponentFactoryResolver) {
   }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.initDefaultMenu();
+    });
+  }
+
+  initDefaultMenu(): void {
+    // @ts-ignore
+    const element = document.getElementById('overview-btn');
+    if (element) {
+      element.click();
+    }
   }
 
   loadDashboardComponent(): void {
@@ -31,4 +43,7 @@ export class AdminComponent implements OnInit {
     e.target.className = 'active';
   }
 
+  loadCodeBookComponent(): void {
+
+  }
 }

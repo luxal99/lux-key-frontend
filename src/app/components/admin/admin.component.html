@@ -1,16 +1,18 @@
 <mat-drawer-container class="example-container" fullscreen hasBackdrop="false">
   <mat-drawer #drawer mode="side" opened>
-    <div class="text-center">
+    <div >
       <!--      <img class="img-fluid" src="assets/img/logo-with-letters.png">-->
       <a (click)="loadDashboardComponent()">
         <h5 (click)="changeColor($event)" id="overview-btn">
-          <i class="fa fa-eye"></i> Pregled
+          <i class="fa fa-home"></i> Pregled
         </h5>
       </a>
+      <app-component-activator icon="fa-tachometer" (load)="loadCodeBookComponent()"
+                               title="Šifarnik"></app-component-activator>
     </div>
   </mat-drawer>
   <mat-drawer-content>
-    <button class="m-3" mat-icon-button (click)="drawer.toggle()"><mat-icon>drag_handle</mat-icon></button>
+    <app-navbar (menuBtnClick)="drawer.toggle()" [header]="header"></app-navbar>
     <div #target></div>
   </mat-drawer-content>
 </mat-drawer-container>
