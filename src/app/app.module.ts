@@ -21,6 +21,8 @@ import {ElementBindingComponent} from './components/element-binding/element-bind
 import {CarBrandOverviewComponent} from './components/admin/code-book/car-brand-overview/car-brand-overview.component';
 import {CarModelOverviewComponent} from './components/admin/code-book/car-model-overview/car-model-overview.component';
 import {FormBuilderComponent} from './components/form-components/form-builder/form-builder.component';
+import { CapitalizePipe } from './pipes/capitalize.pipe';
+import { FormAutocompleteComponent } from './components/form-components/form-autocomplete/form-autocomplete.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import {FormBuilderComponent} from './components/form-components/form-builder/fo
     ElementBindingComponent,
     CarBrandOverviewComponent,
     CarModelOverviewComponent,
-    FormBuilderComponent
+    FormBuilderComponent,
+    CapitalizePipe,
+    FormAutocompleteComponent
   ],
   imports: [
     BrowserModule,

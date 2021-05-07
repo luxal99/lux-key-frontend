@@ -32,9 +32,14 @@ export class AdminComponent implements OnInit {
   }
 
   loadDashboardComponent(): void {
+    this.header = 'Pregled';
     this.lazyLoad(DashboardComponent);
   }
 
+  loadCodeBookComponent(): void {
+    this.header = 'Šifarnik';
+    this.lazyLoad(CodeBookComponent);
+  }
 
   changeColor(e: any): void {
     const element = document.querySelectorAll('.active');
@@ -43,10 +48,6 @@ export class AdminComponent implements OnInit {
       el.classList.add('inactive');
     });
     e.target.className = 'active';
-  }
-
-  loadCodeBookComponent(): void {
-    this.lazyLoad(CodeBookComponent);
   }
 
   lazyLoad(component: ComponentType<any>): void {

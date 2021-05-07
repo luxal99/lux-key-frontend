@@ -2,12 +2,15 @@ export class FormControlNames {
   static USERNAME_NAME_FORM_CONTROL = 'username';
   static PASSWORD_NAME_FORM_CONTROL = 'password';
   static NAME_FORM_CONTROL = 'name';
+  static ID_CAR_BRAND_FORM_CONTROL = 'idCarBrand';
 }
 
 export class InputTypes {
   static TEXT = 'text';
   static INPUT = 'input';
   static PASSWORD = 'password';
+  static SELECT = 'select';
+  static AUTOCOMPLETE = 'autocomplete';
 }
 
 export class RestRoutes {

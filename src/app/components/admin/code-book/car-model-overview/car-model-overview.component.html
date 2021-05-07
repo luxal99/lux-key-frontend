@@ -1,5 +1,8 @@
 <mat-spinner #spinner diameter="25"></mat-spinner>
-<div class="row" *ngFor="let carModel of listOfItems">
+<div class="text-right">
+  <button mat-button class="default-btn" (click)="openAddCarModelDialog()">Dodaj</button>
+</div>
+<div class="row" (click)="openAddCarModelDialog(carModel)" *ngFor="let carModel of listOfItems">
   <div class="col-4">
     <h6>{{carModel.name}}</h6>
   </div>

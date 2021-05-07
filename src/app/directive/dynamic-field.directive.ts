@@ -4,10 +4,12 @@ import {FieldConfig} from '../models/FieldConfig';
 import {FormGroup} from '@angular/forms';
 import {FormInputComponent} from '../components/form-components/form-input/form-input.component';
 import {FormSelectComponent} from '../components/form-components/form-select/form-select.component';
+import {FormAutocompleteComponent} from '../components/form-components/form-autocomplete/form-autocomplete.component';
 
 const components: { [type: string]: Type<Field> } = {
   input: FormInputComponent,
-  select: FormSelectComponent
+  select: FormSelectComponent,
+  autocomplete: FormAutocompleteComponent
 };
 
 @Directive({

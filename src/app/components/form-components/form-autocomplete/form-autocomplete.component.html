@@ -1,0 +1,14 @@
+<div [formGroup]="group">
+  <mat-form-field appearance="outline">
+    <mat-label>Izaberi opciju</mat-label>
+    <input type="text"
+           matInput [(ngModel)]="searchText"
+           formControlName="staff"
+           [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let staff of listOfStaffs | staff:searchText" [value]="staff">
+        {{staff.person?.firstName}} {{staff.person?.lastName}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>

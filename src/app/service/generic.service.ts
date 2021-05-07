@@ -35,7 +35,7 @@ export class GenericService<T> {
   }
 
   update(entity: T): Observable<any> {
-    return this.http.put(`${RestRoutes.API}${this.route}`, entity, {
+    return this.http.put(`${this.route}`, entity, {
       responseType: 'text',
       headers: {Authorization: sessionStorage.getItem(TOKEN_NAME)}
     });
