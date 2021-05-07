@@ -4,7 +4,7 @@
       <mat-icon>close</mat-icon>
     </button>
   </div>
-  <h1>{{configData.headerText}}</h1>
+  <h4>{{configData.headerText}}</h4>
   <form class="dynamic-form" [formGroup]="form">
     <ng-container *ngFor="let field of configData.formFields;"  dynamicField [config]="field"
                   [group]="form">

@@ -1,10 +1,12 @@
 export class FormControlNames {
   static USERNAME_NAME_FORM_CONTROL = 'username';
   static PASSWORD_NAME_FORM_CONTROL = 'password';
+  static NAME_FORM_CONTROL = 'name';
 }
 
 export class InputTypes {
   static TEXT = 'text';
+  static INPUT = 'input';
   static PASSWORD = 'password';
 }
 
@@ -13,7 +15,7 @@ export class RestRoutes {
   static USER = '/user';
   static CAR_BRAND = '/car-brand';
   static JWT = '/jwt';
-  static CAR_MODEL='car-model';
+  static CAR_MODEL = 'car-model';
 }
 
 export class SpinnerOptions {

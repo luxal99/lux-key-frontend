@@ -7,7 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LoginComponent} from './components/login/login.component';
 import {MaterialModule} from './material.module';
 import {FormInputComponent} from './components/form-components/form-input/form-input.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {AdminComponent} from './components/admin/admin.component';
 import {DashboardComponent} from './components/admin/dashboard/dashboard.component';
@@ -17,9 +17,10 @@ import {ComponentActivatorComponent} from './components/component-activator/comp
 import {CodeBookComponent} from './components/admin/code-book/code-book.component';
 import {DynamicFieldDirective} from './directive/dynamic-field.directive';
 import {FormSelectComponent} from './components/form-components/form-select/form-select.component';
-import { ElementBindingComponent } from './components/element-binding/element-binding.component';
-import { CarBrandOverviewComponent } from './components/admin/code-book/car-brand-overview/car-brand-overview.component';
-import { CarModelOverviewComponent } from './components/admin/code-book/car-model-overview/car-model-overview.component';
+import {ElementBindingComponent} from './components/element-binding/element-binding.component';
+import {CarBrandOverviewComponent} from './components/admin/code-book/car-brand-overview/car-brand-overview.component';
+import {CarModelOverviewComponent} from './components/admin/code-book/car-model-overview/car-model-overview.component';
+import {FormBuilderComponent} from './components/form-components/form-builder/form-builder.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CarModelOverviewComponent } from './components/admin/code-book/car-mode
     FormSelectComponent,
     ElementBindingComponent,
     CarBrandOverviewComponent,
-    CarModelOverviewComponent
+    CarModelOverviewComponent,
+    FormBuilderComponent
   ],
   imports: [
     BrowserModule,

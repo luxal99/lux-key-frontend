@@ -17,5 +17,4 @@ export class CarModelOverviewComponent extends DefaultComponent<CarModel> implem
   ngOnInit(): void {
     super.ngOnInit();
   }
-
 }
