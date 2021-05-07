@@ -17,6 +17,7 @@ import {ComponentActivatorComponent} from './components/component-activator/comp
 import {CodeBookComponent} from './components/admin/code-book/code-book.component';
 import {DynamicFieldDirective} from './directive/dynamic-field.directive';
 import {FormSelectComponent} from './components/form-components/form-select/form-select.component';
+import { ElementBindingComponent } from './components/element-binding/element-binding.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {FormSelectComponent} from './components/form-components/form-select/form
     ComponentActivatorComponent,
     CodeBookComponent,
     DynamicFieldDirective,
-    FormSelectComponent
+    FormSelectComponent,
+    ElementBindingComponent
   ],
   imports: [
     BrowserModule,
