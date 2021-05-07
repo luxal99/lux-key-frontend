@@ -19,6 +19,8 @@ export class RestRoutes {
   static CAR_BRAND = '/car-brand';
   static JWT = '/jwt';
   static CAR_MODEL = 'car-model';
+  static KEY_CATEGORY = 'key-category';
+  static KEY_SUB_CATEGORY = 'key-sub-category';
 }
 
 export class SpinnerOptions {

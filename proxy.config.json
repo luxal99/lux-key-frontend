@@ -4,6 +4,8 @@
       "/user",
       "/car-brand",
       "/car-model",
+      "/key-category",
+      "/key-sub-category",
       "/jwt"
     ],
     "target": "http://localhost:8080/lux/",

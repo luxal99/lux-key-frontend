@@ -1,1 +1,12 @@
-<p>key-category-overview works!</p>
+<div class="text-right">
+  <button mat-button class="default-btn" (click)="openAddKeyCategoryDialog()">Dodaj</button>
+</div>
+<mat-spinner #spinner diameter="25"></mat-spinner>
+<div class="row" (click)="openAddKeyCategoryDialog(keyCategory)" *ngFor="let keyCategory of listOfItems">
+  <div class="col-6">
+    <h6>{{keyCategory.name}}</h6>
+  </div>
+  <div class="col-6">
+    <h6>{{keyCategory.createdDate}}</h6>
+  </div>
+</div>
