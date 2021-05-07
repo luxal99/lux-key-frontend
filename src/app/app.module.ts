@@ -14,6 +14,7 @@ import {DashboardComponent} from './components/admin/dashboard/dashboard.compone
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ComponentActivatorComponent } from './components/component-activator/component-activator.component';
+import { CodeBookComponent } from './components/admin/code-book/code-book.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ComponentActivatorComponent } from './components/component-activator/co
     AdminComponent,
     DashboardComponent,
     NavbarComponent,
-    ComponentActivatorComponent
+    ComponentActivatorComponent,
+    CodeBookComponent
   ],
   imports: [
     BrowserModule,
