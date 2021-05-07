@@ -24,6 +24,8 @@ import {FormBuilderComponent} from './components/form-components/form-builder/fo
 import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { FormAutocompleteComponent } from './components/form-components/form-autocomplete/form-autocomplete.component';
 import { CarBrandPipe } from './pipes/car-brand.pipe';
+import { KeyCategoryOverviewComponent } from './components/admin/code-book/key-category-overview/key-category-overview.component';
+import { KeySubCategoryOverviewComponent } from './components/admin/code-book/key-sub-category-overview/key-sub-category-overview.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { CarBrandPipe } from './pipes/car-brand.pipe';
     FormBuilderComponent,
     CapitalizePipe,
     FormAutocompleteComponent,
-    CarBrandPipe
+    CarBrandPipe,
+    KeyCategoryOverviewComponent,
+    KeySubCategoryOverviewComponent
   ],
   imports: [
     BrowserModule,
