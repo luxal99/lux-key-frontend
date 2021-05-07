@@ -39,7 +39,7 @@ export class CarModelOverviewComponent extends DefaultComponent<CarModel> implem
         },
         {
           name: FormControlNames.ID_CAR_BRAND_FORM_CONTROL,
-          type: InputTypes.SELECT,
+          type: InputTypes.AUTOCOMPLETE,
           validation: [Validators.required],
           options,
         }

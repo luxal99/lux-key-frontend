@@ -3,11 +3,11 @@
     <mat-label>Izaberi opciju</mat-label>
     <input type="text"
            matInput [(ngModel)]="searchText"
-           formControlName="staff"
+           [formControlName]="config.name"
            [matAutocomplete]="auto">
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-      <mat-option *ngFor="let staff of listOfStaffs | staff:searchText" [value]="staff">
-        {{staff.person?.firstName}} {{staff.person?.lastName}}
+      <mat-option *ngFor="let carBrand of config.options | carBrand:searchText" [value]="carBrand">
+        {{carBrand.name}}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
