@@ -1,1 +1,11 @@
-<mat-spinner #spinner diameter="50"></mat-spinner>
+<mat-drawer-container class="example-container"fullscreen hasBackdrop="false">
+  <mat-drawer #drawer mode="side" opened>
+    <div class="text-center">
+      <img class="img-fluid" src="assets/img/logo-with-letters.png">
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <button mat-raised-button (click)="drawer.toggle()">Toggle drawer</button>
+    <div #target></div>
+  </mat-drawer-content>
+</mat-drawer-container>

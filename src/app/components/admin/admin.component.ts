@@ -1,9 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {DefaultComponent} from '../../util/default-component';
-import {CarBrand} from '../../models/carBrand';
-import {CarBrandService} from '../../service/car-brand.service';
-import {SnackBarUtil} from '../../util/snackbar-util';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import {Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {LazyLoadComponentsUtil} from '../../util/lazy-loading-components';
+import {DashboardComponent} from './dashboard/dashboard.component';
 
 @Component({
   selector: 'app-admin',
@@ -12,10 +9,16 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class AdminComponent implements OnInit {
 
-  constructor() {
+  @ViewChild('target', {read: ViewContainerRef, static: false}) entry!: ViewContainerRef;
+
+  constructor(private resolver: ComponentFactoryResolver) {
   }
 
   ngOnInit(): void {
+  }
+
+  openDashboardComponent(): void {
+    LazyLoadComponentsUtil.loadComponent(DashboardComponent, this.entry, this.resolver);
   }
 
 

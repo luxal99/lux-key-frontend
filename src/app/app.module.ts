@@ -9,8 +9,8 @@ import {MaterialModule} from './material.module';
 import {FormInputComponent} from './components/form-components/form-input/form-input.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import { AdminComponent } from './components/admin/admin.component';
-import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import {AdminComponent} from './components/admin/admin.component';
+import {DashboardComponent} from './components/admin/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +29,7 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
     BrowserAnimationsModule
   ],
   providers: [],
+  entryComponents: [DashboardComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {
