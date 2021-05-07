@@ -13,13 +13,13 @@ export class AuthGuard implements CanActivate {
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     if (sessionStorage.getItem(TOKEN_NAME)) {
-      this.jwtService.verify().subscribe((resp) => {
+      try {
+        await this.jwtService.verify().toPromise();
         return true;
-      }, () => {
+      } catch (e) {
         this.returnToLogin(state);
         return false;
-      });
-
+      }
     } else {
       this.returnToLogin(state);
       return false;

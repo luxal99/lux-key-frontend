@@ -24,4 +24,5 @@ export const TOKEN_NAME = 'Authorization';
 
 export class PageRoutes {
   static LOGIN = '/';
+  static ADMIN = '/admin';
 }
