@@ -12,6 +12,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {AdminComponent} from './components/admin/admin.component';
 import {DashboardComponent} from './components/admin/dashboard/dashboard.component';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
     LoginComponent,
     FormInputComponent,
     AdminComponent,
-    DashboardComponent
+    DashboardComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
