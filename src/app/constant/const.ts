@@ -12,6 +12,7 @@ export class RestRoutes {
   static API = 'http://localhost:8080/lux/';
   static USER = '/user';
   static CAR_BRAND = '/car-brand';
+  static JWT = '/jwt';
 }
 
 export class SpinnerOptions {
@@ -19,4 +20,8 @@ export class SpinnerOptions {
   static NONE = 'none';
 }
 
-export const TOKEN_NAME = 'token';
+export const TOKEN_NAME = 'Authorization';
+
+export class PageRoutes {
+  static LOGIN = '/';
+}

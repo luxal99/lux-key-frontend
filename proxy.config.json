@@ -2,7 +2,8 @@
   {
     "context": [
       "/user",
-      "/car-brand"
+      "/car-brand",
+      "/jwt"
     ],
     "target": "http://localhost:8080/lux/",
     "secure": false

@@ -11,6 +11,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {AdminComponent} from './components/admin/admin.component';
 import {DashboardComponent} from './components/admin/dashboard/dashboard.component';
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import {DashboardComponent} from './components/admin/dashboard/dashboard.compone
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   entryComponents: [DashboardComponent],
   bootstrap: [AppComponent]
 })
