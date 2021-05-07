@@ -1,1 +1,9 @@
-<p>car-brand-overview works!</p>
+<mat-spinner #spinner diameter="25"></mat-spinner>
+<div class="row" *ngFor="let carBrand of listOfItems">
+  <div class="col-6">
+    <h6>{{carBrand.name}}</h6>
+  </div>
+  <div class="col-6">
+    <h6>{{carBrand.createdDate}}</h6>
+  </div>
+</div>

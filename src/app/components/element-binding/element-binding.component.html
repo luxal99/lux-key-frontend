@@ -1,1 +1,5 @@
-<p>element-binding works!</p>
+<div class="row" *ngFor="let item of list">
+  <div class="col-sm" *ngFor="let attr of item|keyvalue">
+    <h6 *ngIf="attr.key !== 'id'">{{attr.value}}</h6>
+  </div>
+</div>

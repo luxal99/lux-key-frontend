@@ -3,6 +3,7 @@
     "context": [
       "/user",
       "/car-brand",
+      "/car-model",
       "/jwt"
     ],
     "target": "http://localhost:8080/lux/",

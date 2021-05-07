@@ -1,1 +1,29 @@
-<div class="component"></div>
+<div class="component">
+  <mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Pregled brendova
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="text-right">
+        <button mat-button class="default-btn">Dodaj</button>
+      </div>
+      <div class="m-t-2">
+        <app-car-brand-overview></app-car-brand-overview>
+      </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Pregled modela
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="text-right">
+        <button mat-button class="default-btn">Dodaj</button>
+      </div>
+    </mat-expansion-panel>
+    <app-car-model-overview></app-car-model-overview>
+  </mat-accordion>
+
+</div>

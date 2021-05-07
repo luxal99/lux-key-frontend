@@ -13,6 +13,7 @@ export class RestRoutes {
   static USER = '/user';
   static CAR_BRAND = '/car-brand';
   static JWT = '/jwt';
+  static CAR_MODEL='car-model';
 }
 
 export class SpinnerOptions {

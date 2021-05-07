@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-element-binding',
@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ElementBindingComponent implements OnInit {
 
-  constructor() { }
+  @Input() list: any[] = [];
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

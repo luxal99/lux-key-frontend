@@ -5,6 +5,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatSpinner} from '@angular/material/progress-spinner';
 import {Crud} from './crud-interface';
 import {Observable} from 'rxjs';
+import * as moment from 'moment';
 
 @Component({
   template: '',
@@ -16,12 +17,13 @@ export abstract class DefaultComponent<T> implements OnInit, Crud {
   private snackBar: MatSnackBar;
   @ViewChild('spinner') spinner: MatSpinner;
 
-  private listOfItems: T[] = [];
+  listOfItems: T[] = [];
 
   protected constructor(private genericService: GenericService<T>) {
   }
 
   ngOnInit(): void {
+    this.getAll();
   }
 
 
@@ -33,15 +35,6 @@ export abstract class DefaultComponent<T> implements OnInit, Crud {
     return this.snackBar;
   }
 
-  // @ts-ignore
-  set setListOfItems(arr: T[]): void {
-    this.listOfItems = arr;
-  }
-
-  get getListOfItems(): T[] {
-    return this.listOfItems;
-  }
-
   delete(): void {
   }
 
@@ -51,8 +44,10 @@ export abstract class DefaultComponent<T> implements OnInit, Crud {
 
   getAll(): void {
     this.genericService.getAll().subscribe((data) => {
+      this.listOfItems = data;
       // @ts-ignore
-      this.setListOfItems(data);
+      this.listOfItems.filter((item) => item.createdDate ? item.createdDate = moment(item.createdDate).format('DD MMMM YYYY') : '');
+      this.spinnerService.hide(this.spinner);
     });
   }
 
