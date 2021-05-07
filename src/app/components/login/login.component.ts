@@ -5,7 +5,7 @@ import {FieldConfig} from '../../models/FieldConfig';
 import {FormGroup} from '@angular/forms';
 import {FormControl} from '@angular/forms';
 import {Validators} from '@angular/forms';
-import {FormControlNames, InputTypes} from '../../constant/const';
+import {FormControlNames, InputTypes, TOKEN_NAME} from '../../constant/const';
 import {AuthService} from '../../service/auth.service';
 
 @Component({
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 
   auth(): void {
     this.authService.auth(this.loginForm.getRawValue()).subscribe((token) => {
-      sessionStorage.setItem('token', token);
+      sessionStorage.setItem(TOKEN_NAME, token);
     });
   }
 }

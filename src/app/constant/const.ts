@@ -17,3 +17,5 @@ export class SpinnerOptions {
   static BLOCK = 'block';
   static NONE = 'none';
 }
+
+export const TOKEN_NAME = 'token';
