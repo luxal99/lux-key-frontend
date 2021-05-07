@@ -12,3 +12,8 @@ export class RestRoutes {
   static API = 'http://localhost:8080/lux/';
   static USER = '/user';
 }
+
+export class SpinnerOptions {
+  static BLOCK = 'block';
+  static NONE = 'none';
+}
