@@ -3,7 +3,7 @@ export interface Crud {
 
   getAll(): void;
 
-  delete(): void;
+  delete(id: number): void;
 
   update(): void;
 }

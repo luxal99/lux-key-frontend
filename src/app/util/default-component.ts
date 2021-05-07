@@ -6,6 +6,8 @@ import {MatSpinner} from '@angular/material/progress-spinner';
 import {Crud} from './crud-interface';
 import {Observable} from 'rxjs';
 import * as moment from 'moment';
+import {SnackBarUtil} from './snackbar-util';
+import {Message} from '../constant/const';
 
 @Component({
   template: '',
@@ -35,7 +37,16 @@ export abstract class DefaultComponent<T> implements OnInit, Crud {
     return this.snackBar;
   }
 
-  delete(): void {
+  delete(id: number): void {
+    this.spinnerService.show(this.spinner);
+    this.genericService.delete(id).subscribe(() => {
+      SnackBarUtil.openSnackBar(this.snackBar, Message.SUCCESS);
+      this.spinnerService.hide(this.spinner);
+      this.getAll();
+    }, () => {
+      SnackBarUtil.openSnackBar(this.snackBar, Message.ERR);
+      this.spinnerService.hide(this.spinner);
+    });
   }
 
   set setSnackBar(snackBar: MatSnackBar) {

@@ -43,7 +43,7 @@ export class GenericService<T> {
 
 
   delete(id: number): Observable<any> {
-    return this.http.delete(`${RestRoutes.API}${this.route}/${id}`, {
+    return this.http.delete(`${this.route}/${id}`, {
       responseType: 'text',
       headers: {Authorization: sessionStorage.getItem(TOKEN_NAME)}
     });

@@ -2,11 +2,16 @@
   <button mat-button class="default-btn" (click)="openAddCarBrandDialog()">Dodaj</button>
 </div>
 <mat-spinner #spinner diameter="25"></mat-spinner>
-<div class="row" (click)="openAddCarBrandDialog(carBrand)" *ngFor="let carBrand of listOfItems">
-  <div class="col-6">
+<div class="row" *ngFor="let carBrand of listOfItems">
+  <div class="col-5" (click)="openAddCarBrandDialog(carBrand)">
     <h6>{{carBrand.name}}</h6>
   </div>
-  <div class="col-6">
+  <div class="col-5" (click)="openAddCarBrandDialog(carBrand)">
     <h6>{{carBrand.createdDate}}</h6>
+  </div>
+  <div class="col-2">
+    <button mat-icon-button (click)="delete(carBrand.id)">
+      <mat-icon>delete</mat-icon>
+    </button>
   </div>
 </div>

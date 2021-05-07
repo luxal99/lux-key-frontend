@@ -10,6 +10,7 @@ import {DialogUtil} from '../../../../util/dialog-util';
 import {FormBuilderComponent} from '../../../form-components/form-builder/form-builder.component';
 import {DialogOptions} from '../../../../util/dialog-options';
 import {MatDialog} from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-car-brand-overview',
@@ -18,12 +19,17 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class CarBrandOverviewComponent extends DefaultComponent<CarBrand> implements OnInit {
 
-  constructor(private carBrandService: CarBrandService, private dialog: MatDialog) {
+  constructor(private carBrandService: CarBrandService, private dialog: MatDialog, private sb: MatSnackBar) {
     super(carBrandService);
   }
 
   ngOnInit(): void {
     super.ngOnInit();
+    this.initSnackBar();
+  }
+
+  initSnackBar(): void {
+    this.setSnackBar = this.sb;
   }
 
   openAddCarBrandDialog(data?: CarBrand): void {
@@ -47,5 +53,9 @@ export class CarBrandOverviewComponent extends DefaultComponent<CarBrand> implem
       }), this.dialog).afterClosed().subscribe(() => {
       this.getAll();
     });
+  }
+
+  deleteCarBrand(id: number): void {
+    super.delete(id);
   }
 }
