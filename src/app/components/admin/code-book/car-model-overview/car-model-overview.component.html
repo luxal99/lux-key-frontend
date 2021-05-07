@@ -2,14 +2,19 @@
 <div class="text-right">
   <button mat-button class="default-btn" (click)="openAddCarModelDialog()">Dodaj</button>
 </div>
-<div class="row" (click)="openAddCarModelDialog(carModel)" *ngFor="let carModel of listOfItems">
-  <div class="col-4">
+<div class="row" *ngFor="let carModel of listOfItems">
+  <div (click)="openAddCarModelDialog(carModel)" class="col-3">
     <h6>{{carModel.name}}</h6>
   </div>
-  <div class="col-4">
+  <div (click)="openAddCarModelDialog(carModel)" class="col-3">
     <h6>{{carModel.idCarBrand.name}}</h6>
   </div>
-  <div class="col-4">
+  <div (click)="openAddCarModelDialog(carModel)" class="col-3">
     <h6>{{carModel.createdDate}}</h6>
+  </div>
+  <div class="col-3">
+    <button mat-icon-button (click)="delete(carModel.id)">
+      <mat-icon>delete</mat-icon>
+    </button>
   </div>
 </div>

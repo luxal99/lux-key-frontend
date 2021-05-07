@@ -54,8 +54,4 @@ export class CarBrandOverviewComponent extends DefaultComponent<CarBrand> implem
       this.getAll();
     });
   }
-
-  deleteCarBrand(id: number): void {
-    super.delete(id);
-  }
 }
