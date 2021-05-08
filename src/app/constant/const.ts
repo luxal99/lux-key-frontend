@@ -25,6 +25,7 @@ export class RestRoutes {
   static CLIENT = '/client';
   static CAR_MODEL = 'car-model';
   static KEY_CATEGORY = 'key-category';
+  static KEY = 'key';
   static KEY_SUB_CATEGORY = 'key-sub-category';
 }
 

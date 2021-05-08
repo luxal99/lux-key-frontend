@@ -4,6 +4,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {ComponentType} from '@angular/cdk/portal';
 import {CodeBookComponent} from './code-book/code-book.component';
 import {ClientComponent} from './client/client.component';
+import {KeyComponent} from './key/key.component';
 
 @Component({
   selector: 'app-admin',
@@ -44,7 +45,12 @@ export class AdminComponent implements OnInit {
 
   loadClientComponent(): void {
     this.header = 'Klijenti';
-    this.lazyLoad(ClientComponent)
+    this.lazyLoad(ClientComponent);
+  }
+
+  loadKeyComponent(): void {
+    this.header = 'Ključevi';
+    this.lazyLoad(KeyComponent);
   }
 
   changeColor(e: any): void {

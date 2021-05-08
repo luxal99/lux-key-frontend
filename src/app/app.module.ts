@@ -27,7 +27,7 @@ import {CarBrandPipe} from './pipes/car-brand.pipe';
 import {KeyCategoryOverviewComponent} from './components/admin/code-book/key-category-overview/key-category-overview.component';
 import {KeySubCategoryOverviewComponent} from './components/admin/code-book/key-sub-category-overview/key-sub-category-overview.component';
 import {ClientComponent} from './components/admin/client/client.component';
-import { KeyComponent } from './components/admin/key/key.component';
+import {KeyComponent} from './components/admin/key/key.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +62,7 @@ import { KeyComponent } from './components/admin/key/key.component';
     BrowserAnimationsModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
-  entryComponents: [ClientComponent, CodeBookComponent, DashboardComponent],
+  entryComponents: [ClientComponent, CodeBookComponent, DashboardComponent, KeyComponent],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
