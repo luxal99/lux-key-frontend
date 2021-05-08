@@ -19,6 +19,7 @@ export class RestRoutes {
   static USER = '/user';
   static CAR_BRAND = '/car-brand';
   static JWT = '/jwt';
+  static CLIENT = '/client';
   static CAR_MODEL = 'car-model';
   static KEY_CATEGORY = 'key-category';
   static KEY_SUB_CATEGORY = 'key-sub-category';
