@@ -62,9 +62,50 @@ export abstract class DefaultComponent<T> implements OnInit, Crud {
     });
   }
 
-  save(): void {
+  save(entity: T): void {
+    this.spinnerService.show(this.spinner);
+    this.genericService.save(entity).subscribe(() => {
+      SnackBarUtil.openSnackBar(this.snackBar, Message.SUCCESS);
+      this.spinnerService.hide(this.spinner);
+    }, () => {
+      SnackBarUtil.openSnackBar(this.snackBar, Message.ERR);
+      this.spinnerService.hide(this.spinner);
+    });
   }
 
-  update(): void {
+  genericSubscribe(observable: Observable<any>, callBack?: () => {}): void {
+    this.spinnerService.show(this.spinner);
+    observable.subscribe(() => {
+      if (callBack()) {
+        callBack();
+      }
+      SnackBarUtil.openSnackBar(this.snackBar, Message.SUCCESS);
+      this.spinnerService.hide(this.spinner);
+    }, () => {
+      SnackBarUtil.openSnackBar(this.snackBar, Message.ERR);
+      this.spinnerService.hide(this.spinner);
+    });
+  }
+
+  async saveToPromise(entity: T): Promise<T> {
+    this.spinnerService.show(this.spinner);
+    try {
+      SnackBarUtil.openSnackBar(this.snackBar, Message.SUCCESS);
+      this.spinnerService.hide(this.spinner);
+      return await this.genericService.save(entity).toPromise();
+    } catch (e) {
+      SnackBarUtil.openSnackBar(this.snackBar, Message.ERR);
+      this.spinnerService.hide(this.spinner);
+    }
+  }
+
+  update(entity: T): void {
+    this.genericService.update(entity).subscribe(() => {
+      SnackBarUtil.openSnackBar(this.snackBar, Message.SUCCESS);
+      this.spinnerService.hide(this.spinner);
+    }, () => {
+      SnackBarUtil.openSnackBar(this.snackBar, Message.ERR);
+      this.spinnerService.hide(this.spinner);
+    });
   }
 }

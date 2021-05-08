@@ -4,6 +4,9 @@ import {Key} from '../../../models/key';
 import {KeyService} from '../../../service/key.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialog} from '@angular/material/dialog';
+import {DialogUtil} from '../../../util/dialog-util';
+import {AddKeyDialogComponent} from './add-key-dialog/add-key-dialog.component';
+import {DialogOptions} from '../../../util/dialog-options';
 
 @Component({
   selector: 'app-key',
@@ -26,7 +29,13 @@ export class KeyComponent extends DefaultComponent<Key> implements OnInit {
   }
 
   openAddKeyDialog(key?: Key): void {
-
+    DialogUtil.openDialog(AddKeyDialogComponent, DialogOptions.setDialogConfig({
+      position: {top: '6%'},
+      width: '30%',
+      data: key
+    }), this.dialog).afterClosed().subscribe(() => {
+      this.getAll();
+    });
   }
 
 }

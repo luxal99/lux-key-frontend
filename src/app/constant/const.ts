@@ -7,11 +7,15 @@ export class FormControlNames {
   static FIRST_NAME_FORM_CONTROL = 'firstName';
   static LAST_NAME_FORM_CONTROL = 'lastName';
   static TELEPHONE_FORM_CONTROL = 'telephone';
+  static PRICE_FORM_CONTROL = 'price';
+  static CODE_FORM_CONTROL = 'code';
+  static AMOUNT_FORM_CONTROL = 'amount';
 }
 
 export class InputTypes {
   static TEXT = 'text';
   static INPUT = 'input';
+  static NUMBER = 'number';
   static PASSWORD = 'password';
   static SELECT = 'select';
   static AUTOCOMPLETE = 'autocomplete';
@@ -26,6 +30,7 @@ export class RestRoutes {
   static CAR_MODEL = 'car-model';
   static KEY_CATEGORY = 'key-category';
   static KEY = 'key';
+  static KEY_PRICE = 'key-price';
   static KEY_SUB_CATEGORY = 'key-sub-category';
 }
 

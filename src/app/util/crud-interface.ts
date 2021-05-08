@@ -1,9 +1,9 @@
 export interface Crud {
-  save(): void;
+  save(entity): void;
 
   getAll(): void;
 
   delete(id: number): void;
 
-  update(): void;
+  update(entity): void;
 }
