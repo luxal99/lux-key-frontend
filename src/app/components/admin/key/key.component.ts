@@ -1,15 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {DefaultComponent} from '../../../util/default-component';
+import {Key} from '../../../models/key';
+import {KeyService} from '../../../service/key.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-key',
   templateUrl: './key.component.html',
   styleUrls: ['./key.component.sass']
 })
-export class KeyComponent implements OnInit {
+export class KeyComponent extends DefaultComponent<Key> implements OnInit {
 
-  constructor() { }
+  constructor(private keyService: KeyService, private sb: MatSnackBar, private dialog: MatDialog) {
+    super(keyService);
+  }
+
+  initSnackBar(): void {
+    this.setSnackBar = this.sb;
+  }
 
   ngOnInit(): void {
+    super.ngOnInit();
+    this.initSnackBar();
+  }
+
+  openAddKeyDialog(key?: Key): void {
+
   }
 
 }
