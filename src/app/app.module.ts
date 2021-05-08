@@ -30,6 +30,7 @@ import {ClientComponent} from './components/admin/client/client.component';
 import {KeyComponent} from './components/admin/key/key.component';
 import {AddKeyDialogComponent} from './components/admin/key/add-key-dialog/add-key-dialog.component';
 import {EditKeyDialogComponent} from './components/admin/key/edit-key-dialog/edit-key-dialog.component';
+import { FormSelectGroupComponent } from './components/form-components/form-select-group/form-select-group.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import {EditKeyDialogComponent} from './components/admin/key/edit-key-dialog/edi
     ClientComponent,
     KeyComponent,
     AddKeyDialogComponent,
-    EditKeyDialogComponent
+    EditKeyDialogComponent,
+    FormSelectGroupComponent
   ],
   imports: [
     BrowserModule,

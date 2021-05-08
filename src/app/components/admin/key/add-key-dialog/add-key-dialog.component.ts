@@ -36,7 +36,16 @@ export class AddKeyDialogComponent extends DefaultComponent<Key> implements OnIn
   amountInputConfig: FieldConfig = {name: FormControlNames.AMOUNT_FORM_CONTROL, type: InputTypes.NUMBER, label: 'Količina'};
   codeInputConfig: FieldConfig = {name: FormControlNames.CODE_FORM_CONTROL, type: InputTypes.TEXT, label: 'Šifra'};
   priceInputConfig: FieldConfig = {name: FormControlNames.PRICE_FORM_CONTROL, type: InputTypes.NUMBER, label: 'Cena'};
-  idCurrentPriceSelectConfig: FieldConfig = {name: FormControlNames.NAME_FORM_CONTROL, type: InputTypes.TEXT, label: 'Naziv'};
+  idCarModelGroupSelect: FieldConfig = {
+    name: FormControlNames.ID_CAR_MODEL_FORM_CONTROL,
+    type: InputTypes.SELECT,
+    label: 'Brend/Model automobila'
+  };
+  idKeySubCategoriesGroupSelect: FieldConfig = {
+    name: FormControlNames.ID_KEY_SUB_CATEGORY_FORM_CONTROL,
+    type: InputTypes.TEXT,
+    label: 'Kategorija ključa'
+  };
 
   constructor(private keyService: KeyService, private sb: MatSnackBar, private keyPriceService: KeyPriceService,
               public keyCategoryService: KeyCategoryService, private carBrandService: CarBrandService) {

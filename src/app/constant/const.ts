@@ -11,6 +11,8 @@ export class FormControlNames {
   static CODE_FORM_CONTROL = 'code';
   static AMOUNT_FORM_CONTROL = 'amount';
   static ID_CURRENT_PRICE_FORM_CONTROL = 'idCurrentPrice';
+  static ID_CAR_MODEL_FORM_CONTROL = 'idCarModel';
+  static ID_KEY_SUB_CATEGORY_FORM_CONTROL = 'idKeySubCategory';
 }
 
 export class InputTypes {

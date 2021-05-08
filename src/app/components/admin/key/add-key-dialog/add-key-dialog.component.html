@@ -3,32 +3,10 @@
   <app-form-input [config]="amountInputConfig" [group]="keyForm"></app-form-input>
   <app-form-input [config]="codeInputConfig" [group]="keyForm"></app-form-input>
   <app-form-input [config]="priceInputConfig" [group]="keyForm"></app-form-input>
-  <div [formGroup]="keyForm">
-    <mat-form-field appearance="outline">
-      <mat-label>Kategorija/Potkategorija ključa</mat-label>
-      <mat-select formControlName="idKeySubCategory">
-        <mat-option>-- None --</mat-option>
-        <mat-optgroup *ngFor="let group of listOfKeyCategories" [label]="group.name">
-          <mat-option *ngFor="let keySubCategory of group.keySubCategories" [value]="keySubCategory">
-            {{keySubCategory.name}}
-          </mat-option>
-        </mat-optgroup>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div [formGroup]="keyForm">
-    <mat-form-field appearance="outline">
-      <mat-label>Brand/Model automobila</mat-label>
-      <mat-select formControlName="idCarModel">
-        <mat-option>-- None --</mat-option>
-        <mat-optgroup *ngFor="let group of listOfCarBrands" [label]="group.name">
-          <mat-option *ngFor="let pokemon of group.carModels" [value]="pokemon">
-            {{pokemon.name}}
-          </mat-option>
-        </mat-optgroup>
-      </mat-select>
-    </mat-form-field>
-  </div>
+  <app-form-select-group [config]="idCarModelGroupSelect" [group]="keyForm" [groupList]="listOfCarBrands"
+                         itemList="carModels"></app-form-select-group>
+  <app-form-select-group [config]="idKeySubCategoriesGroupSelect" [group]="keyForm" [groupList]="listOfKeyCategories"
+                         itemList="keySubCategories"></app-form-select-group>
 
   <div class="text-right">
     <button mat-button class="default-btn" [disabled]="!keyForm.valid" (click)="saveKey()">Sačuvaj</button>
