@@ -4,7 +4,7 @@ $default-red: #ff4040
 $light-silver: #999
 $component-background: #f7f7f8
 
-h1, h2, h3, h4, h5, a, li, mat-checkbox, p, th, tr, td, button, .mat-step-text-label
+h1, h2, h3, h4, h5, h6, a, li, mat-checkbox, p, th, tr, td, button, .mat-step-text-label
   font-family: 'Work Sans', sans-serif !important
 
 .default-btn
@@ -13,12 +13,14 @@ h1, h2, h3, h4, h5, a, li, mat-checkbox, p, th, tr, td, button, .mat-step-text-l
   font-size: 16px
   font-weight: bold
   padding: .3em 0
+  width: 200px
 
 .component
   padding: 2em
 
 .inline
   display: inline-flex
+
 ::-webkit-scrollbar
   height: 1em
   width: 15px
@@ -30,3 +32,20 @@ h1, h2, h3, h4, h5, a, li, mat-checkbox, p, th, tr, td, button, .mat-step-text-l
 ::-webkit-scrollbar-thumb
   background: $default-red
   border-radius: 15px
+
+.red-border-btn
+  border-radius: 5px
+  background-color: transparent
+  border: 1px solid $default-red
+  color: $default-red
+
+.orange-border-btn
+  @extend .red-border-btn
+  color: #ffa900
+  border: 1px solid #ffa900
+
+
+.green-border-btn
+  @extend .red-border-btn
+  color: #02d717
+  border: 1px solid #02d717

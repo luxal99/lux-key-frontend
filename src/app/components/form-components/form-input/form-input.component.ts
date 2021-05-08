@@ -14,7 +14,6 @@ export class FormInputComponent implements OnInit, Field {
 
   @Input() config!: FieldConfig;
   @Input() group!: FormGroup;
-  @Input() label = 'Naziv';
   @Input() icon = 'format_align_right';
   @Input() isRequired!: boolean;
   @Input() appearance = 'outline';

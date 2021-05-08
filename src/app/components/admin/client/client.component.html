@@ -1,1 +1,28 @@
-<p>client works!</p>
+<div class="component">
+  <div class="text-right">
+    <button class="default-btn" mat-button (click)="openAddClientDialog()">Dodaj</button>
+  </div>
+  <div class="client-binding">
+    <div class="row" *ngFor="let client of listOfItems">
+      <div class="col" (click)="openAddClientDialog(client)">
+        <h6>Ime</h6>
+        <h5>{{client.firstName}}</h5>
+      </div>
+      <div class="col" (click)="openAddClientDialog(client)">
+        <h6>Prezime</h6>
+        <h5>{{client.lastName}}</h5>
+      </div>
+      <div class="col" (click)="openAddClientDialog(client)">
+        <h6>Telefon</h6>
+        <h5>{{client.telephone}}</h5>
+      </div>
+      <div class="col">
+        <h6 style="visibility: hidden">Opcija</h6>
+        <button mat-button class="green-border-btn">Pregled</button>
+        <button mat-button class="orange-border-btn">Dodaj boju</button>
+        <button mat-button class="red-border-btn" (click)="delete(client.id)">Obriši</button>
+      </div>
+    </div>
+  </div>
+</div>
+<mat-spinner #spinner diameter="25"></mat-spinner>

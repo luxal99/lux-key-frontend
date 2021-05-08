@@ -3,6 +3,7 @@ import {LazyLoadComponentsUtil} from '../../util/lazy-loading-components';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {ComponentType} from '@angular/cdk/portal';
 import {CodeBookComponent} from './code-book/code-book.component';
+import {ClientComponent} from './client/client.component';
 
 @Component({
   selector: 'app-admin',
@@ -39,6 +40,11 @@ export class AdminComponent implements OnInit {
   loadCodeBookComponent(): void {
     this.header = 'Šifarnik';
     this.lazyLoad(CodeBookComponent);
+  }
+
+  loadClientComponent(): void {
+    this.header = 'Klijenti';
+    this.lazyLoad(ClientComponent)
   }
 
   changeColor(e: any): void {
