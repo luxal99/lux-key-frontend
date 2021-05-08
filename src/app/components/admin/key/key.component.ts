@@ -7,6 +7,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {DialogUtil} from '../../../util/dialog-util';
 import {AddKeyDialogComponent} from './add-key-dialog/add-key-dialog.component';
 import {DialogOptions} from '../../../util/dialog-options';
+import {EditKeyDialogComponent} from './edit-key-dialog/edit-key-dialog.component';
 
 @Component({
   selector: 'app-key',
@@ -28,8 +29,17 @@ export class KeyComponent extends DefaultComponent<Key> implements OnInit {
     this.initSnackBar();
   }
 
-  openAddKeyDialog(key?: Key): void {
+  openAddKeyDialog(): void {
     DialogUtil.openDialog(AddKeyDialogComponent, DialogOptions.setDialogConfig({
+      position: {top: '6%'},
+      width: '30%'
+    }), this.dialog).afterClosed().subscribe(() => {
+      this.getAll();
+    });
+  }
+
+  openEditKeyDialog(key: Key): void {
+    DialogUtil.openDialog(EditKeyDialogComponent, DialogOptions.setDialogConfig({
       position: {top: '6%'},
       width: '30%',
       data: key

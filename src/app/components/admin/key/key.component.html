@@ -3,4 +3,26 @@
     <button (click)="openAddKeyDialog()" mat-button class="default-btn">Dodaj</button>
   </div>
   <mat-spinner diameter="25" #spinner></mat-spinner>
+  <div class="key-binding">
+    <div class="row" *ngFor="let key of listOfItems">
+      <div class="col" (click)="openEditKeyDialog(key)">
+        <h6>Naziv</h6>
+        <h5>{{key.name}}</h5>
+      </div>
+      <div class="col" (click)="openEditKeyDialog(key)">
+        <h6>Količina</h6>
+        <h5>{{key.amount}}</h5>
+      </div>
+      <div class="col" (click)="openEditKeyDialog(key)">
+        <h6>Akutelna cena</h6>
+        <h5>{{key.idCurrentPrice.price}}</h5>
+      </div>
+      <div class="col" (click)="openEditKeyDialog(key)">
+        <h6 style="visibility: hidden">Opt</h6>
+        <button mat-button class="green-border-btn">Pregled</button>
+        <button (click)="delete(key.id)" class="red-border-btn">Obriši</button>
+      </div>
+
+    </div>
+  </div>
 </div>

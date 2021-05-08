@@ -1,0 +1,43 @@
+<mat-tab-group>
+  <mat-tab label="Osnovne informacije">
+    <div>
+      <app-form-input [config]="nameInputConfig" [group]="keyForm"></app-form-input>
+      <app-form-input [config]="amountInputConfig" [group]="keyForm"></app-form-input>
+      <app-form-input [config]="codeInputConfig" [group]="keyForm"></app-form-input>
+      <app-form-select [config]="idCurrentPriceSelectConfig" [group]="keyForm"></app-form-select>
+      <div [formGroup]="keyForm">
+        <mat-form-field appearance="outline">
+          <mat-label>Kategorija/Potkategorija ključa</mat-label>
+          <mat-select formControlName="idKeySubCategory">
+            <mat-option>-- None --</mat-option>
+            <mat-optgroup *ngFor="let group of listOfKeyCategories" [label]="group.name">
+              <mat-option *ngFor="let keySubCategory of group.keySubCategories" [value]="keySubCategory">
+                {{keySubCategory.name}}
+              </mat-option>
+            </mat-optgroup>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div [formGroup]="keyForm">
+        <mat-form-field appearance="outline">
+          <mat-label>Brand/Model automobila</mat-label>
+          <mat-select formControlName="idCarModel">
+            <mat-option>-- None --</mat-option>
+            <mat-optgroup *ngFor="let group of listOfCarBrands" [label]="group.name">
+              <mat-option *ngFor="let pokemon of group.carModels" [value]="pokemon">
+                {{pokemon.name}}
+              </mat-option>
+            </mat-optgroup>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="text-right">
+        <button mat-button class="default-btn" [disabled]="!keyForm.valid" (click)="updateKey()">Sačuvaj</button>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Informacije o ceni"></mat-tab>
+</mat-tab-group>
+
+<mat-spinner #spinner diameter="25"></mat-spinner>
