@@ -3,9 +3,9 @@
     <div class="col-4"></div>
     <div class="col-4 login-form text-center">
       <img src="assets/img/logo-with-letters.png" class="img-fluid" width="150px">
-      <app-form-input [group]="loginForm" label="Username" icon="account_circle" appearance=""
+      <app-form-input [group]="loginForm" icon="account_circle" appearance=""
                       [config]="usernameInputConfig"></app-form-input>
-      <app-form-input [group]="loginForm" appearance="" label="Password" icon="lock"
+      <app-form-input [group]="loginForm" appearance="" icon="lock"
                       [config]="passwordInputConfig"></app-form-input>
       <button class="default-btn w-100" mat-button [disabled]="!loginForm.valid" (click)="auth()">Login</button>
       <mat-spinner diameter="25" #spinner></mat-spinner>

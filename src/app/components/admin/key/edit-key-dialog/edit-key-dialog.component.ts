@@ -47,6 +47,16 @@ export class EditKeyDialogComponent extends DefaultComponent<Key> implements OnI
     label: 'Naziv',
     options: this.data.keyPrices
   };
+  idCarModelGroupSelect: FieldConfig = {
+    name: FormControlNames.ID_CAR_MODEL_FORM_CONTROL,
+    type: InputTypes.SELECT,
+    label: 'Brend/Model automobila'
+  };
+  idKeySubCategoriesGroupSelect: FieldConfig = {
+    name: FormControlNames.ID_KEY_SUB_CATEGORY_FORM_CONTROL,
+    type: InputTypes.TEXT,
+    label: 'Kategorija ključa'
+  };
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Key, private keyService: KeyService, private sb: MatSnackBar,
               private keyPriceService: KeyPriceService, private readonly changeDetectorRef: ChangeDetectorRef,
@@ -83,7 +93,9 @@ export class EditKeyDialogComponent extends DefaultComponent<Key> implements OnI
 
 
   updateKey(): void {
-
+    const key: Key = this.keyForm.getRawValue();
+    key.id = this.data.id;
+    super.update(key);
   }
 
   deleteKeyPrice(id: number): void {

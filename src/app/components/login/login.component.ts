@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', Validators.required)
   });
 
-  usernameInputConfig: FieldConfig = {type: InputTypes.TEXT, name: FormControlNames.USERNAME_NAME_FORM_CONTROL};
-  passwordInputConfig: FieldConfig = {type: InputTypes.PASSWORD, name: FormControlNames.PASSWORD_NAME_FORM_CONTROL};
+  usernameInputConfig: FieldConfig = {type: InputTypes.TEXT, name: FormControlNames.USERNAME_NAME_FORM_CONTROL, label: 'Username'};
+  passwordInputConfig: FieldConfig = {type: InputTypes.PASSWORD, name: FormControlNames.PASSWORD_NAME_FORM_CONTROL, label: 'Password'};
 
 
   constructor(private authService: AuthService, private router: Router, private spinnerService: SpinnerService, private snackBar: MatSnackBar) {

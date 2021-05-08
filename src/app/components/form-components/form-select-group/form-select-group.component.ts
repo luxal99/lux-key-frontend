@@ -14,6 +14,7 @@ export class FormSelectGroupComponent implements OnInit, Field {
   @Input() group!: FormGroup;
   @Input() itemList: any[] = [];
   @Input() groupList: any[] = [];
+  @Input() model: any;
 
 
   constructor() {
