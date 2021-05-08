@@ -119,7 +119,7 @@ export class FormBuilderComponent implements OnChanges, OnInit, AfterViewChecked
   setValue(): void {
     if (this.configData.formValues) {
       for (const [k, v] of Object.entries(this.configData.formValues)) {
-        if (k !== 'id') {
+        if (k !== 'id' && k !== 'createdDate' && k !== 'lastModifiedDate') {
           this.form.controls[k].setValue(v, {emitEvent: true});
         }
       }
