@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewChecked, ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
 import {DefaultComponent} from '../../../../util/default-component';
 import {Key} from '../../../../models/key';
 import {KeyCategory} from '../../../../models/keyCategory';
@@ -11,33 +11,45 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {KeyPriceService} from '../../../../service/key-price.service';
 import {KeyCategoryService} from '../../../../service/key-category.service';
 import {CarBrandService} from '../../../../service/car-brand.service';
+import {KeyPrice} from '../../../../models/keyPrice';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit-key-dialog',
   templateUrl: './edit-key-dialog.component.html',
   styleUrls: ['./edit-key-dialog.component.sass']
 })
-export class EditKeyDialogComponent extends DefaultComponent<Key> implements OnInit {
+export class EditKeyDialogComponent extends DefaultComponent<Key> implements OnInit, AfterViewChecked {
 
+  listOfKeyPrices: KeyPrice[] = [];
   listOfKeyCategories: KeyCategory[] = [];
   listOfCarBrands: CarBrand[] = [];
+
   keyForm = new FormGroup({
     name: new FormControl('', Validators.required),
     amount: new FormControl('', Validators.required),
     code: new FormControl('', Validators.required),
-    price: new FormControl('', Validators.required),
     idCurrentPrice: new FormControl(''),
     idKeySubCategory: new FormControl('', Validators.required),
     idCarModel: new FormControl('', Validators.required)
   });
 
+  keyPriceForm = new FormGroup({
+    price: new FormControl('', Validators.required)
+  });
   nameInputConfig: FieldConfig = {name: FormControlNames.NAME_FORM_CONTROL, type: InputTypes.TEXT, label: 'Naziv'};
   amountInputConfig: FieldConfig = {name: FormControlNames.AMOUNT_FORM_CONTROL, type: InputTypes.NUMBER, label: 'Količina'};
   codeInputConfig: FieldConfig = {name: FormControlNames.CODE_FORM_CONTROL, type: InputTypes.TEXT, label: 'Šifra'};
   priceInputConfig: FieldConfig = {name: FormControlNames.PRICE_FORM_CONTROL, type: InputTypes.NUMBER, label: 'Cena'};
-  idCurrentPriceSelectConfig: FieldConfig = {name: FormControlNames.NAME_FORM_CONTROL, type: InputTypes.SELECT, label: 'Naziv'};
+  idCurrentPriceSelectConfig: FieldConfig = {
+    name: FormControlNames.ID_CURRENT_PRICE_FORM_CONTROL,
+    type: InputTypes.SELECT,
+    label: 'Naziv',
+    options: this.data.keyPrices
+  };
 
-  constructor(private keyService: KeyService, private sb: MatSnackBar, private keyPriceService: KeyPriceService,
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Key, private keyService: KeyService, private sb: MatSnackBar,
+              private keyPriceService: KeyPriceService, private readonly changeDetectorRef: ChangeDetectorRef,
               public keyCategoryService: KeyCategoryService, private carBrandService: CarBrandService) {
     super(keyService);
   }
@@ -47,16 +59,14 @@ export class EditKeyDialogComponent extends DefaultComponent<Key> implements OnI
   }
 
   ngOnInit(): void {
+    console.log(this.data);
     this.initSnackBar();
     this.getKeyCategories();
     this.getCarBrands();
   }
 
-
-  getKeyPrices(): void {
-    this.keyPriceService.getAll().subscribe((resp) => {
-      this.idCurrentPriceSelectConfig.options = resp;
-    });
+  ngAfterViewChecked(): void {
+    this.changeDetectorRef.detectChanges();
   }
 
   getKeyCategories(): void {
@@ -72,7 +82,11 @@ export class EditKeyDialogComponent extends DefaultComponent<Key> implements OnI
   }
 
 
-  updateKey() {
+  updateKey(): void {
 
+  }
+
+  deleteKeyPrice(id: number): void {
+    super.genericSubscribe(this.keyService.delete(id));
   }
 }

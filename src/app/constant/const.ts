@@ -10,6 +10,7 @@ export class FormControlNames {
   static PRICE_FORM_CONTROL = 'price';
   static CODE_FORM_CONTROL = 'code';
   static AMOUNT_FORM_CONTROL = 'amount';
+  static ID_CURRENT_PRICE_FORM_CONTROL = 'idCurrentPrice';
 }
 
 export class InputTypes {

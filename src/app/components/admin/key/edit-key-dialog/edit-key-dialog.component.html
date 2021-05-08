@@ -1,10 +1,11 @@
 <mat-tab-group>
   <mat-tab label="Osnovne informacije">
     <div>
-      <app-form-input [config]="nameInputConfig" [group]="keyForm"></app-form-input>
-      <app-form-input [config]="amountInputConfig" [group]="keyForm"></app-form-input>
-      <app-form-input [config]="codeInputConfig" [group]="keyForm"></app-form-input>
-      <app-form-select [config]="idCurrentPriceSelectConfig" [group]="keyForm"></app-form-select>
+      <app-form-input [model]="data.name" [config]="nameInputConfig" [group]="keyForm"></app-form-input>
+      <app-form-input [model]="data.amount" [config]="amountInputConfig" [group]="keyForm"></app-form-input>
+      <app-form-input [model]="data.code" [config]="codeInputConfig" [group]="keyForm"></app-form-input>
+      <app-form-select [model]="data.idCurrentPrice" bindValue="price" [config]="idCurrentPriceSelectConfig"
+                       [group]="keyForm"></app-form-select>
       <div [formGroup]="keyForm">
         <mat-form-field appearance="outline">
           <mat-label>Kategorija/Potkategorija ključa</mat-label>
@@ -21,7 +22,7 @@
       <div [formGroup]="keyForm">
         <mat-form-field appearance="outline">
           <mat-label>Brand/Model automobila</mat-label>
-          <mat-select formControlName="idCarModel">
+          <mat-select formControlName="idCarModel" [ngModel]="data.idCarModel">
             <mat-option>-- None --</mat-option>
             <mat-optgroup *ngFor="let group of listOfCarBrands" [label]="group.name">
               <mat-option *ngFor="let pokemon of group.carModels" [value]="pokemon">
@@ -37,7 +38,21 @@
       </div>
     </div>
   </mat-tab>
-  <mat-tab label="Informacije o ceni"></mat-tab>
+  <mat-tab label="Informacije o ceni">
+    <app-form-input [group]="keyPriceForm" [config]="priceInputConfig"></app-form-input>
+    <div class="row" *ngFor="let keyPrice of listOfKeyPrices">
+      <div class="col">
+        <h6>Cena</h6>
+        <h5>{{keyPrice.price}}</h5>
+      </div>
+      <div class="col">
+        <h6 style="visibility: hidden">Opt</h6>
+        <button mat-icon-button (click)="deleteKeyPrice(keyPrice.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-tab>
 </mat-tab-group>
 
 <mat-spinner #spinner diameter="25"></mat-spinner>
