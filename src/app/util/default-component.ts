@@ -87,6 +87,18 @@ export abstract class DefaultComponent<T> implements OnInit, Crud {
     });
   }
 
+  async genericPromiseSubscribe(observable: Observable<any>, callBack?: () => {}): Promise<any> {
+    this.spinnerService.show(this.spinner);
+    try {
+      SnackBarUtil.openSnackBar(this.snackBar, Message.SUCCESS);
+      this.spinnerService.hide(this.spinner);
+      return await observable.toPromise();
+    } catch (e) {
+      SnackBarUtil.openSnackBar(this.snackBar, Message.ERR);
+      this.spinnerService.hide(this.spinner);
+    }
+  }
+
   async saveToPromise(entity: T): Promise<T> {
     this.spinnerService.show(this.spinner);
     try {

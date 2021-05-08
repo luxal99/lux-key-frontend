@@ -98,7 +98,15 @@ export class EditKeyDialogComponent extends DefaultComponent<Key> implements OnI
     super.update(key);
   }
 
-  deleteKeyPrice(id: number): void {
-    super.genericSubscribe(this.keyService.delete(id));
+  deleteKeyPrice(keyPrice: KeyPrice): void {
+    super.genericSubscribe(this.keyPriceService.delete(keyPrice.id), (): any => {
+      this.data.keyPrices.splice(this.data.keyPrices.indexOf(keyPrice), 1);
+    });
+  }
+
+  async addKeyPrice(): Promise<void> {
+    this.data.keyPrices.push(await super.genericPromiseSubscribe(this.keyPriceService.save(
+      {idKey: this.data, price: this.keyPriceForm.get(FormControlNames.PRICE_FORM_CONTROL).value}
+    )));
   }
 }
