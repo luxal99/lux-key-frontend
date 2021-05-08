@@ -28,6 +28,7 @@ import {KeyCategoryOverviewComponent} from './components/admin/code-book/key-cat
 import {KeySubCategoryOverviewComponent} from './components/admin/code-book/key-sub-category-overview/key-sub-category-overview.component';
 import {ClientComponent} from './components/admin/client/client.component';
 import {KeyComponent} from './components/admin/key/key.component';
+import {AddKeyDialogComponent} from './components/admin/key/add-key-dialog/add-key-dialog.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {KeyComponent} from './components/admin/key/key.component';
     KeyCategoryOverviewComponent,
     KeySubCategoryOverviewComponent,
     ClientComponent,
-    KeyComponent
+    KeyComponent,
+    AddKeyDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,7 @@ import {KeyComponent} from './components/admin/key/key.component';
     BrowserAnimationsModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
-  entryComponents: [ClientComponent, CodeBookComponent, DashboardComponent, KeyComponent],
+  entryComponents: [AddKeyDialogComponent, ClientComponent, CodeBookComponent, DashboardComponent, KeyComponent],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
