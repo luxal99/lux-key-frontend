@@ -15,6 +15,8 @@ export class FormControlNames {
   static ID_KEY_SUB_CATEGORY_FORM_CONTROL = 'idKeySubCategory';
   static SEARCH_FORM_CONTROL = 'search';
   static CAR_BRAND_FORM_CONTROL = 'carBrand';
+  static GROSS_FORM_CONTROL = 'gross';
+  static DATE_FORM_CONTROL = 'date';
 }
 
 export class InputTypes {
@@ -37,6 +39,7 @@ export class RestRoutes {
   static KEY = 'key';
   static KEY_PRICE = 'key-price';
   static KEY_SUB_CATEGORY = 'key-sub-category';
+  static SERVICE = 'service';
 }
 
 export class SpinnerOptions {

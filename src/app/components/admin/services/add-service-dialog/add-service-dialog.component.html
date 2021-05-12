@@ -1,1 +1,65 @@
-<p>add-service-dialog works!</p>
+<div class="row">
+  <div class="col-6">
+    <h5><b>Dodaj servis</b></h5>
+  </div>
+  <div class="col-6 text-right">
+    <h5>{{currentDate.format('DD MMMM YYYY')}}</h5>
+  </div>
+</div>
+<mat-divider></mat-divider>
+<div class="content">
+  <form [formGroup]="serviceForm">
+    <mat-form-field>
+      <mat-label>Izaberi datum</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </form>
+  <mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h6><b>Izaberi ključ</b></h6>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="ex-content">
+        <form [formGroup]="searchForm">
+          <mat-form-field appearance="outline" style="margin-right: 3em">
+            <mat-label>Pretraži</mat-label>
+            <input matInput [(ngModel)]="searchText" formControlName="search">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+        </form>
+        <div class="row key-row" (click)="addKey(key)" *ngFor="let key of listOfKeys|key:searchText">
+          <div class="col">
+            <h6>Naziv</h6>
+            <h5>{{key.name}}</h5>
+          </div>
+          <div class="col">
+            <h6>Količina</h6>
+            <h5>{{key.amount}}</h5>
+          </div>
+          <div class="col">
+            <h6>Akutelna cena</h6>
+            <h5>{{key.idCurrentPrice.price}}</h5>
+          </div>
+
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <app-form-input [config]="grossInputConfig" [group]="serviceForm" appearance=""></app-form-input>
+  <div>
+    <h6><b>Tip servisa</b></h6>
+
+    <div class="inline service-type-inline">
+      <button id="kodiranje" (click)="selectServiceType($event)" class="white-btn">Kodiranje</button>
+      <button id="izrada" (click)="selectServiceType($event)" class="white-btn">Izrada</button>
+    </div>
+  </div>
+</div>
+<div class="text-right">
+  <button mat-button class="default-btn">Sačuvaj</button>
+</div>
