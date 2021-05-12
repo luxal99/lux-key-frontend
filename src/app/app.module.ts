@@ -33,6 +33,7 @@ import {EditKeyDialogComponent} from './components/admin/key/edit-key-dialog/edi
 import {FormSelectGroupComponent} from './components/form-components/form-select-group/form-select-group.component';
 import {KeyOverviewDialogComponent} from './components/admin/key/key-overview-dialog/key-overview-dialog.component';
 import { KeyPipe } from './pipes/key.pipe';
+import { ServicesComponent } from './components/services/services.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { KeyPipe } from './pipes/key.pipe';
     EditKeyDialogComponent,
     FormSelectGroupComponent,
     KeyOverviewDialogComponent,
-    KeyPipe
+    KeyPipe,
+    ServicesComponent
   ],
   imports: [
     BrowserModule,
