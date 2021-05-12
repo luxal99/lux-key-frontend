@@ -32,8 +32,9 @@ import {AddKeyDialogComponent} from './components/admin/key/add-key-dialog/add-k
 import {EditKeyDialogComponent} from './components/admin/key/edit-key-dialog/edit-key-dialog.component';
 import {FormSelectGroupComponent} from './components/form-components/form-select-group/form-select-group.component';
 import {KeyOverviewDialogComponent} from './components/admin/key/key-overview-dialog/key-overview-dialog.component';
-import { KeyPipe } from './pipes/key.pipe';
-import { ServicesComponent } from './components/services/services.component';
+import {KeyPipe} from './pipes/key.pipe';
+import {ServicesComponent} from './components/admin/services/services.component';
+import { AddServiceDialogComponent } from './components/admin/services/add-service-dialog/add-service-dialog.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { ServicesComponent } from './components/services/services.component';
     FormSelectGroupComponent,
     KeyOverviewDialogComponent,
     KeyPipe,
-    ServicesComponent
+    ServicesComponent,
+    AddServiceDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -74,8 +76,6 @@ import { ServicesComponent } from './components/services/services.component';
     BrowserAnimationsModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
-  entryComponents: [AddKeyDialogComponent, ClientComponent, CodeBookComponent,
-    DashboardComponent, EditKeyDialogComponent, KeyComponent, KeyOverviewDialogComponent],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

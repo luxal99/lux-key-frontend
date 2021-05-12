@@ -5,6 +5,7 @@ import {ComponentType} from '@angular/cdk/portal';
 import {CodeBookComponent} from './code-book/code-book.component';
 import {ClientComponent} from './client/client.component';
 import {KeyComponent} from './key/key.component';
+import {ServicesComponent} from './services/services.component';
 
 @Component({
   selector: 'app-admin',
@@ -51,6 +52,11 @@ export class AdminComponent implements OnInit {
   loadKeyComponent(): void {
     this.header = 'Ključevi';
     this.lazyLoad(KeyComponent);
+  }
+
+  loadServicesComponent(): void {
+    this.header = 'Servisi';
+    this.lazyLoad(ServicesComponent);
   }
 
   changeColor(e: any): void {
