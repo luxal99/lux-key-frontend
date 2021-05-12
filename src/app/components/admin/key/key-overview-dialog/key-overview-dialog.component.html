@@ -1,1 +1,10 @@
-<p>key-overview-dialog works!</p>
+<h4><b>Pregled ključa</b></h4>
+<mat-divider></mat-divider>
+<div class="content">
+  <h5><b>Kod:</b> {{data.code}}</h5>
+  <h5><b>Naziv:</b> {{data.name}}</h5>
+  <h5><b>Datum kreiranja:</b> {{data.createdDate}}</h5>
+  <h5><b>Ključ za:</b> {{data.idCarModel.idCarBrand.name + ' ' + data.idCarModel.name}}</h5>
+  <h5><b>Aktuelna cena:</b> {{data.idCurrentPrice.price}}</h5>
+  <h5><b>Na stanju:</b> {{data.amount}}</h5>
+</div>

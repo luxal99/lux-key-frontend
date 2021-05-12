@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {Key} from '../../../../models/key';
 
 @Component({
   selector: 'app-key-overview-dialog',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KeyOverviewDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Key) {
+  }
 
   ngOnInit(): void {
+    console.log(this.data);
   }
 
 }

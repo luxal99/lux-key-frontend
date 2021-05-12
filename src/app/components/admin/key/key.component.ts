@@ -9,6 +9,7 @@ import {AddKeyDialogComponent} from './add-key-dialog/add-key-dialog.component';
 import {DialogOptions} from '../../../util/dialog-options';
 import {EditKeyDialogComponent} from './edit-key-dialog/edit-key-dialog.component';
 import {KeyOverviewDialogComponent} from './key-overview-dialog/key-overview-dialog.component';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-key',
@@ -16,6 +17,11 @@ import {KeyOverviewDialogComponent} from './key-overview-dialog/key-overview-dia
   styleUrls: ['./key.component.sass']
 })
 export class KeyComponent extends DefaultComponent<Key> implements OnInit {
+
+  searchForm = new FormGroup({
+    search: new FormControl()
+  });
+  searchText = '';
 
   constructor(private keyService: KeyService, private sb: MatSnackBar, private dialog: MatDialog) {
     super(keyService);

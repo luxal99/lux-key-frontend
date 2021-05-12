@@ -1,10 +1,21 @@
 <div class="component">
-  <div class="text-right">
-    <button (click)="openAddKeyDialog()" mat-button class="default-btn">Dodaj</button>
+  <div class="row">
+    <div class="col-6">
+      <form [formGroup]="searchForm">
+        <mat-form-field>
+          <mat-label>Pretraži</mat-label>
+          <input matInput [(ngModel)]="searchText" formControlName="search">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </form>
+    </div>
+    <div class="col-6 text-right">
+      <button (click)="openAddKeyDialog()" mat-button class="default-btn">Dodaj</button>
+    </div>
   </div>
   <mat-spinner diameter="25" #spinner></mat-spinner>
   <div class="key-binding">
-    <div class="row" *ngFor="let key of listOfItems">
+    <div class="row" *ngFor="let key of listOfItems|key:searchText">
       <div class="col" (click)="openEditKeyDialog(key)">
         <h6>Naziv</h6>
         <h5>{{key.name}}</h5>
@@ -17,7 +28,7 @@
         <h6>Akutelna cena</h6>
         <h5>{{key.idCurrentPrice.price}}</h5>
       </div>
-      <div class="col" >
+      <div class="col">
         <h6 style="visibility: hidden">Opt</h6>
         <button (click)="openKeyOverviewDialog(key)" mat-button class="green-border-btn">Pregled</button>
         <button (click)="delete(key.id)" class="red-border-btn" mat-button>Obriši</button>
