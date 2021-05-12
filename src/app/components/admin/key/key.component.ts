@@ -8,6 +8,7 @@ import {DialogUtil} from '../../../util/dialog-util';
 import {AddKeyDialogComponent} from './add-key-dialog/add-key-dialog.component';
 import {DialogOptions} from '../../../util/dialog-options';
 import {EditKeyDialogComponent} from './edit-key-dialog/edit-key-dialog.component';
+import {KeyOverviewDialogComponent} from './key-overview-dialog/key-overview-dialog.component';
 
 @Component({
   selector: 'app-key',
@@ -48,4 +49,11 @@ export class KeyComponent extends DefaultComponent<Key> implements OnInit {
     });
   }
 
+  openKeyOverviewDialog(key: Key): void {
+    DialogUtil.openDialog(KeyOverviewDialogComponent, DialogOptions.setDialogConfig({
+      position: {top: '6%'},
+      width: '30%',
+      data: key
+    }), this.dialog);
+  }
 }

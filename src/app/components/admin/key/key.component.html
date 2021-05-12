@@ -17,9 +17,9 @@
         <h6>Akutelna cena</h6>
         <h5>{{key.idCurrentPrice.price}}</h5>
       </div>
-      <div class="col" (click)="openEditKeyDialog(key)">
+      <div class="col" >
         <h6 style="visibility: hidden">Opt</h6>
-        <button mat-button class="green-border-btn">Pregled</button>
+        <button (click)="openKeyOverviewDialog(key)" mat-button class="green-border-btn">Pregled</button>
         <button (click)="delete(key.id)" class="red-border-btn" mat-button>Obriši</button>
       </div>
 

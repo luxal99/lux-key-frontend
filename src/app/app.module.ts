@@ -30,7 +30,8 @@ import {ClientComponent} from './components/admin/client/client.component';
 import {KeyComponent} from './components/admin/key/key.component';
 import {AddKeyDialogComponent} from './components/admin/key/add-key-dialog/add-key-dialog.component';
 import {EditKeyDialogComponent} from './components/admin/key/edit-key-dialog/edit-key-dialog.component';
-import { FormSelectGroupComponent } from './components/form-components/form-select-group/form-select-group.component';
+import {FormSelectGroupComponent} from './components/form-components/form-select-group/form-select-group.component';
+import {KeyOverviewDialogComponent} from './components/admin/key/key-overview-dialog/key-overview-dialog.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { FormSelectGroupComponent } from './components/form-components/form-sele
     KeyComponent,
     AddKeyDialogComponent,
     EditKeyDialogComponent,
-    FormSelectGroupComponent
+    FormSelectGroupComponent,
+    KeyOverviewDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +71,7 @@ import { FormSelectGroupComponent } from './components/form-components/form-sele
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   entryComponents: [AddKeyDialogComponent, ClientComponent, CodeBookComponent,
-    DashboardComponent, EditKeyDialogComponent, KeyComponent],
+    DashboardComponent, EditKeyDialogComponent, KeyComponent, KeyOverviewDialogComponent],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
