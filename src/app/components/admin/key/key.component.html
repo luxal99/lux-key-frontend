@@ -1,13 +1,18 @@
 <div class="component">
   <div class="row">
     <div class="col-6">
-      <form [formGroup]="searchForm">
-        <mat-form-field>
-          <mat-label>Pretraži</mat-label>
-          <input matInput [(ngModel)]="searchText" formControlName="search">
-          <mat-icon matSuffix>search</mat-icon>
-        </mat-form-field>
-      </form>
+      <div class="inline">
+        <form [formGroup]="searchForm">
+          <mat-form-field appearance="outline" style="margin-right: 3em">
+            <mat-label>Pretraži</mat-label>
+            <input matInput [(ngModel)]="searchText" formControlName="search">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+        </form>
+        <app-form-autocomplete [config]="carBrandSelectConfig" [group]="searchForm"
+                               (onOptionClick)="filterByCarBrand()"></app-form-autocomplete>
+      </div>
+
     </div>
     <div class="col-6 text-right">
       <button (click)="openAddKeyDialog()" mat-button class="default-btn">Dodaj</button>
@@ -15,7 +20,7 @@
   </div>
   <mat-spinner diameter="25" #spinner></mat-spinner>
   <div class="key-binding">
-    <div class="row" *ngFor="let key of listOfItems|key:searchText">
+    <div class="row key-row" *ngFor="let key of listOfItems|key:searchText">
       <div class="col" (click)="openEditKeyDialog(key)">
         <h6>Naziv</h6>
         <h5>{{key.name}}</h5>

@@ -10,6 +10,10 @@ import {DialogOptions} from '../../../util/dialog-options';
 import {EditKeyDialogComponent} from './edit-key-dialog/edit-key-dialog.component';
 import {KeyOverviewDialogComponent} from './key-overview-dialog/key-overview-dialog.component';
 import {FormControl, FormGroup} from '@angular/forms';
+import {FieldConfig} from '../../../models/FieldConfig';
+import {FormControlNames, InputTypes} from '../../../constant/const';
+import {map} from 'rxjs/operators';
+import {CarBrandService} from '../../../service/car-brand.service';
 
 @Component({
   selector: 'app-key',
@@ -19,11 +23,19 @@ import {FormControl, FormGroup} from '@angular/forms';
 export class KeyComponent extends DefaultComponent<Key> implements OnInit {
 
   searchForm = new FormGroup({
-    search: new FormControl()
+    search: new FormControl(),
+    carBrand: new FormControl('')
   });
   searchText = '';
 
-  constructor(private keyService: KeyService, private sb: MatSnackBar, private dialog: MatDialog) {
+  carBrandSelectConfig: FieldConfig = {
+    name: FormControlNames.CAR_BRAND_FORM_CONTROL,
+    type: InputTypes.SELECT,
+    label: 'Izaberi brend'
+  };
+
+  constructor(private keyService: KeyService, private sb: MatSnackBar, private dialog: MatDialog,
+              private carBrandService: CarBrandService) {
     super(keyService);
   }
 
@@ -31,9 +43,14 @@ export class KeyComponent extends DefaultComponent<Key> implements OnInit {
     this.setSnackBar = this.sb;
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     super.ngOnInit();
     this.initSnackBar();
+    await this.initCarBrandOptions();
+  }
+
+  async initCarBrandOptions(): Promise<void> {
+    this.carBrandSelectConfig.options = await this.carBrandService.getAll().toPromise();
   }
 
   openAddKeyDialog(): void {
@@ -61,5 +78,15 @@ export class KeyComponent extends DefaultComponent<Key> implements OnInit {
       width: '30%',
       data: key
     }), this.dialog);
+  }
+
+  filterByCarBrand(): void {
+    console.log('OVDE');
+    this.keyService.getAll()
+      .pipe(map(value => value.filter((key) => key.idCarModel.idCarBrand.id ===
+        this.searchForm.get(FormControlNames.CAR_BRAND_FORM_CONTROL).value.id)))
+      .subscribe((resp) => {
+        this.listOfItems = resp;
+      });
   }
 }

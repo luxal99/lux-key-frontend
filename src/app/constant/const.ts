@@ -13,6 +13,8 @@ export class FormControlNames {
   static ID_CURRENT_PRICE_FORM_CONTROL = 'idCurrentPrice';
   static ID_CAR_MODEL_FORM_CONTROL = 'idCarModel';
   static ID_KEY_SUB_CATEGORY_FORM_CONTROL = 'idKeySubCategory';
+  static SEARCH_FORM_CONTROL = 'search';
+  static CAR_BRAND_FORM_CONTROL = 'carBrand';
 }
 
 export class InputTypes {

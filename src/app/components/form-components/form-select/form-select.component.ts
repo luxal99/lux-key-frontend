@@ -19,6 +19,7 @@ export class FormSelectComponent implements Field, OnInit {
   @Input() width = '100%';
   @Input() model: any;
 
+  @Input() appearance = 'outline';
   // tslint:disable-next-line:no-output-on-prefix
   @Output() onChange = new EventEmitter();
   @Input() isDisabled = false;
