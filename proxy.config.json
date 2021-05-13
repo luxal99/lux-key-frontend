@@ -9,7 +9,9 @@
       "/key-sub-category",
       "/client",
       "/key",
-      "/jwt"
+      "/jwt",
+      "/service",
+      "/service-key"
     ],
     "target": "http://localhost:8080/lux/",
     "secure": false

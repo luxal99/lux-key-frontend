@@ -50,14 +50,11 @@ export class AddKeyDialogComponent extends DefaultComponent<Key> implements OnIn
   constructor(private keyService: KeyService, private sb: MatSnackBar, private keyPriceService: KeyPriceService,
               public keyCategoryService: KeyCategoryService, private carBrandService: CarBrandService) {
     super(keyService);
+    this.snackBar = sb;
   }
 
-  initSnackBar(): void {
-    this.setSnackBar = this.sb;
-  }
 
   ngOnInit(): void {
-    this.initSnackBar();
     this.getKeyCategories();
     this.getCarBrands();
   }

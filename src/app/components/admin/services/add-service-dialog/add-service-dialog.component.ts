@@ -7,14 +7,25 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Key} from '../../../../models/key';
 import {KeyService} from '../../../../service/key.service';
 import {FieldConfig} from '../../../../models/FieldConfig';
-import {DEFAULT_BTN_CLASS_NAME, FormControlNames, InputTypes, SELECTED_KEY_CLASS_NAME} from '../../../../constant/const';
+import {
+  DEFAULT_BTN_CLASS_NAME,
+  FormControlNames,
+  InputTypes,
+  SELECTED_CLASS_NAME,
+} from '../../../../constant/const';
 import {ServiceTypeEnum} from '../../../../ServiceTypeEnum';
 import * as ClassicEditor from 'lib/ckeditor5-build-classic';
 import {CKEditorComponent} from '@ckeditor/ckeditor5-angular';
-import {Event} from '@angular/router';
-import {Element} from '@angular/compiler';
 import {ClientService} from '../../../../service/client.service';
 import {Client} from '../../../../../client';
+import {FormBuilderConfig} from '../../../../models/FormBuilderConfig';
+import {DialogUtil} from '../../../../util/dialog-util';
+import {FormBuilderComponent} from '../../../form-components/form-builder/form-builder.component';
+import {DialogOptions} from '../../../../util/dialog-options';
+import {MatDialog} from '@angular/material/dialog';
+import {ServiceKey} from '../../../../models/serviceKey';
+import {ServiceKeyService} from '../../../../service/service-key.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-service-dialog',
@@ -32,11 +43,15 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
   listOfClients: Client[] = [];
   listOfSelectedClients: Client[] = [];
 
+  selectedClient!: Client;
+
   currentDate = moment();
   selectedServiceType = '';
 
   searchForm = new FormGroup({
-    search: new FormControl('')
+    search: new FormControl(''),
+    searchClient: new FormControl()
+
   });
 
 
@@ -46,14 +61,19 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
   });
   grossInputConfig: FieldConfig = {name: FormControlNames.GROSS_FORM_CONTROL, type: InputTypes.TEXT, label: 'Ukupno'};
   searchText = '';
+  searchClientText = '';
 
-  constructor(private serviceService: ServiceService, private keyService: KeyService, private clientService: ClientService) {
+  constructor(private serviceService: ServiceService, private keyService: KeyService,
+              private clientService: ClientService, private dialog: MatDialog, private serviceKeyService: ServiceKeyService,
+              private sb: MatSnackBar) {
     super(serviceService);
+    this.snackBar = sb;
   }
 
   ngOnInit(): void {
     this.getKeys();
     this.getClients();
+
   }
 
   getKeys(): void {
@@ -93,21 +113,83 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
 
   addKey(key: Key, $event: any): void {
     const element: HTMLElement = $event.target;
-    if (element.classList.contains(SELECTED_KEY_CLASS_NAME)) {
-      element.classList.remove(SELECTED_KEY_CLASS_NAME);
+    if (element.classList.contains(SELECTED_CLASS_NAME)) {
+      element.classList.remove(SELECTED_CLASS_NAME);
       this.listOfSelectedKeys.splice(this.listOfSelectedKeys.indexOf(key), 1);
     } else {
-      element.classList.add(SELECTED_KEY_CLASS_NAME);
+      element.classList.add(SELECTED_CLASS_NAME);
       this.listOfSelectedKeys.push(key);
     }
   }
 
-  saveService(): void {
-    const service: Service = this.serviceForm.getRawValue();
-    service.note = this.editorComponent.editorInstance.getData();
+  openAddClientDialog(): void {
+    const configData: FormBuilderConfig = {
+      formFields: [
+        {
+          name: FormControlNames.FIRST_NAME_FORM_CONTROL,
+          type: InputTypes.INPUT,
+          validation: [Validators.required],
+          label: 'Ime'
+        },
+        {
+          name: FormControlNames.LAST_NAME_FORM_CONTROL,
+          type: InputTypes.INPUT,
+          validation: [Validators.required],
+          label: 'Prezime'
+        },
+        {
+          name: FormControlNames.TELEPHONE_FORM_CONTROL,
+          type: InputTypes.INPUT,
+          validation: [Validators.required],
+          label: 'Kontakt telefon'
+        }
+      ],
+      headerText: 'Dodaj klijenta',
+      service: this.clientService
+
+    };
+    DialogUtil.openDialog(FormBuilderComponent,
+      DialogOptions.setDialogConfig({
+        position: {top: '6%'},
+        width: '30%',
+        data: configData
+      }), this.dialog).afterClosed().subscribe(() => {
+      this.getClients();
+    });
   }
 
-  openAddClientDialog(): void {
+  selectClient(client: Client, $event: any): void {
+    const element: HTMLElement = $event.target;
+    const otherSelectedElements = document.querySelectorAll('.selected');
+    [].forEach.call(otherSelectedElements, (el: any) => {
+      el.classList.remove('selected');
+    });
 
+
+    if (element.classList.contains(SELECTED_CLASS_NAME)) {
+      this.selectedClient = null;
+      element.classList.remove(SELECTED_CLASS_NAME);
+    } else {
+      element.classList.add(SELECTED_CLASS_NAME);
+      this.selectedClient = client;
+    }
+  }
+
+  async saveService(): Promise<void> {
+    let service: Service = this.serviceForm.getRawValue();
+    service.notes = this.editorComponent.editorInstance.getData();
+    service.idClient = this.selectedClient;
+    service.serviceType = this.selectedServiceType.toUpperCase();
+    service = await super.saveToPromise(service);
+
+    for (const key of this.listOfSelectedKeys) {
+      const serviceKey: ServiceKey = {
+        idKey: key,
+        idService: service,
+        keyPrice: key.idCurrentPrice.price
+      };
+
+      super.genericSubscribe(this.serviceKeyService.save(serviceKey));
+    }
   }
 }

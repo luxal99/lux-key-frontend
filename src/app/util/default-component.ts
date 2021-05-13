@@ -16,7 +16,8 @@ import {Message} from '../constant/const';
 export abstract class DefaultComponent<T> implements OnInit, Crud {
 
   @Injectable() private spinnerService: SpinnerService = new SpinnerService();
-  private snackBar: MatSnackBar;
+  // tslint:disable-next-line:variable-name
+  private _snackBar: MatSnackBar;
   @ViewChild('spinner') spinner: MatSpinner;
 
   listOfItems: T[] = [];
@@ -34,23 +35,24 @@ export abstract class DefaultComponent<T> implements OnInit, Crud {
   }
 
   get getSnackBar(): MatSnackBar {
-    return this.snackBar;
+    return this._snackBar;
   }
 
   delete(id: number): void {
     this.spinnerService.show(this.spinner);
     this.genericService.delete(id).subscribe(() => {
-      SnackBarUtil.openSnackBar(this.snackBar, Message.SUCCESS);
+      SnackBarUtil.openSnackBar(this._snackBar, Message.SUCCESS);
       this.spinnerService.hide(this.spinner);
       this.getAll();
     }, () => {
-      SnackBarUtil.openSnackBar(this.snackBar, Message.ERR);
+      SnackBarUtil.openSnackBar(this._snackBar, Message.ERR);
       this.spinnerService.hide(this.spinner);
     });
   }
 
-  set setSnackBar(snackBar: MatSnackBar) {
-    this.snackBar = snackBar;
+
+  set snackBar(value: MatSnackBar) {
+    this._snackBar = value;
   }
 
   getAll(): void {
@@ -65,10 +67,10 @@ export abstract class DefaultComponent<T> implements OnInit, Crud {
   save(entity: T): void {
     this.spinnerService.show(this.spinner);
     this.genericService.save(entity).subscribe(() => {
-      SnackBarUtil.openSnackBar(this.snackBar, Message.SUCCESS);
+      SnackBarUtil.openSnackBar(this._snackBar, Message.SUCCESS);
       this.spinnerService.hide(this.spinner);
     }, () => {
-      SnackBarUtil.openSnackBar(this.snackBar, Message.ERR);
+      SnackBarUtil.openSnackBar(this._snackBar, Message.ERR);
       this.spinnerService.hide(this.spinner);
     });
   }
@@ -79,10 +81,10 @@ export abstract class DefaultComponent<T> implements OnInit, Crud {
       if (callBack()) {
         callBack();
       }
-      SnackBarUtil.openSnackBar(this.snackBar, Message.SUCCESS);
+      SnackBarUtil.openSnackBar(this._snackBar, Message.SUCCESS);
       this.spinnerService.hide(this.spinner);
     }, () => {
-      SnackBarUtil.openSnackBar(this.snackBar, Message.ERR);
+      SnackBarUtil.openSnackBar(this._snackBar, Message.ERR);
       this.spinnerService.hide(this.spinner);
     });
   }
@@ -90,11 +92,11 @@ export abstract class DefaultComponent<T> implements OnInit, Crud {
   async genericPromiseSubscribe(observable: Observable<any>, callBack?: () => {}): Promise<any> {
     this.spinnerService.show(this.spinner);
     try {
-      SnackBarUtil.openSnackBar(this.snackBar, Message.SUCCESS);
+      SnackBarUtil.openSnackBar(this._snackBar, Message.SUCCESS);
       this.spinnerService.hide(this.spinner);
       return await observable.toPromise();
     } catch (e) {
-      SnackBarUtil.openSnackBar(this.snackBar, Message.ERR);
+      SnackBarUtil.openSnackBar(this._snackBar, Message.ERR);
       this.spinnerService.hide(this.spinner);
     }
   }
@@ -102,21 +104,21 @@ export abstract class DefaultComponent<T> implements OnInit, Crud {
   async saveToPromise(entity: T): Promise<T> {
     this.spinnerService.show(this.spinner);
     try {
-      SnackBarUtil.openSnackBar(this.snackBar, Message.SUCCESS);
+      SnackBarUtil.openSnackBar(this._snackBar, Message.SUCCESS);
       this.spinnerService.hide(this.spinner);
       return await this.genericService.save(entity).toPromise();
     } catch (e) {
-      SnackBarUtil.openSnackBar(this.snackBar, Message.ERR);
+      SnackBarUtil.openSnackBar(this._snackBar, Message.ERR);
       this.spinnerService.hide(this.spinner);
     }
   }
 
   update(entity: T): void {
     this.genericService.update(entity).subscribe(() => {
-      SnackBarUtil.openSnackBar(this.snackBar, Message.SUCCESS);
+      SnackBarUtil.openSnackBar(this._snackBar, Message.SUCCESS);
       this.spinnerService.hide(this.spinner);
     }, () => {
-      SnackBarUtil.openSnackBar(this.snackBar, Message.ERR);
+      SnackBarUtil.openSnackBar(this._snackBar, Message.ERR);
       this.spinnerService.hide(this.spinner);
     });
   }

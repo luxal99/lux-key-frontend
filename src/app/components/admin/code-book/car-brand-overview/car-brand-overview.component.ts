@@ -21,15 +21,11 @@ export class CarBrandOverviewComponent extends DefaultComponent<CarBrand> implem
 
   constructor(private carBrandService: CarBrandService, private dialog: MatDialog, private sb: MatSnackBar) {
     super(carBrandService);
+    this.snackBar = sb;
   }
 
   ngOnInit(): void {
     super.ngOnInit();
-    this.initSnackBar();
-  }
-
-  initSnackBar(): void {
-    this.setSnackBar = this.sb;
   }
 
   openAddCarBrandDialog(data?: CarBrand): void {

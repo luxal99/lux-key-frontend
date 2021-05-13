@@ -10,6 +10,8 @@
  * Do not edit the class manually.
  */
 import {ServiceKey} from './serviceKey';
+import {Client} from '../../client';
+import {ServiceTypeEnum} from '../ServiceTypeEnum';
 
 
 export interface Service {
@@ -20,6 +22,8 @@ export interface Service {
   createdDate: string;
   lastModifiedDate: string;
   serviceKeys: ServiceKey;
-  note?: string;
+  notes?: string;
+  idClient?: Client;
+  serviceType: string
 }
 

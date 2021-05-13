@@ -62,15 +62,10 @@ export class EditKeyDialogComponent extends DefaultComponent<Key> implements OnI
               private keyPriceService: KeyPriceService, private readonly changeDetectorRef: ChangeDetectorRef,
               public keyCategoryService: KeyCategoryService, private carBrandService: CarBrandService) {
     super(keyService);
-  }
-
-  initSnackBar(): void {
-    this.setSnackBar = this.sb;
+    this.snackBar = sb;
   }
 
   ngOnInit(): void {
-    console.log(this.data);
-    this.initSnackBar();
     this.getKeyCategories();
     this.getCarBrands();
   }

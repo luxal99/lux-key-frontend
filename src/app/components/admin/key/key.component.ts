@@ -37,15 +37,11 @@ export class KeyComponent extends DefaultComponent<Key> implements OnInit {
   constructor(private keyService: KeyService, private sb: MatSnackBar, private dialog: MatDialog,
               private carBrandService: CarBrandService) {
     super(keyService);
-  }
-
-  initSnackBar(): void {
-    this.setSnackBar = this.sb;
+    this.snackBar = sb;
   }
 
   async ngOnInit(): Promise<void> {
     super.ngOnInit();
-    this.initSnackBar();
     await this.initCarBrandOptions();
   }
 

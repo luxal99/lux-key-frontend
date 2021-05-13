@@ -20,15 +20,11 @@ export class ClientComponent extends DefaultComponent<Client> implements OnInit 
 
   constructor(private clientService: ClientService, private dialog: MatDialog, private sb: MatSnackBar) {
     super(clientService);
+    super.snackBar = this.sb;
   }
 
   ngOnInit(): void {
     super.ngOnInit();
-    this.initSnackBar();
-  }
-
-  initSnackBar(): void {
-    super.setSnackBar = this.sb;
   }
 
   openAddClientDialog(client?: Client): void {

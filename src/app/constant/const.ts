@@ -1,4 +1,4 @@
-export const SELECTED_KEY_CLASS_NAME = 'selected-key';
+export const SELECTED_CLASS_NAME = 'selected';
 export const DEFAULT_BTN_CLASS_NAME = 'default-btn';
 
 export class FormControlNames {
@@ -43,6 +43,7 @@ export class RestRoutes {
   static KEY_PRICE = 'key-price';
   static KEY_SUB_CATEGORY = 'key-sub-category';
   static SERVICE = 'service';
+  static SERVICE_KEY = 'service-key';
 }
 
 export class SpinnerOptions {

@@ -12,9 +12,14 @@ mat-form-field
   cursor: pointer
   margin: 1em 0
 
-.selected-key
+.selected
   background-color: $default-red
   color: #fff
+
+.client-row
+  @extend .key-row
+  padding: 1em 0
+  margin-bottom: 1em
 
 .red-btn
   background-color: $default-red
@@ -50,5 +55,9 @@ mat-form-field
   padding: 1em
   background-color: $component-background
 
-.col
+.col, .col-6
   pointer-events: none
+
+.col, .col-6
+  h5, h6
+    pointer-events: none
