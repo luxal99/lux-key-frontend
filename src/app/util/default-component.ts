@@ -60,6 +60,8 @@ export abstract class DefaultComponent<T> implements OnInit, Crud {
       this.listOfItems = data;
       // @ts-ignore
       this.listOfItems.filter((item) => item.createdDate ? item.createdDate = moment(item.createdDate).format('DD MMMM YYYY') : '');
+      // @ts-ignore
+      this.listOfItems.filter((item) => item.date ? item.date = moment(item.date).format('DD MMMM YYYY') : '');
       this.spinnerService.hide(this.spinner);
     });
   }

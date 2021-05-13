@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Service} from '../../../../models/service';
 
 @Component({
   selector: 'app-service-table-binding',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServiceTableBindingComponent implements OnInit {
 
-  constructor() { }
+  @Input() list: Service[] = [];
+  displayedColumns = ['date', 'client', 'gross', 'option'];
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

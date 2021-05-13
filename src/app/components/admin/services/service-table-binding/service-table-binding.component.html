@@ -1,1 +1,32 @@
-<p>service-table-binding works!</p>
+<table mat-table [dataSource]="list" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef> Datum</th>
+    <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="client">
+    <th mat-header-cell *matHeaderCellDef> Klijent</th>
+    <td mat-cell *matCellDef="let element"> {{element.idClient.firstName + ' ' + element.idClient.lastName}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="gross">
+    <th mat-header-cell *matHeaderCellDef> Ukupno</th>
+    <td mat-cell *matCellDef="let element"> {{element.gross}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="option">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
