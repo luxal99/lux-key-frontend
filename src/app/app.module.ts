@@ -37,6 +37,7 @@ import {ServicesComponent} from './components/admin/services/services.component'
 import {AddServiceDialogComponent} from './components/admin/services/add-service-dialog/add-service-dialog.component';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 import { ServiceTableBindingComponent } from './components/admin/services/service-table-binding/service-table-binding.component';
+import { ServiceOverviewDialogComponent } from './components/admin/services/service-overview-dialog/service-overview-dialog.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { ServiceTableBindingComponent } from './components/admin/services/servic
     KeyPipe,
     ServicesComponent,
     AddServiceDialogComponent,
-    ServiceTableBindingComponent
+    ServiceTableBindingComponent,
+    ServiceOverviewDialogComponent
   ],
   imports: [
     BrowserModule,
