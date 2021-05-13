@@ -6,8 +6,6 @@ import {DialogUtil} from '../../../util/dialog-util';
 import {AddServiceDialogComponent} from './add-service-dialog/add-service-dialog.component';
 import {DialogOptions} from '../../../util/dialog-options';
 import {MatDialog} from '@angular/material/dialog';
-import {FieldConfig} from '../../../models/FieldConfig';
-import {FormControlNames, InputTypes} from '../../../constant/const';
 
 @Component({
   selector: 'app-services',
@@ -22,6 +20,7 @@ export class ServicesComponent extends DefaultComponent<Service> implements OnIn
 
 
   ngOnInit(): void {
+    super.ngOnInit();
   }
 
   openAddServiceDialog(): void {
