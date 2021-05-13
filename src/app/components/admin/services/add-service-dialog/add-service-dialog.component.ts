@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import * as moment from 'moment';
 import {ServiceService} from '../../../../service/service.service';
 import {DefaultComponent} from '../../../../util/default-component';
@@ -7,8 +7,14 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Key} from '../../../../models/key';
 import {KeyService} from '../../../../service/key.service';
 import {FieldConfig} from '../../../../models/FieldConfig';
-import {FormControlNames, InputTypes} from '../../../../constant/const';
+import {DEFAULT_BTN_CLASS_NAME, FormControlNames, InputTypes, SELECTED_KEY_CLASS_NAME} from '../../../../constant/const';
 import {ServiceTypeEnum} from '../../../../ServiceTypeEnum';
+import * as ClassicEditor from 'lib/ckeditor5-build-classic';
+import {CKEditorComponent} from '@ckeditor/ckeditor5-angular';
+import {Event} from '@angular/router';
+import {Element} from '@angular/compiler';
+import {ClientService} from '../../../../service/client.service';
+import {Client} from '../../../../../client';
 
 @Component({
   selector: 'app-add-service-dialog',
@@ -17,8 +23,15 @@ import {ServiceTypeEnum} from '../../../../ServiceTypeEnum';
 })
 export class AddServiceDialogComponent extends DefaultComponent<Service> implements OnInit {
 
+  @ViewChild('editor', {static: false}) editorComponent!: CKEditorComponent;
+  public Editor = ClassicEditor;
+
   listOfSelectedKeys: Key[] = [];
   listOfKeys: Key[] = [];
+
+  listOfClients: Client[] = [];
+  listOfSelectedClients: Client[] = [];
+
   currentDate = moment();
   selectedServiceType = '';
 
@@ -34,12 +47,13 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
   grossInputConfig: FieldConfig = {name: FormControlNames.GROSS_FORM_CONTROL, type: InputTypes.TEXT, label: 'Ukupno'};
   searchText = '';
 
-  constructor(private serviceService: ServiceService, private keyService: KeyService) {
+  constructor(private serviceService: ServiceService, private keyService: KeyService, private clientService: ClientService) {
     super(serviceService);
   }
 
   ngOnInit(): void {
     this.getKeys();
+    this.getClients();
   }
 
   getKeys(): void {
@@ -48,8 +62,10 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
     });
   }
 
-  saveService(): void {
-    const service: Service = this.serviceForm.getRawValue();
+  getClients(): void {
+    this.clientService.getAll().subscribe((resp) => {
+      this.listOfClients = resp;
+    });
   }
 
   selectServiceType($event: any): void {
@@ -58,27 +74,40 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
     if (($event.target.id as string).toUpperCase() === ServiceTypeEnum.CODING) {
       codingBtn.classList.remove('inactive-btn');
       productionBtn.classList.add('inactive-btn');
-      productionBtn.classList.forEach((item) => {
-        if (item === 'default-btn') {
-          productionBtn.classList.remove(item);
-        }
-      });
+      if (productionBtn.classList.contains(DEFAULT_BTN_CLASS_NAME)) {
+        productionBtn.classList.remove(DEFAULT_BTN_CLASS_NAME);
+      }
       $event.target.classList.add('default-btn');
       this.selectedServiceType = ServiceTypeEnum.CODING;
     } else if (($event.target.id as string).toUpperCase() === ServiceTypeEnum.PRODUCTION) {
       productionBtn.classList.remove('inactive-btn');
       codingBtn.classList.add('inactive-btn');
-      codingBtn.classList.forEach((item) => {
-        if (item === 'default-btn') {
-          codingBtn.classList.remove(item);
-        }
-      });
+      if (codingBtn.classList.contains(DEFAULT_BTN_CLASS_NAME)) {
+        codingBtn.classList.remove(DEFAULT_BTN_CLASS_NAME);
+      }
       $event.target.classList.add('default-btn');
       this.selectedServiceType = ServiceTypeEnum.PRODUCTION;
     }
   }
 
-  addKey(key: Key): void {
-    this.listOfSelectedKeys.push(key);
+
+  addKey(key: Key, $event: any): void {
+    const element: HTMLElement = $event.target;
+    if (element.classList.contains(SELECTED_KEY_CLASS_NAME)) {
+      element.classList.remove(SELECTED_KEY_CLASS_NAME);
+      this.listOfSelectedKeys.splice(this.listOfSelectedKeys.indexOf(key), 1);
+    } else {
+      element.classList.add(SELECTED_KEY_CLASS_NAME);
+      this.listOfSelectedKeys.push(key);
+    }
+  }
+
+  saveService(): void {
+    const service: Service = this.serviceForm.getRawValue();
+    service.note = this.editorComponent.editorInstance.getData();
+  }
+
+  openAddClientDialog(): void {
+
   }
 }

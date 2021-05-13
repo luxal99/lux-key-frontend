@@ -35,7 +35,7 @@
             <mat-icon matSuffix>search</mat-icon>
           </mat-form-field>
         </form>
-        <div class="row key-row" (click)="addKey(key)" *ngFor="let key of listOfKeys|key:searchText">
+        <div class="row key-row" (click)="addKey(key,$event)" *ngFor="let key of listOfKeys|key:searchText">
           <div class="col">
             <h6>Naziv</h6>
             <h5>{{key.name}}</h5>
@@ -52,14 +52,57 @@
         </div>
       </div>
     </mat-expansion-panel>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h6><b>Izaberi ključ</b></h6>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="ex-content">
+        <form [formGroup]="searchForm">
+          <mat-form-field appearance="outline" style="margin-right: 3em">
+            <mat-label>Pretraži</mat-label>
+            <input matInput [(ngModel)]="searchText" formControlName="search">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+        </form>
+        <div class="component">
+          <div class="text-right">
+            <button mat-icon-button (click)="openAddClientDialog()" class="red-btn">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          <div class="client-binding">
+            <div class="row" *ngFor="let client of listOfClients">
+              <div class="col">
+                <h6>Ime</h6>
+                <h5>{{client.firstName}}</h5>
+              </div>
+              <div class="col">
+                <h6>Prezime</h6>
+                <h5>{{client.lastName}}</h5>
+              </div>
+              <div class="col">
+                <h6>Telefon</h6>
+                <h5>{{client.telephone}}</h5>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </mat-expansion-panel>
   </mat-accordion>
   <div>
     <h6 class="service-type-h6"><b>Tip servisa</b></h6>
-
     <div class="inline service-type-inline">
       <button id="kodiranje" (click)="selectServiceType($event)" class="white-btn">Kodiranje</button>
       <button id="izrada" (click)="selectServiceType($event)" class="white-btn">Izrada</button>
     </div>
+  </div>
+  <div style="margin-top: 1em">
+    <ckeditor [editor]="Editor"></ckeditor>
   </div>
 </div>
 

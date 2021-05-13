@@ -34,7 +34,8 @@ import {FormSelectGroupComponent} from './components/form-components/form-select
 import {KeyOverviewDialogComponent} from './components/admin/key/key-overview-dialog/key-overview-dialog.component';
 import {KeyPipe} from './pipes/key.pipe';
 import {ServicesComponent} from './components/admin/services/services.component';
-import { AddServiceDialogComponent } from './components/admin/services/add-service-dialog/add-service-dialog.component';
+import {AddServiceDialogComponent} from './components/admin/services/add-service-dialog/add-service-dialog.component';
+import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { AddServiceDialogComponent } from './components/admin/services/add-servi
     MaterialModule,
     HttpClientModule,
     ReactiveFormsModule,
+    CKEditorModule,
     BrowserAnimationsModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],

@@ -10,16 +10,24 @@ mat-form-field
   -webkit-transition: .3s linear
   padding: 1em
   cursor: pointer
+  margin: 1em 0
 
 .selected-key
   background-color: $default-red
+  color: #fff
+
+.red-btn
+  background-color: $default-red
+  margin-bottom: 1em
   color: #fff
 
 .service-type-h6
   margin-top: 2em
 
 .key-row:hover
-  background-color: $component-background
+  padding: 2em
+  transition: .5s ease
+  background-color: $less-red
 
 .ex-content
   max-height: 300px
@@ -41,3 +49,6 @@ mat-form-field
 .service-type-inline
   padding: 1em
   background-color: $component-background
+
+.col
+  pointer-events: none
