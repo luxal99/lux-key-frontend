@@ -10,7 +10,7 @@ import {FieldConfig} from '../../../../models/FieldConfig';
 import {
   DEFAULT_BTN_CLASS_NAME,
   FormControlNames,
-  InputTypes,
+  InputTypes, Message,
   SELECTED_CLASS_NAME,
 } from '../../../../constant/const';
 import {ServiceTypeEnum} from '../../../../ServiceTypeEnum';
@@ -26,6 +26,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {ServiceKey} from '../../../../models/serviceKey';
 import {ServiceKeyService} from '../../../../service/service-key.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {SnackBarUtil} from '../../../../util/snackbar-util';
 
 @Component({
   selector: 'app-add-service-dialog',
@@ -176,20 +177,26 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
   }
 
   async saveService(): Promise<void> {
-    let service: Service = this.serviceForm.getRawValue();
+    const service: Service = this.serviceForm.getRawValue();
     service.notes = this.editorComponent.editorInstance.getData();
     service.idClient = this.selectedClient;
     service.serviceType = this.selectedServiceType.toUpperCase();
-    service = await super.saveToPromise(service);
 
-    for (const key of this.listOfSelectedKeys) {
-      const serviceKey: ServiceKey = {
-        idKey: key,
-        idService: service,
-        keyPrice: key.idCurrentPrice.price
-      };
+    service.date = moment(service.date).format('YYYY-MM-DD');
+    this.serviceService.save(service).subscribe((response) => {
+      SnackBarUtil.openSnackBar(this.getSnackBar, Message.SUCCESS);
 
-      super.genericSubscribe(this.serviceKeyService.save(serviceKey));
-    }
+      for (const key of this.listOfSelectedKeys) {
+        const serviceKey: ServiceKey = {
+          idService: response,
+          idKey: key,
+          keyPrice: key.idCurrentPrice.price
+        };
+
+        super.genericSubscribe(this.serviceKeyService.save(serviceKey));
+      }
+    }, () => {
+      SnackBarUtil.openSnackBar(this.getSnackBar, Message.ERR);
+    });
   }
 }
