@@ -27,7 +27,7 @@
       <div class="text-right">
         <button mat-button class="green-border-btn" (click)="openServiceOverviewDialog(element)">Pregled</button>
         <button mat-button class="orange-border-btn" (click)="openEditServiceDialog(element)">Izmeni</button>
-        <button mat-button class="red-border-btn" (click)="deleteMethod.emit(true)">Obriši</button>
+        <button mat-button class="red-border-btn" (click)="delete(element.id)">Obriši</button>
       </div>
     </td>
   </ng-container>
@@ -35,3 +35,4 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
+<mat-spinner #spinner diameter="25"></mat-spinner>

@@ -28,6 +28,8 @@ export class ServicesComponent extends DefaultComponent<Service> implements OnIn
       position: {right: '0'},
       width: '40%',
       height: '100vh'
-    }), this.dialog);
+    }), this.dialog).afterClosed().subscribe(() => {
+      this.getAll();
+    });
   }
 }

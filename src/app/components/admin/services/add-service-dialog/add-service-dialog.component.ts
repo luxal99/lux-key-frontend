@@ -88,7 +88,6 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
           this.selectedServiceType = ServiceTypeEnum.PRODUCTION;
         }
         this.selectedClient = this.data.idClient;
-
         this.listOfSelectedKeys = this.data.serviceKeys.map((item) => (item.idKey));
         const clientRow: NodeListOf<any> = document.querySelectorAll('.client-row');
         clientRow.forEach((item: Element) => {
@@ -213,13 +212,13 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
     service.notes = this.editorComponent.editorInstance.getData();
     service.idClient = this.selectedClient;
     service.serviceType = this.selectedServiceType.toUpperCase();
+    service.date = moment(service.date).format('YYYY-MM-DD');
+
     // @ts-ignore
     service.serviceKeys = this.listOfSelectedKeys.map((item) => ({
       idKey: item,
-      keyPrice: item.idCurrentPrice.price
+      keyPrice: item.idCurrentPrice.price,
     }));
-    service.date = moment(service.date).format('YYYY-MM-DD');
-
     if (this.data) {
       service.id = this.data.id;
       super.update(service);
