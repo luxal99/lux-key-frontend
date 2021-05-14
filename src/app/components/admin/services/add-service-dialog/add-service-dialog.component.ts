@@ -213,12 +213,16 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
     service.idClient = this.selectedClient;
     service.serviceType = this.selectedServiceType.toUpperCase();
     service.date = moment(service.date).format('YYYY-MM-DD');
-
     // @ts-ignore
     service.serviceKeys = this.listOfSelectedKeys.map((item) => ({
       idKey: item,
       keyPrice: item.idCurrentPrice.price,
+      keyPurchasePrice: item.purchasePrice
     }));
+
+    let sumOfKeyPrices = 0;
+    service.serviceKeys.filter((item) => sumOfKeyPrices += item.idKey.idCurrentPrice.price);
+    service.codingServicePrice = service.gross - sumOfKeyPrices;
     if (this.data) {
       service.id = this.data.id;
       super.update(service);

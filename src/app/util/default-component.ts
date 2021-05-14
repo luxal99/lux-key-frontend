@@ -71,7 +71,7 @@ export abstract class DefaultComponent<T> implements OnInit, Crud {
     this.genericService.save(entity).subscribe(() => {
       SnackBarUtil.openSnackBar(this._snackBar, Message.SUCCESS);
       this.spinnerService.hide(this.spinner);
-    }, () => {
+    }, (err) => {
       SnackBarUtil.openSnackBar(this._snackBar, Message.ERR);
       this.spinnerService.hide(this.spinner);
     });

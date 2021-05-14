@@ -25,5 +25,6 @@ export interface Key {
   idCurrentPrice: KeyPrice;
   idKeySubCategory: KeySubCategory;
   keyPrices: KeyPrice[];
+  purchasePrice?: number
 }
 

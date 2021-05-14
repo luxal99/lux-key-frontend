@@ -23,6 +23,7 @@ export class FormControlNames {
   static CAR_BRAND_FORM_CONTROL = 'carBrand';
   static GROSS_FORM_CONTROL = 'gross';
   static DATE_FORM_CONTROL = 'date';
+  static PURCHASE_PRICE_FORM_CONTROL = 'purchasePrice';
 }
 
 export class InputTypes {

@@ -18,5 +18,6 @@ export interface ServiceKey {
   keyPrice: number;
   idService: Service;
   idKey: Key;
+  keyPurchasePrice?: number;
 }
 

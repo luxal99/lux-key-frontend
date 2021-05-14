@@ -60,7 +60,7 @@ export class KeyComponent extends DefaultComponent<Key> implements OnInit {
 
   openEditKeyDialog(key: Key): void {
     DialogUtil.openDialog(EditKeyDialogComponent, DialogOptions.setDialogConfig({
-      position: {top: '6%'},
+      position: {top: '1%'},
       width: '30%',
       data: key
     }), this.dialog).afterClosed().subscribe(() => {

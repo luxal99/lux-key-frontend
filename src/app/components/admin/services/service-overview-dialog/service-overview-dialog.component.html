@@ -1,1 +1,44 @@
-<p>service-overview-dialog works!</p>
+<div class="row">
+  <div class="col-6">
+    <h4><b>Pregled servisa</b></h4>
+  </div>
+  <div class="col-6 text-right">
+    <h4>{{data.date}}</h4>
+  </div>
+</div>
+<mat-divider></mat-divider>
+<div class="content">
+  <h5><b>Klijent</b></h5>
+  <h5>Ime i prezime: <b>{{data.idClient.firstName + ' ' + data.idClient.lastName}}</b></h5>
+  <h5>Telefon: <b>{{data.idClient.telephone}}</b></h5>
+</div>
+<mat-divider></mat-divider>
+<div class="content">
+  <h5><b>Ključevi</b></h5>
+  <div class="row key-row" *ngFor="let serviceKey of data.serviceKeys">
+    <div class="col">
+      <h6>Šifra</h6>
+      <h5>{{serviceKey.idKey.code}}</h5>
+    </div>
+    <div class="col-6">
+      <h6>Automobil</h6>
+      <h5>{{serviceKey.idKey.idCarModel.idCarBrand.name + ' ' + serviceKey.idKey.idCarModel.name}}</h5>
+    </div>
+    <div class="col">
+      <h6>Akutelna cena</h6>
+      <h5>{{serviceKey.keyPrice}}</h5>
+    </div>
+  </div>
+</div>
+<mat-divider></mat-divider>
+<div class="content" *ngIf="data.notes">
+  <h5><b>Belešla</b></h5>
+  <p [innerHTML]="data.notes"></p>
+</div>
+
+<mat-divider></mat-divider>
+<div class="content text-right">
+  <h6>Profit od ključeva: <b>{{sumOfKeyProfits + ' RSD'}}</b></h6>
+  <h6>Cena kodiranja: <b>{{data.codingServicePrice + ' RSD'}}</b></h6>
+  <h5>Ukupno: <b>{{data.gross + ' RSD'}}</b></h5>
+</div>

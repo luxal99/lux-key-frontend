@@ -21,6 +21,8 @@ export class ServiceTableBindingComponent implements OnInit {
 
   @ViewChild('spinner') spinner: MatSpinner;
   @Input() list: Service[] = [];
+
+  @Output() cb = new EventEmitter();
   displayedColumns = ['date', 'client', 'gross', 'option'];
 
   constructor(private snackBar: MatSnackBar, private spinnerService: SpinnerService,
@@ -54,6 +56,7 @@ export class ServiceTableBindingComponent implements OnInit {
     this.serviceService.delete(id).subscribe(() => {
       SnackBarUtil.openSnackBar(this.snackBar, Message.SUCCESS);
       this.spinnerService.hide(this.spinner);
+      this.cb.emit(true);
     }, () => {
       this.spinnerService.hide(this.spinner);
       SnackBarUtil.openSnackBar(this.snackBar, Message.ERR);
