@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {Service} from '../../../../models/service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-service-overview-dialog',
@@ -8,6 +9,7 @@ import {Service} from '../../../../models/service';
   styleUrls: ['./service-overview-dialog.component.sass']
 })
 export class ServiceOverviewDialogComponent implements OnInit {
+
 
   sumOfKeyProfits = 0;
 

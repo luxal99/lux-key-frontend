@@ -6,6 +6,7 @@ import {DialogUtil} from '../../../util/dialog-util';
 import {AddServiceDialogComponent} from './add-service-dialog/add-service-dialog.component';
 import {DialogOptions} from '../../../util/dialog-options';
 import {MatDialog} from '@angular/material/dialog';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-services',
@@ -14,13 +15,24 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class ServicesComponent extends DefaultComponent<Service> implements OnInit {
 
+  listOfCurrentWeekServices: Service[] = [];
+  startDate: string = moment().startOf('isoWeek').format('YYYY-MM-DD');
+  endDate: string = moment().endOf('isoWeek').format('YYYY-MM-DD');
+
   constructor(private serviceService: ServiceService, private dialog: MatDialog) {
     super(serviceService);
   }
 
 
   ngOnInit(): void {
-    super.ngOnInit();
+    this.getServicesInCurrentWeek();
+  }
+
+  getServicesInCurrentWeek(): void {
+    this.serviceService.findServiceByDate(this.startDate, this.endDate).subscribe((resp) => {
+      this.listOfCurrentWeekServices = resp;
+      this.getSpinnerService.hide(this.spinner);
+    });
   }
 
   openAddServiceDialog(): void {
