@@ -21,7 +21,7 @@ export interface Service {
   gross: number;
   createdDate: string;
   lastModifiedDate: string;
-  serviceKeys: ServiceKey;
+  serviceKeys: ServiceKey[];
   notes?: string;
   idClient?: Client;
   serviceType: string

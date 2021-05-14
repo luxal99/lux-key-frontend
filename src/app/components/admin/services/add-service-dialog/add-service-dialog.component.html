@@ -35,7 +35,7 @@
         </mat-form-field>
       </form>
       <div class="ex-content">
-        <div class="row key-row" (click)="addKey(key,$event)" *ngFor="let key of listOfKeys|key:searchText">
+        <div class="row key-row" id="key-{{key.id}}" (click)="addKey(key,$event)" *ngFor="let key of listOfKeys|key:searchText">
           <div class="col">
             <h6>Šifra</h6>
             <h5>{{key.code}}</h5>
@@ -71,8 +71,9 @@
           </mat-form-field>
         </form>
         <div class="ex-content">
-          <div class="client-binding">
-            <div class="row client-row" *ngFor="let client of listOfClients" (click)="selectClient(client,$event)">
+          <div class="client-binding" id="client-binding">
+            <div class="row client-row" id="client-{{client.id}}" *ngFor="let client of listOfClients"
+                 (click)="selectClient(client,$event)">
               <div class="col">
                 <h6>Ime</h6>
                 <h5>{{client.firstName}}</h5>

@@ -1,6 +1,9 @@
 export const SELECTED_CLASS_NAME = 'selected';
 export const DEFAULT_BTN_CLASS_NAME = 'default-btn';
 
+export const CLIENT_ID_PREFIX = 'client-';
+export const KEY_ID_PREFIX = 'key-';
+
 export class FormControlNames {
   static USERNAME_NAME_FORM_CONTROL = 'username';
   static PASSWORD_NAME_FORM_CONTROL = 'password';

@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import * as moment from 'moment';
 import {ServiceService} from '../../../../service/service.service';
 import {DefaultComponent} from '../../../../util/default-component';
@@ -8,9 +8,10 @@ import {Key} from '../../../../models/key';
 import {KeyService} from '../../../../service/key.service';
 import {FieldConfig} from '../../../../models/FieldConfig';
 import {
+  CLIENT_ID_PREFIX,
   DEFAULT_BTN_CLASS_NAME,
   FormControlNames,
-  InputTypes, Message,
+  InputTypes, KEY_ID_PREFIX, Message,
   SELECTED_CLASS_NAME,
 } from '../../../../constant/const';
 import {ServiceTypeEnum} from '../../../../ServiceTypeEnum';
@@ -22,7 +23,7 @@ import {FormBuilderConfig} from '../../../../models/FormBuilderConfig';
 import {DialogUtil} from '../../../../util/dialog-util';
 import {FormBuilderComponent} from '../../../form-components/form-builder/form-builder.component';
 import {DialogOptions} from '../../../../util/dialog-options';
-import {MatDialog} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
 import {ServiceKey} from '../../../../models/serviceKey';
 import {ServiceKeyService} from '../../../../service/service-key.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -52,19 +53,17 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
   searchForm = new FormGroup({
     search: new FormControl(''),
     searchClient: new FormControl()
-
   });
 
-
   serviceForm = new FormGroup({
-    date: new FormControl(new Date(), Validators.required),
-    gross: new FormControl()
+    date: new FormControl(this.data ? this.data.date : new Date(), Validators.required),
+    gross: new FormControl(this.data ? this.data.gross : '', Validators.required)
   });
   grossInputConfig: FieldConfig = {name: FormControlNames.GROSS_FORM_CONTROL, type: InputTypes.TEXT, label: 'Ukupno'};
   searchText = '';
   searchClientText = '';
 
-  constructor(private serviceService: ServiceService, private keyService: KeyService,
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Service, private serviceService: ServiceService, private keyService: KeyService,
               private clientService: ClientService, private dialog: MatDialog, private serviceKeyService: ServiceKeyService,
               private sb: MatSnackBar) {
     super(serviceService);
@@ -73,8 +72,41 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
 
   ngOnInit(): void {
     this.getKeys();
+    this.initValues();
     this.getClients();
+  }
 
+  initValues(): void {
+    if (this.data) {
+      setTimeout(() => {
+
+        if (this.data.serviceType === ServiceTypeEnum.CODING) {
+          document.getElementById('kodiranje').classList.add(DEFAULT_BTN_CLASS_NAME);
+          this.selectedServiceType = ServiceTypeEnum.CODING;
+        } else if (this.data.serviceType === ServiceTypeEnum.PRODUCTION) {
+          document.getElementById('izrada').classList.add(DEFAULT_BTN_CLASS_NAME);
+          this.selectedServiceType = ServiceTypeEnum.PRODUCTION;
+        }
+        this.selectedClient = this.data.idClient;
+
+        this.listOfSelectedKeys = this.data.serviceKeys.map((item) => (item.idKey));
+        const clientRow: NodeListOf<any> = document.querySelectorAll('.client-row');
+        clientRow.forEach((item: Element) => {
+          if (item.id === CLIENT_ID_PREFIX + this.data.idClient.id) {
+            item.classList.add(SELECTED_CLASS_NAME);
+          }
+        });
+        const keyRow: NodeListOf<any> = document.querySelectorAll('.key-row');
+        keyRow.forEach((item: Element) => {
+          this.listOfSelectedKeys.filter((key) => {
+            if (item.id === KEY_ID_PREFIX + key.id) {
+              item.classList.add(SELECTED_CLASS_NAME);
+            }
+          });
+        });
+
+      }, 500);
+    }
   }
 
   getKeys(): void {
@@ -181,22 +213,18 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
     service.notes = this.editorComponent.editorInstance.getData();
     service.idClient = this.selectedClient;
     service.serviceType = this.selectedServiceType.toUpperCase();
-
+    // @ts-ignore
+    service.serviceKeys = this.listOfSelectedKeys.map((item) => ({
+      idKey: item,
+      keyPrice: item.idCurrentPrice.price
+    }));
     service.date = moment(service.date).format('YYYY-MM-DD');
-    this.serviceService.save(service).subscribe((response) => {
-      SnackBarUtil.openSnackBar(this.getSnackBar, Message.SUCCESS);
 
-      for (const key of this.listOfSelectedKeys) {
-        const serviceKey: ServiceKey = {
-          idService: response,
-          idKey: key,
-          keyPrice: key.idCurrentPrice.price
-        };
-
-        super.genericSubscribe(this.serviceKeyService.save(serviceKey));
-      }
-    }, () => {
-      SnackBarUtil.openSnackBar(this.getSnackBar, Message.ERR);
-    });
+    if (this.data) {
+      service.id = this.data.id;
+      super.update(service);
+    } else {
+      super.save(service);
+    }
   }
 }
