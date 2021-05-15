@@ -38,6 +38,7 @@ import {AddServiceDialogComponent} from './components/admin/services/add-service
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 import { ServiceTableBindingComponent } from './components/admin/services/service-table-binding/service-table-binding.component';
 import { ServiceOverviewDialogComponent } from './components/admin/services/service-overview-dialog/service-overview-dialog.component';
+import { SumGrossPipe } from './pipes/sum-gross.pipe';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { ServiceOverviewDialogComponent } from './components/admin/services/serv
     ServicesComponent,
     AddServiceDialogComponent,
     ServiceTableBindingComponent,
-    ServiceOverviewDialogComponent
+    ServiceOverviewDialogComponent,
+    SumGrossPipe
   ],
   imports: [
     BrowserModule,

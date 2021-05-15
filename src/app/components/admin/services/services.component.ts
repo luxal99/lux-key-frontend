@@ -7,6 +7,8 @@ import {AddServiceDialogComponent} from './add-service-dialog/add-service-dialog
 import {DialogOptions} from '../../../util/dialog-options';
 import {MatDialog} from '@angular/material/dialog';
 import * as moment from 'moment';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControlNames} from '../../../constant/const';
 
 @Component({
   selector: 'app-services',
@@ -15,9 +17,19 @@ import * as moment from 'moment';
 })
 export class ServicesComponent extends DefaultComponent<Service> implements OnInit {
 
-  listOfCurrentWeekServices: Service[] = [];
+  startOfMonth = moment().clone().startOf('month').format('YYYY-MM-DD');
+  endOfMonth = moment().clone().endOf('month').format('YYYY-MM-DD');
+
   startDate: string = moment().startOf('isoWeek').format('YYYY-MM-DD');
   endDate: string = moment().endOf('isoWeek').format('YYYY-MM-DD');
+
+  listOfCurrentWeekServices: Service[] = [];
+  listOfDateRangeServices: Service[] = [];
+
+  dateRangeForm = new FormGroup({
+    startDate: new FormControl(this.startOfMonth, Validators.required),
+    endDate: new FormControl(this.endOfMonth, Validators.required)
+  });
 
   constructor(private serviceService: ServiceService, private dialog: MatDialog) {
     super(serviceService);
@@ -26,6 +38,7 @@ export class ServicesComponent extends DefaultComponent<Service> implements OnIn
 
   ngOnInit(): void {
     this.getServicesInCurrentWeek();
+    this.getServicesFromRange();
   }
 
   getServicesInCurrentWeek(): void {
@@ -42,6 +55,15 @@ export class ServicesComponent extends DefaultComponent<Service> implements OnIn
       height: '100vh'
     }), this.dialog).afterClosed().subscribe(() => {
       this.getAll();
+    });
+  }
+
+  getServicesFromRange(): void {
+    const startDate = moment(this.dateRangeForm.get(FormControlNames.START_DATE_FORM_CONTROL).value).format('YYYY-MM-DD');
+    const endDate = moment(this.dateRangeForm.get(FormControlNames.END_DATE_FORM_CONTROL).value).format('YYYY-MM-DD ');
+    this.serviceService.findServiceByDate(startDate, endDate).subscribe((resp) => {
+      this.listOfDateRangeServices = resp;
+      this.getSpinnerService.hide(this.spinner);
     });
   }
 }

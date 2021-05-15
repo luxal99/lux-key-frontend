@@ -24,6 +24,8 @@ export class FormControlNames {
   static GROSS_FORM_CONTROL = 'gross';
   static DATE_FORM_CONTROL = 'date';
   static PURCHASE_PRICE_FORM_CONTROL = 'purchasePrice';
+  static START_DATE_FORM_CONTROL = 'startDate';
+  static END_DATE_FORM_CONTROL = 'endDate';
 }
 
 export class InputTypes {
