@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "ng serve --watch --proxy-config proxy.config.json"
+    "start": "ng serve --watch --proxy-config proxy.config.json",
+    "deploy": "ng build --prod && rsync -avz -e 'ssh' ./lux-key-frontend/* root@$SERVER:/var/www/luxkey"
   },
   "dependencies": {
     "@angular/animations": "~11.2.11",

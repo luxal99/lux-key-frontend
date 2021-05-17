@@ -1,0 +1,81 @@
+h1, h2, h3, h4, h5, h6, a, li, mat-checkbox, p, th, tr, td, button, .mat-step-text-label {
+  font-family: "Work Sans", sans-serif !important;
+}
+
+.default-btn {
+  background-color: #ff4040 !important;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 0.3em 0;
+  width: 200px;
+}
+
+.component {
+  padding: 2em;
+}
+
+.inline {
+  display: inline-flex;
+}
+
+::-webkit-scrollbar {
+  height: 1em;
+  width: 15px;
+  border-radius: 15px;
+  background-color: #121212;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff4040;
+  border-radius: 15px;
+}
+
+.red-border-btn, .green-border-btn, .orange-border-btn {
+  width: 90px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid #ff4040;
+  color: #ff4040;
+}
+
+.orange-border-btn {
+  color: #ffa900;
+  border: 1px solid #ffa900;
+}
+
+.green-border-btn {
+  color: #02d717;
+  border: 1px solid #02d717;
+}
+
+::ng-deep.mat-dialog-container {
+  overflow-x: hidden;
+}
+
+tr.mat-header-row {
+  background-color: #ff4040;
+}
+
+th.mat-header-cell {
+  font-family: "Work Sans", sans-serif !important;
+  font-weight: bold;
+  color: #fff;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-flex {
+  background-color: #fff;
+}
+
+.mat-tab-body-content {
+  height: 100%;
+  overflow-x: hidden !important;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1640px) {
+  body {
+    zoom: 67%;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */

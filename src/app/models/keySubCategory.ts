@@ -8,6 +8,6 @@ export interface KeySubCategory {
   createdDate: string;
   lastModifiedDate: string;
   idKeyCategory: KeyCategory;
-  keys: Key;
+  keys: Key[];
 }
 

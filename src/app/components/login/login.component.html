@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="row">
-    <div class="col-4"></div>
-    <div class="col-4 login-form text-center">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4 login-form text-center">
       <img src="assets/img/logo-with-letters.png" class="img-fluid" width="150px">
       <app-form-input [group]="loginForm" icon="account_circle" appearance=""
                       [config]="usernameInputConfig"></app-form-input>
@@ -10,6 +10,6 @@
       <button class="default-btn w-100" mat-button [disabled]="!loginForm.valid" (click)="auth()">Login</button>
       <mat-spinner diameter="25" #spinner></mat-spinner>
     </div>
-    <div class="col-4"></div>
+    <div class="col-sm-4"></div>
   </div>
 </div>

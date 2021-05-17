@@ -48,7 +48,6 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
   selectedClient!: Client;
 
   currentDate = moment();
-  selectedServiceType = '';
 
   searchForm = new FormGroup({
     search: new FormControl(''),
@@ -79,14 +78,6 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
   initValues(): void {
     if (this.data) {
       setTimeout(() => {
-
-        if (this.data.serviceType === ServiceTypeEnum.CODING) {
-          document.getElementById('kodiranje').classList.add(DEFAULT_BTN_CLASS_NAME);
-          this.selectedServiceType = ServiceTypeEnum.CODING;
-        } else if (this.data.serviceType === ServiceTypeEnum.PRODUCTION) {
-          document.getElementById('izrada').classList.add(DEFAULT_BTN_CLASS_NAME);
-          this.selectedServiceType = ServiceTypeEnum.PRODUCTION;
-        }
         this.selectedClient = this.data.idClient;
         this.listOfSelectedKeys = this.data.serviceKeys.map((item) => (item.idKey));
         const clientRow: NodeListOf<any> = document.querySelectorAll('.client-row');
@@ -118,28 +109,6 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
     this.clientService.getAll().subscribe((resp) => {
       this.listOfClients = resp;
     });
-  }
-
-  selectServiceType($event: any): void {
-    const codingBtn = document.getElementById('kodiranje');
-    const productionBtn = document.getElementById('izrada');
-    if (($event.target.id as string).toUpperCase() === ServiceTypeEnum.CODING) {
-      codingBtn.classList.remove('inactive-btn');
-      productionBtn.classList.add('inactive-btn');
-      if (productionBtn.classList.contains(DEFAULT_BTN_CLASS_NAME)) {
-        productionBtn.classList.remove(DEFAULT_BTN_CLASS_NAME);
-      }
-      $event.target.classList.add('default-btn');
-      this.selectedServiceType = ServiceTypeEnum.CODING;
-    } else if (($event.target.id as string).toUpperCase() === ServiceTypeEnum.PRODUCTION) {
-      productionBtn.classList.remove('inactive-btn');
-      codingBtn.classList.add('inactive-btn');
-      if (codingBtn.classList.contains(DEFAULT_BTN_CLASS_NAME)) {
-        codingBtn.classList.remove(DEFAULT_BTN_CLASS_NAME);
-      }
-      $event.target.classList.add('default-btn');
-      this.selectedServiceType = ServiceTypeEnum.PRODUCTION;
-    }
   }
 
 
@@ -211,7 +180,6 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
     const service: Service = this.serviceForm.getRawValue();
     service.notes = this.editorComponent.editorInstance.getData();
     service.idClient = this.selectedClient;
-    service.serviceType = this.selectedServiceType.toUpperCase();
     service.date = moment(service.date).format('YYYY-MM-DD');
     // @ts-ignore
     service.serviceKeys = this.listOfSelectedKeys.map((item) => ({
@@ -221,6 +189,7 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
     }));
 
     let sumOfKeyPrices = 0;
+
     service.serviceKeys.filter((item) => sumOfKeyPrices += item.idKey.idCurrentPrice.price);
     service.codingServicePrice = service.gross - sumOfKeyPrices;
     if (this.data) {

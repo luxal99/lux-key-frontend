@@ -51,7 +51,7 @@ export class ServicesComponent extends DefaultComponent<Service> implements OnIn
   openAddServiceDialog(): void {
     DialogUtil.openDialog(AddServiceDialogComponent, DialogOptions.setDialogConfig({
       position: {right: '0'},
-      width: '40%',
+      width: '50%',
       height: '100vh'
     }), this.dialog).afterClosed().subscribe(() => {
       this.getAll();

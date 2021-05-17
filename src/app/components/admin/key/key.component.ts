@@ -14,13 +14,15 @@ import {FieldConfig} from '../../../models/FieldConfig';
 import {FormControlNames, InputTypes} from '../../../constant/const';
 import {map} from 'rxjs/operators';
 import {CarBrandService} from '../../../service/car-brand.service';
+import {KeySubCategoryService} from '../../../service/key-sub-category.service';
+import {KeySubCategory} from '../../../models/keySubCategory';
 
 @Component({
   selector: 'app-key',
   templateUrl: './key.component.html',
   styleUrls: ['./key.component.sass']
 })
-export class KeyComponent extends DefaultComponent<Key> implements OnInit {
+export class KeyComponent extends DefaultComponent<KeySubCategory> implements OnInit {
 
   searchForm = new FormGroup({
     search: new FormControl(),
@@ -35,8 +37,9 @@ export class KeyComponent extends DefaultComponent<Key> implements OnInit {
   };
 
   constructor(private keyService: KeyService, private sb: MatSnackBar, private dialog: MatDialog,
+              private keySubCategoriesService: KeySubCategoryService,
               private carBrandService: CarBrandService) {
-    super(keyService);
+    super(keySubCategoriesService);
     this.snackBar = sb;
   }
 
@@ -44,6 +47,7 @@ export class KeyComponent extends DefaultComponent<Key> implements OnInit {
     super.ngOnInit();
     await this.initCarBrandOptions();
   }
+
 
   async initCarBrandOptions(): Promise<void> {
     this.carBrandSelectConfig.options = await this.carBrandService.getAll().toPromise();
@@ -77,12 +81,11 @@ export class KeyComponent extends DefaultComponent<Key> implements OnInit {
   }
 
   filterByCarBrand(): void {
-    console.log('OVDE');
-    this.keyService.getAll()
-      .pipe(map(value => value.filter((key) => key.idCarModel.idCarBrand.id ===
-        this.searchForm.get(FormControlNames.CAR_BRAND_FORM_CONTROL).value.id)))
-      .subscribe((resp) => {
-        this.listOfItems = resp;
-      });
+    // this.keyService.getAll()
+    //   .pipe(map(value => value.filter((key) => key.idCarModel.idCarBrand.id ===
+    //     this.searchForm.get(FormControlNames.CAR_BRAND_FORM_CONTROL).value.id)))
+    //   .subscribe((resp) => {
+    //     this.listOfItems = resp;
+    //   });
   }
 }

@@ -15,8 +15,8 @@ export class KeyPipe implements PipeTransform {
       return listOfKeys;
     }
 
-    return listOfKeys.filter((key) => key.code.toLowerCase().startsWith(searchText.toLowerCase()) ||
-      key.name.toLowerCase().startsWith(searchText.toLowerCase()));
+    return listOfKeys.filter((key) => key.code.toLowerCase().includes(searchText.toLowerCase()) ||
+      key.name.toLowerCase().includes(searchText.toLowerCase()));
   }
 
 }
