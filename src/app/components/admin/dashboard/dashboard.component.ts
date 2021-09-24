@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Key } from '../../../models/key';
+import { KeyService } from '../../../service/key.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +14,7 @@ export class DashboardComponent implements OnInit {
   listOfKey: Key[] = [];
   searchText = '';
 
-  constructor() {
+  constructor(private keyService: KeyService) {
   }
 
   searchForm = new FormGroup({
@@ -40,6 +41,7 @@ export class DashboardComponent implements OnInit {
       document.getElementById('huge-label').style.display = 'none';
       // @ts-ignore
       document.getElementById('centered').style.minHeight = '30vh';
+      this.search()
     }
   }
 
@@ -48,5 +50,11 @@ export class DashboardComponent implements OnInit {
     document.getElementById('search').style.display = 'block';
     // @ts-ignore
     document.getElementById('huge-label').style.display = 'none';
+  }
+
+  search(): void {
+    this.keyService.searchKey(this.searchText).subscribe((resp) => {
+      this.listOfKey = resp;
+    });
   }
 }

@@ -13,8 +13,7 @@ export class ServiceService extends GenericService<Service> {
 
   findServiceByDate(startDate: string, endDate: string): Observable<Service[]> {
     return this.http.get<Service[]>(this.route + '?startDate=' + startDate + '&endDate=' + endDate, {
-      responseType: 'json',
-      headers: {Authorization: sessionStorage.getItem(TOKEN_NAME)}
+      responseType: 'json'
     });
   }
 }

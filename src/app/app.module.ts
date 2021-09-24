@@ -8,7 +8,7 @@ import {LoginComponent} from './components/login/login.component';
 import {MaterialModule} from './material.module';
 import {FormInputComponent} from './components/form-components/form-input/form-input.component';
 import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import {AdminComponent} from './components/admin/admin.component';
 import {DashboardComponent} from './components/admin/dashboard/dashboard.component';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
@@ -39,6 +39,7 @@ import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 import { ServiceTableBindingComponent } from './components/admin/services/service-table-binding/service-table-binding.component';
 import { ServiceOverviewDialogComponent } from './components/admin/services/service-overview-dialog/service-overview-dialog.component';
 import { SumGrossPipe } from './pipes/sum-gross.pipe';
+import { TokenInterceptor } from './interceptor/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,10 @@ import { SumGrossPipe } from './pipes/sum-gross.pipe';
     CKEditorModule,
     BrowserAnimationsModule
   ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

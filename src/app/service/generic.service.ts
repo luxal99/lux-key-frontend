@@ -15,37 +15,32 @@ export class GenericService<T> {
 
   save(entity: T): Observable<T> {
     return this.http.post<T>(`${this.route}`, entity, {
-      responseType: 'json',
-      headers: {Authorization: sessionStorage.getItem(TOKEN_NAME)}
+      responseType: 'json'
     });
   }
 
   findById(id: number): Observable<T> {
     return this.http.get<T>(`${RestRoutes.API}${this.route}/` + id, {
-      responseType: 'json',
-      headers: {Authorization: sessionStorage.getItem(TOKEN_NAME)}
+      responseType: 'json'
     });
   }
 
   getAll(): Observable<T[]> {
     return this.http.get<T[]>(`${this.route}`, {
-      responseType: 'json',
-      headers: {Authorization: sessionStorage.getItem(TOKEN_NAME)}
+      responseType: 'json'
     });
   }
 
   update(entity: T): Observable<any> {
     return this.http.put(`${this.route}`, entity, {
-      responseType: 'text',
-      headers: {Authorization: sessionStorage.getItem(TOKEN_NAME)}
+      responseType: 'text'
     });
   }
 
 
   delete(id: number): Observable<any> {
     return this.http.delete(`${this.route}/${id}`, {
-      responseType: 'text',
-      headers: {Authorization: sessionStorage.getItem(TOKEN_NAME)}
+      responseType: 'text'
     });
   }
 

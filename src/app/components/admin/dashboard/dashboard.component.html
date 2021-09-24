@@ -1,6 +1,6 @@
 <div class='component'>
-  <div class='centered'>
-    <h1 class='huge-h1' (click)='showSearch()' id='huge-label'>Započni pretragu...</h1>
+  <div class='centered' id='centered'>
+    <h1 class='huge-h1' id='huge-label' (click)='showSearch()'>Započni pretragu...</h1>
     <div [formGroup]='searchForm' style='width: 70%'>
       <mat-form-field id='search'>
         <input matInput (input)='inputChange()' formControlName='search' [(ngModel)]='searchText'>
