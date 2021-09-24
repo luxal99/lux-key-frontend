@@ -27,7 +27,6 @@ export class AddKeyDialogComponent extends DefaultComponent<Key> implements OnIn
     amount: new FormControl('', Validators.required),
     code: new FormControl('', Validators.required),
     price: new FormControl('', Validators.required),
-    purchasePrice: new FormControl('', Validators.required),
     idCurrentPrice: new FormControl(''),
     idKeySubCategory: new FormControl('', Validators.required),
     idCarModel: new FormControl('', Validators.required)

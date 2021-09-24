@@ -32,7 +32,6 @@ export class EditKeyDialogComponent extends DefaultComponent<Key> implements OnI
     idCurrentPrice: new FormControl(''),
     idKeySubCategory: new FormControl('', Validators.required),
     idCarModel: new FormControl('', Validators.required),
-    purchasePrice: new FormControl('', Validators.required)
   });
 
   keyPriceForm = new FormGroup({
@@ -42,15 +41,10 @@ export class EditKeyDialogComponent extends DefaultComponent<Key> implements OnI
   amountInputConfig: FieldConfig = {name: FormControlNames.AMOUNT_FORM_CONTROL, type: InputTypes.NUMBER, label: 'Količina'};
   codeInputConfig: FieldConfig = {name: FormControlNames.CODE_FORM_CONTROL, type: InputTypes.TEXT, label: 'Šifra'};
   priceInputConfig: FieldConfig = {name: FormControlNames.PRICE_FORM_CONTROL, type: InputTypes.NUMBER, label: 'Cena'};
-  purchasePriceInputConfig: FieldConfig = {
-    name: FormControlNames.PURCHASE_PRICE_FORM_CONTROL,
-    type: InputTypes.NUMBER,
-    label: 'Nabavna cena'
-  };
   idCurrentPriceSelectConfig: FieldConfig = {
     name: FormControlNames.ID_CURRENT_PRICE_FORM_CONTROL,
     type: InputTypes.SELECT,
-    label: 'Naziv',
+    label: 'Trenutna cena',
     options: this.data.keyPrices
   };
   idCarModelGroupSelect: FieldConfig = {
