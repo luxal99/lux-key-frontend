@@ -1,24 +1,24 @@
-<mat-drawer-container class="example-container" fullscreen hasBackdrop="false">
-  <mat-drawer #drawer mode="side" opened>
+<mat-drawer-container class='example-container' fullscreen hasBackdrop='false'>
+  <mat-drawer #drawer mode='side' opened>
     <div>
-      <!--      <img class="img-fluid" src="assets/img/logo-with-letters.png">-->
-      <a (click)="loadDashboardComponent()">
-        <h5 (click)="changeColor($event)" id="overview-btn">
-          <i class="fa fa-home"></i> Pregled
+      <img class='img-fluid' src='assets/img/logo-with-letters.png'>
+      <a (click)='loadDashboardComponent()'>
+        <h5 (click)='changeColor($event)' id='overview-btn'>
+          <i class='fa fa-home'></i> Pretraga
         </h5>
       </a>
-      <app-component-activator icon="fa-cogs" (load)="loadCodeBookComponent()"
-                               title="Šifarnik"></app-component-activator>
-      <app-component-activator icon="fa-user-o" (load)="loadClientComponent()"
-                               title="Klijenti"></app-component-activator>
-      <app-component-activator icon="fa-key" (load)="loadKeyComponent()"
-                               title="Ključevi"></app-component-activator>
-      <app-component-activator icon="fa-book" (load)="loadServicesComponent()"
-                               title="Servisi"></app-component-activator>
+      <app-component-activator icon='fa-cogs' (load)='loadCodeBookComponent()'
+                               title='Šifarnik'></app-component-activator>
+      <app-component-activator icon='fa-user-o' (load)='loadClientComponent()'
+                               title='Klijenti'></app-component-activator>
+      <app-component-activator icon='fa-key' (load)='loadKeyComponent()'
+                               title='Ključevi'></app-component-activator>
+      <app-component-activator icon='fa-book' (load)='loadServicesComponent()'
+                               title='Servisi'></app-component-activator>
     </div>
   </mat-drawer>
   <mat-drawer-content>
-    <app-navbar (menuBtnClick)="drawer.toggle()" [header]="header"></app-navbar>
+    <app-navbar (menuBtnClick)='drawer.toggle()' [header]='header'></app-navbar>
     <div #target></div>
   </mat-drawer-content>
 </mat-drawer-container>

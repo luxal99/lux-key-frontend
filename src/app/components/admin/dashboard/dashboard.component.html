@@ -1,1 +1,33 @@
-<div class="component"></div>
+<div class='component'>
+  <div class='centered'>
+    <h1 class='huge-h1' (click)='showSearch()' id='huge-label'>Započni pretragu...</h1>
+    <div [formGroup]='searchForm' style='width: 70%'>
+      <mat-form-field id='search'>
+        <input matInput (input)='inputChange()' formControlName='search' [(ngModel)]='searchText'>
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </div>
+    <mat-spinner #spinner diameter='50'></mat-spinner>
+  </div>
+
+  <div class='row key-row' *ngFor='let key of listOfKey'>
+    <div class='col'>
+      <h6>Naziv</h6>
+      <h5>{{key.name}}</h5>
+    </div>
+    <div class='col'>
+      <h6>Količina</h6>
+      <h5>{{key.amount}}</h5>
+    </div>
+    <div class='col'>
+      <h6>Akutelna cena</h6>
+      <h5>{{key.idCurrentPrice.price}}</h5>
+    </div>
+    <div class='col'>
+      <h6 style='visibility: hidden'>Opt</h6>
+      <button mat-button class='green-border-btn'>Pregled</button>
+      <button class='red-border-btn' mat-button>Obriši</button>
+    </div>
+
+  </div>
+</div>
