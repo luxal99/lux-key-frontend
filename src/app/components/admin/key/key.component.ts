@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {DefaultComponent} from '../../../util/default-component';
 import {Key} from '../../../models/key';
 import {KeyService} from '../../../service/key.service';
@@ -16,6 +16,7 @@ import {map} from 'rxjs/operators';
 import {CarBrandService} from '../../../service/car-brand.service';
 import {KeySubCategoryService} from '../../../service/key-sub-category.service';
 import {KeySubCategory} from '../../../models/keySubCategory';
+import { MatTabGroup } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-key',

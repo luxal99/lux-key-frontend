@@ -38,7 +38,7 @@ export class InputTypes {
 }
 
 export class RestRoutes {
-  static API = 'http://localhost:8080/lux/';
+  static API = 'http://localhost:8080/';
   static USER = '/user';
   static CAR_BRAND = '/car-brand';
   static JWT = '/jwt';

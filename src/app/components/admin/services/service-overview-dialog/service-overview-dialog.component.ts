@@ -9,21 +9,10 @@ import * as moment from 'moment';
   styleUrls: ['./service-overview-dialog.component.sass']
 })
 export class ServiceOverviewDialogComponent implements OnInit {
-
-
-  sumOfKeyProfits = 0;
-
   constructor(@Inject(MAT_DIALOG_DATA) public data: Service) {
   }
 
   ngOnInit(): void {
-    this.getKeyProfits();
-  }
-
-  getKeyProfits(): void {
-    this.data.serviceKeys.forEach((serviceKey) => {
-      this.sumOfKeyProfits += serviceKey.keyPrice - serviceKey.keyPurchasePrice;
-    });
   }
 
 }
