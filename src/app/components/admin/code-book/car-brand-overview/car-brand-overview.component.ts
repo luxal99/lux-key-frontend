@@ -34,7 +34,7 @@ export class CarBrandOverviewComponent extends DefaultComponent<CarBrand> implem
         name: FormControlNames.NAME_FORM_CONTROL,
         type: InputTypes.INPUT,
         validation: [Validators.required],
-        label: 'Dodaj brend automobila'
+        label: 'Naziv brenda automobila'
       }],
       formValues: data,
       headerText: 'Dodaj brend automobila',

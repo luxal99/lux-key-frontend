@@ -38,11 +38,13 @@ export class CarModelOverviewComponent extends DefaultComponent<CarModel> implem
           name: FormControlNames.NAME_FORM_CONTROL,
           type: InputTypes.INPUT,
           validation: [Validators.required],
+          label:'Naziv'
         },
         {
           name: FormControlNames.ID_CAR_BRAND_FORM_CONTROL,
           type: InputTypes.AUTOCOMPLETE,
           validation: [Validators.required],
+          label:'Brend automobila',
           options,
         },
       ],

@@ -30,6 +30,7 @@ export class KeyCategoryOverviewComponent extends DefaultComponent<KeyCategory> 
       formFields: [{
         name: FormControlNames.NAME_FORM_CONTROL,
         type: InputTypes.INPUT,
+        label:'Naziv kategorije',
         validation: [Validators.required],
       }],
       formValues: keyCategory,
