@@ -1,43 +1,41 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {DefaultComponent} from '../../../util/default-component';
-import {Key} from '../../../models/key';
-import {KeyService} from '../../../service/key.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {MatDialog} from '@angular/material/dialog';
-import {DialogUtil} from '../../../util/dialog-util';
-import {AddKeyDialogComponent} from './add-key-dialog/add-key-dialog.component';
-import {DialogOptions} from '../../../util/dialog-options';
-import {EditKeyDialogComponent} from './edit-key-dialog/edit-key-dialog.component';
-import {KeyOverviewDialogComponent} from './key-overview-dialog/key-overview-dialog.component';
-import {FormControl, FormGroup} from '@angular/forms';
-import {FieldConfig} from '../../../models/FieldConfig';
-import {FormControlNames, InputTypes} from '../../../constant/const';
-import {map} from 'rxjs/operators';
-import {CarBrandService} from '../../../service/car-brand.service';
-import {KeySubCategoryService} from '../../../service/key-sub-category.service';
-import {KeySubCategory} from '../../../models/keySubCategory';
-import { MatTabGroup } from '@angular/material/tabs';
+import { Component, OnInit } from '@angular/core';
+import { DefaultComponent } from '../../../util/default-component';
+import { Key } from '../../../models/key';
+import { KeyService } from '../../../service/key.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogUtil } from '../../../util/dialog-util';
+import { AddKeyDialogComponent } from './add-key-dialog/add-key-dialog.component';
+import { DialogOptions } from '../../../util/dialog-options';
+import { EditKeyDialogComponent } from './edit-key-dialog/edit-key-dialog.component';
+import { KeyOverviewDialogComponent } from './key-overview-dialog/key-overview-dialog.component';
+import { FormControl, FormGroup } from '@angular/forms';
+import { FieldConfig } from '../../../models/FieldConfig';
+import { FormControlNames, InputTypes } from '../../../constant/const';
+import { CarBrandService } from '../../../service/car-brand.service';
+import { KeySubCategoryService } from '../../../service/key-sub-category.service';
+import { KeySubCategory } from '../../../models/keySubCategory';
 
 @Component({
   selector: 'app-key',
   templateUrl: './key.component.html',
-  styleUrls: ['./key.component.sass']
+  styleUrls: ['./key.component.sass'],
 })
 export class KeyComponent extends DefaultComponent<KeySubCategory> implements OnInit {
 
   searchForm = new FormGroup({
     search: new FormControl(),
-    carBrand: new FormControl('')
+    carBrand: new FormControl(''),
   });
   searchText = '';
 
   carBrandSelectConfig: FieldConfig = {
     name: FormControlNames.CAR_BRAND_FORM_CONTROL,
     type: InputTypes.SELECT,
-    label: 'Izaberi brend'
+    label: 'Izaberi brend',
   };
 
-  constructor(private keyService: KeyService, private sb: MatSnackBar, private dialog: MatDialog,
+  constructor(public keyService: KeyService, private sb: MatSnackBar, private dialog: MatDialog,
               private keySubCategoriesService: KeySubCategoryService,
               private carBrandService: CarBrandService) {
     super(keySubCategoriesService);
@@ -56,8 +54,8 @@ export class KeyComponent extends DefaultComponent<KeySubCategory> implements On
 
   openAddKeyDialog(): void {
     DialogUtil.openDialog(AddKeyDialogComponent, DialogOptions.setDialogConfig({
-      position: {top: '6%'},
-      width: '30%'
+      position: { top: '6%' },
+      width: '30%',
     }), this.dialog).afterClosed().subscribe(() => {
       this.getAll();
     });
@@ -65,9 +63,9 @@ export class KeyComponent extends DefaultComponent<KeySubCategory> implements On
 
   openEditKeyDialog(key: Key): void {
     DialogUtil.openDialog(EditKeyDialogComponent, DialogOptions.setDialogConfig({
-      position: {top: '1%'},
+      position: { top: '1%' },
       width: '30%',
-      data: key
+      data: key,
     }), this.dialog).afterClosed().subscribe(() => {
       this.getAll();
     });
@@ -75,18 +73,15 @@ export class KeyComponent extends DefaultComponent<KeySubCategory> implements On
 
   openKeyOverviewDialog(key: Key): void {
     DialogUtil.openDialog(KeyOverviewDialogComponent, DialogOptions.setDialogConfig({
-      position: {top: '6%'},
+      position: { top: '6%' },
       width: '30%',
-      data: key
+      data: key,
     }), this.dialog);
   }
 
-  filterByCarBrand(): void {
-    // this.keyService.getAll()
-    //   .pipe(map(value => value.filter((key) => key.idCarModel.idCarBrand.id ===
-    //     this.searchForm.get(FormControlNames.CAR_BRAND_FORM_CONTROL).value.id)))
-    //   .subscribe((resp) => {
-    //     this.listOfItems = resp;
-    //   });
+  deleteKey(id: number): void {
+    this.genericSubscribe(this.keyService.delete(id), () => {
+      this.getAll();
+    });
   }
 }

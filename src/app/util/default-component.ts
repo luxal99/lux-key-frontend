@@ -1,17 +1,17 @@
-import {Component, Injectable, OnInit, ViewChild} from '@angular/core';
-import {GenericService} from '../service/generic.service';
-import {SpinnerService} from '../service/spinner-service.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {MatSpinner} from '@angular/material/progress-spinner';
-import {Crud} from './crud-interface';
-import {Observable} from 'rxjs';
+import { Component, Injectable, OnInit, ViewChild } from '@angular/core';
+import { GenericService } from '../service/generic.service';
+import { SpinnerService } from '../service/spinner-service.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSpinner } from '@angular/material/progress-spinner';
+import { Crud } from './crud-interface';
+import { Observable } from 'rxjs';
 import * as moment from 'moment';
-import {SnackBarUtil} from './snackbar-util';
-import {Message} from '../constant/const';
+import { SnackBarUtil } from './snackbar-util';
+import { Message } from '../constant/const';
 
 @Component({
   template: '',
-  providers: [SpinnerService]
+  providers: [SpinnerService],
 })
 export abstract class DefaultComponent<T> implements OnInit, Crud {
 
@@ -77,7 +77,7 @@ export abstract class DefaultComponent<T> implements OnInit, Crud {
     });
   }
 
-  genericSubscribe(observable: Observable<any>, callBack?: () => {}): void {
+  genericSubscribe(observable: Observable<any>, callBack?: any): void {
     this.spinnerService.show(this.spinner);
     observable.subscribe(() => {
       if (callBack()) {
