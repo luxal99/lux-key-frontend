@@ -7,10 +7,6 @@
       <app-form-select [model]='data.idCurrentPrice' bindValue='price' label='Cena'
                        [config]='idCurrentPriceSelectConfig'
                        [group]='keyForm'></app-form-select>
-      <app-form-select-group [config]='idCarModelGroupSelect' [model]='data.idCarModel ? data.idCarModel:null '
-                             [group]='keyForm'
-                             [groupList]='listOfCarBrands'
-                             itemList='carModels'></app-form-select-group>
       <app-form-select-group [model]='data.idKeySubCategory' [config]='idKeySubCategoriesGroupSelect' [group]='keyForm'
                              [groupList]='listOfKeyCategories'
                              itemList='keySubCategories'></app-form-select-group>

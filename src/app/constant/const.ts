@@ -9,6 +9,7 @@ export class FormControlNames {
   static PASSWORD_NAME_FORM_CONTROL = 'password';
   static NAME_FORM_CONTROL = 'name';
   static ID_CAR_BRAND_FORM_CONTROL = 'idCarBrand';
+  static CAR_BRANDS_FORM_CONTROL = 'carBrands';
   static ID_KEY_CATEGORY_FORM_CONTROL = 'idKeyCategory';
   static FIRST_NAME_FORM_CONTROL = 'firstName';
   static LAST_NAME_FORM_CONTROL = 'lastName';

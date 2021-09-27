@@ -19,7 +19,6 @@ import {DynamicFieldDirective} from './directive/dynamic-field.directive';
 import {FormSelectComponent} from './components/form-components/form-select/form-select.component';
 import {ElementBindingComponent} from './components/element-binding/element-binding.component';
 import {CarBrandOverviewComponent} from './components/admin/code-book/car-brand-overview/car-brand-overview.component';
-import {CarModelOverviewComponent} from './components/admin/code-book/car-model-overview/car-model-overview.component';
 import {FormBuilderComponent} from './components/form-components/form-builder/form-builder.component';
 import {CapitalizePipe} from './pipes/capitalize.pipe';
 import {FormAutocompleteComponent} from './components/form-components/form-autocomplete/form-autocomplete.component';
@@ -55,7 +54,6 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
     FormSelectComponent,
     ElementBindingComponent,
     CarBrandOverviewComponent,
-    CarModelOverviewComponent,
     FormBuilderComponent,
     CapitalizePipe,
     FormAutocompleteComponent,

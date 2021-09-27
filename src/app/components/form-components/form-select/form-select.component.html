@@ -1,14 +1,42 @@
-<div class="dynamic-field form-select" [formGroup]="group">
-  <mat-form-field [appearance]="appearance" [style]="{'width':width}">
+<div class='dynamic-field form-select' [formGroup]='group'>
+  <mat-form-field [appearance]='appearance' [style]="{'width':width}">
     <mat-label>{{config.label}}</mat-label>
-    <mat-select [disabled]="isDisabled" [compareWith]="compareObjects" (selectionChange)="onOptionClick()"
-                [(ngModel)]="model"
-                [formControlName]="config.name"
-                [required]="isRequired">
-      <mat-option value="">---</mat-option>
-      <mat-option (click)="onOptionClick()" *ngFor="let item of config.options" [value]="item">
-        {{item[bindValue] || item }}
-      </mat-option>
+    <mat-select [disabled]='isDisabled' [compareWith]='compareObjects' (selectionChange)='onOptionClick()'
+                [(ngModel)]='model'
+                [formControlName]='config.name'
+                [required]='isRequired'
+                *ngIf='!config.multipleOptions'
+    >
+      <mat-option value=''>---</mat-option>
+      <ng-template [ngIf]='!config.multipleOptions'>
+        <mat-option (click)='onOptionClick()' *ngFor='let item of config.options' [value]='item'>
+          {{item[bindValue] || item }}
+        </mat-option>
+      </ng-template>
+      <ng-template [ngIf]='config.multipleOptions'>
+        <mat-option (click)='onOptionClick()' *ngFor='let item of config.options' [value]='item' >
+          {{item[bindValue] || item }}
+        </mat-option>
+      </ng-template>
+    </mat-select>
+    <mat-select [disabled]='isDisabled' [compareWith]='compareObjects' (selectionChange)='onOptionClick()'
+                [(ngModel)]='model'
+                [formControlName]='config.name'
+                [required]='isRequired'
+                *ngIf='config.multipleOptions'
+                multiple
+    >
+      <mat-option value=''>---</mat-option>
+      <ng-template [ngIf]='!config.multipleOptions'>
+        <mat-option (click)='onOptionClick()' *ngFor='let item of config.options' [value]='item'>
+          {{item[bindValue] || item }}
+        </mat-option>
+      </ng-template>
+      <ng-template [ngIf]='config.multipleOptions'>
+        <mat-option (click)='onOptionClick()' *ngFor='let item of config.options' [value]='item' >
+          {{item[bindValue] || item }}
+        </mat-option>
+      </ng-template>
     </mat-select>
   </mat-form-field>
 </div>

@@ -1,10 +1,12 @@
+import { CarModel } from './carModel';
+import { Key } from './key';
 
-import {CarModel} from './carModel';
 export interface CarBrand {
   id: number;
   name: string;
   createdDate: string;
   lastModifiedDate: string;
   carModels: CarModel;
+  keys: Key[];
 }
 
