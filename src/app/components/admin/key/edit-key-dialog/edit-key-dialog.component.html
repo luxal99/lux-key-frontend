@@ -1,41 +1,43 @@
 <mat-tab-group>
-  <mat-tab label="Osnovne informacije">
-    <div class="tab-content">
-      <app-form-input [model]="data.name" [config]="nameInputConfig" [group]="keyForm"></app-form-input>
-      <app-form-input [model]="data.amount" [config]="amountInputConfig" [group]="keyForm"></app-form-input>
-      <app-form-input [model]="data.code" [config]="codeInputConfig" [group]="keyForm"></app-form-input>
-      <app-form-select [model]="data.idCurrentPrice" bindValue="price" label='Cena' [config]="idCurrentPriceSelectConfig"
-                       [group]="keyForm"></app-form-select>
-      <app-form-select-group [config]="idCarModelGroupSelect" [model]="data.idCarModel" [group]="keyForm"
-                             [groupList]="listOfCarBrands"
-                             itemList="carModels"></app-form-select-group>
-      <app-form-select-group [model]="data.idKeySubCategory" [config]="idKeySubCategoriesGroupSelect" [group]="keyForm"
-                             [groupList]="listOfKeyCategories"
-                             itemList="keySubCategories"></app-form-select-group>
-      <div class="text-right">
-        <button mat-button class="default-btn" [disabled]="!keyForm.valid" (click)="updateKey()">Ažuriraj</button>
+  <mat-tab label='Osnovne informacije'>
+    <div class='tab-content'>
+      <app-form-input [model]='data.name' [config]='nameInputConfig' [group]='keyForm'></app-form-input>
+      <app-form-input [model]='data.amount' [config]='amountInputConfig' [group]='keyForm'></app-form-input>
+      <app-form-input [model]='data.code' [config]='codeInputConfig' [group]='keyForm'></app-form-input>
+      <app-form-select [model]='data.idCurrentPrice' bindValue='price' label='Cena'
+                       [config]='idCurrentPriceSelectConfig'
+                       [group]='keyForm'></app-form-select>
+      <app-form-select-group [config]='idCarModelGroupSelect' [model]='data.idCarModel ? data.idCarModel:null '
+                             [group]='keyForm'
+                             [groupList]='listOfCarBrands'
+                             itemList='carModels'></app-form-select-group>
+      <app-form-select-group [model]='data.idKeySubCategory' [config]='idKeySubCategoriesGroupSelect' [group]='keyForm'
+                             [groupList]='listOfKeyCategories'
+                             itemList='keySubCategories'></app-form-select-group>
+      <div class='text-right'>
+        <button mat-button class='default-btn' [disabled]='!keyForm.valid' (click)='updateKey()'>Ažuriraj</button>
       </div>
     </div>
   </mat-tab>
-  <mat-tab label="Informacije o ceni">
-    <div class="tab-content">
-      <app-form-input [group]="keyPriceForm" [config]="priceInputConfig"></app-form-input>
-      <div class="row key-price-row" *ngFor="let keyPrice of data.keyPrices">
-        <div class="col">
+  <mat-tab label='Informacije o ceni'>
+    <div class='tab-content'>
+      <app-form-input [group]='keyPriceForm' [config]='priceInputConfig'></app-form-input>
+      <div class='row key-price-row' *ngFor='let keyPrice of data.keyPrices'>
+        <div class='col'>
           <h6>Cena</h6>
           <h5>{{keyPrice.price}}</h5>
         </div>
-        <div class="col text-right">
-          <button mat-icon-button (click)="deleteKeyPrice(keyPrice)">
+        <div class='col text-right'>
+          <button mat-icon-button (click)='deleteKeyPrice(keyPrice)'>
             <mat-icon>delete</mat-icon>
           </button>
         </div>
       </div>
-      <div class="text-right">
-        <button class="default-btn" mat-button (click)="addKeyPrice()">Dodaj</button>
+      <div class='text-right'>
+        <button class='default-btn' mat-button (click)='addKeyPrice()'>Dodaj</button>
       </div>
     </div>
   </mat-tab>
 </mat-tab-group>
 
-<mat-spinner #spinner diameter="25"></mat-spinner>
+<mat-spinner #spinner diameter='25'></mat-spinner>

@@ -1,23 +1,23 @@
-<div class="row">
-  <div class="col-6">
+<div class='row'>
+  <div class='col-6'>
     <h5><b>Dodaj servis</b></h5>
   </div>
-  <div class="col-6 text-right">
+  <div class='col-6 text-right'>
     <h5>{{currentDate.format('DD MMMM YYYY')}}</h5>
   </div>
 </div>
 <mat-divider></mat-divider>
-<div class="content">
-  <form [formGroup]="serviceForm">
-    <mat-form-field appearance="outline">
+<div class='content'>
+  <form [formGroup]='serviceForm'>
+    <mat-form-field appearance='outline'>
       <mat-label>Izaberi datum</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="date">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <input matInput [matDatepicker]='picker' formControlName='date'>
+      <mat-datepicker-toggle matSuffix [for]='picker'></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
   </form>
   <div>
-    <app-form-input [config]="grossInputConfig" [group]="serviceForm"></app-form-input>
+    <app-form-input [config]='grossInputConfig' [group]='serviceForm'></app-form-input>
   </div>
 
   <mat-accordion>
@@ -27,24 +27,25 @@
           <h6><b>Izaberi ključ</b></h6>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <form [formGroup]="searchForm">
-        <mat-form-field appearance="outline" style="margin-right: 3em">
+      <form [formGroup]='searchForm'>
+        <mat-form-field appearance='outline' style='margin-right: 3em'>
           <mat-label>Pretraži</mat-label>
-          <input matInput [(ngModel)]="searchText" formControlName="search">
+          <input matInput [(ngModel)]='searchText' formControlName='search'>
           <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
       </form>
-      <div class="ex-content">
-        <div class="row key-row" id="key-{{key.id}}" (click)="addKey(key,$event)" *ngFor="let key of listOfKeys|key:searchText">
-          <div class="col">
+      <div class='ex-content'>
+        <div class='row key-row' id='key-{{key.id}}' (click)='addKey(key,$event)'
+             *ngFor='let key of listOfKeys|key:searchText'>
+          <div class='col'>
             <h6>Šifra</h6>
             <h5>{{key.code}}</h5>
           </div>
-          <div class="col-6">
+          <div class='col-6'>
             <h6>Automobil</h6>
-            <h5>{{key.idCarModel.idCarBrand.name + ' ' + key.idCarModel.name}}</h5>
+            <h5 *ngIf='key.idCarModel'>{{key.idCarModel.idCarBrand.name + ' ' + key.idCarModel.name}}</h5>
           </div>
-          <div class="col">
+          <div class='col'>
             <h6>Akutelna cena</h6>
             <h5>{{key.idCurrentPrice.price}}</h5>
           </div>
@@ -58,31 +59,31 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div>
-        <div class="text-right">
-          <button mat-icon-button (click)="openAddClientDialog()" class="red-btn">
+        <div class='text-right'>
+          <button mat-icon-button (click)='openAddClientDialog()' class='red-btn'>
             <mat-icon>add</mat-icon>
           </button>
         </div>
-        <form [formGroup]="searchForm">
-          <mat-form-field appearance="outline" style="margin-right: 3em">
+        <form [formGroup]='searchForm'>
+          <mat-form-field appearance='outline' style='margin-right: 3em'>
             <mat-label>Pretraži</mat-label>
-            <input matInput [(ngModel)]="searchClientText" formControlName="searchClient">
+            <input matInput [(ngModel)]='searchClientText' formControlName='searchClient'>
             <mat-icon matSuffix>search</mat-icon>
           </mat-form-field>
         </form>
-        <div class="ex-content">
-          <div class="client-binding" id="client-binding">
-            <div class="row client-row" id="client-{{client.id}}" *ngFor="let client of listOfClients"
-                 (click)="selectClient(client,$event)">
-              <div class="col">
+        <div class='ex-content'>
+          <div class='client-binding' id='client-binding'>
+            <div class='row client-row' id='client-{{client.id}}' *ngFor='let client of listOfClients'
+                 (click)='selectClient(client,$event)'>
+              <div class='col'>
                 <h6>Ime</h6>
                 <h5>{{client.firstName}}</h5>
               </div>
-              <div class="col">
+              <div class='col'>
                 <h6>Prezime</h6>
                 <h5>{{client.lastName}}</h5>
               </div>
-              <div class="col">
+              <div class='col'>
                 <h6>Telefon</h6>
                 <h5>{{client.telephone}}</h5>
               </div>
@@ -94,12 +95,12 @@
       </div>
     </mat-expansion-panel>
   </mat-accordion>
-  <div style="margin-top: 1em">
-    <ckeditor [editor]="Editor" #editor></ckeditor>
+  <div style='margin-top: 1em'>
+    <ckeditor [editor]='Editor' #editor></ckeditor>
   </div>
 </div>
 
-<div class="text-right">
-  <button mat-button class="default-btn" (click)="saveService()">Sačuvaj</button>
+<div class='text-right'>
+  <button mat-button class='default-btn' (click)='saveService()'>Sačuvaj</button>
 </div>
-<mat-spinner #spinner diameter="25s"></mat-spinner>
+<mat-spinner #spinner diameter='25s'></mat-spinner>
