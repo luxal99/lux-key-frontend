@@ -54,7 +54,7 @@ export class ServicesComponent extends DefaultComponent<Service> implements OnIn
       width: '50%',
       height: '100vh'
     }), this.dialog).afterClosed().subscribe(() => {
-      this.getAll();
+      this.getServicesInCurrentWeek()
     });
   }
 

@@ -11,15 +11,15 @@
   </div>
 
   <div class='row key-row' *ngFor='let key of listOfKey'>
-    <div class='col'>
-      <h6>Naziv</h6>
-      <h5>{{key.name}}</h5>
+    <div class='col' (click)='openEditKeyDialog(key)'>
+      <h6>Šifra</h6>
+      <h5>{{key.code}}</h5>
     </div>
-    <div class='col'>
+    <div class='col' (click)='openEditKeyDialog(key)'>
       <h6>Količina</h6>
       <h5>{{key.amount}}</h5>
     </div>
-    <div class='col'>
+    <div class='col' (click)='openEditKeyDialog(key)'>
       <h6>Akutelna cena</h6>
       <h5>{{key.idCurrentPrice.price}}</h5>
     </div>

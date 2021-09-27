@@ -22,8 +22,8 @@
       <div class='key-binding'>
         <div class='row key-row' *ngFor='let key of keySubCategory.keys|key:searchText'>
           <div class='col' (click)='openEditKeyDialog(key)'>
-            <h6>Naziv</h6>
-            <h5>{{key.name}}</h5>
+            <h6>Šifra</h6>
+            <h5>{{key.code}}</h5>
           </div>
           <div class='col' (click)='openEditKeyDialog(key)'>
             <h6>Količina</h6>

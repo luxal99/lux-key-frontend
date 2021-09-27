@@ -6,6 +6,7 @@ import { DialogUtil } from '../../../util/dialog-util';
 import { KeyOverviewDialogComponent } from '../key/key-overview-dialog/key-overview-dialog.component';
 import { DialogOptions } from '../../../util/dialog-options';
 import { MatDialog } from '@angular/material/dialog';
+import { EditKeyDialogComponent } from '../key/edit-key-dialog/edit-key-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -68,5 +69,15 @@ export class DashboardComponent implements OnInit {
       width: '30%',
       data: key,
     }), this.dialog);
+  }
+
+  openEditKeyDialog(key: Key): void {
+    DialogUtil.openDialog(EditKeyDialogComponent, DialogOptions.setDialogConfig({
+      position: { top: '1%' },
+      width: '30%',
+      data: key,
+    }), this.dialog).afterClosed().subscribe(() => {
+      this.inputChange()
+    });
   }
 }
