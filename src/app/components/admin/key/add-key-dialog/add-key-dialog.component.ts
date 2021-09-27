@@ -29,7 +29,7 @@ export class AddKeyDialogComponent extends DefaultComponent<Key> implements OnIn
     price: new FormControl('', Validators.required),
     idCurrentPrice: new FormControl(''),
     idKeySubCategory: new FormControl('', Validators.required),
-    idCarModel: new FormControl('', Validators.required)
+    idCarModel: new FormControl('')
   });
 
   nameInputConfig: FieldConfig = {name: FormControlNames.NAME_FORM_CONTROL, type: InputTypes.TEXT, label: 'Naziv'};

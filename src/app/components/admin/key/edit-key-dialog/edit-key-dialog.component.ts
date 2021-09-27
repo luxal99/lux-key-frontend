@@ -31,7 +31,7 @@ export class EditKeyDialogComponent extends DefaultComponent<Key> implements OnI
     code: new FormControl('', Validators.required),
     idCurrentPrice: new FormControl(''),
     idKeySubCategory: new FormControl('', Validators.required),
-    idCarModel: new FormControl('', Validators.required),
+    idCarModel: new FormControl(''),
   });
 
   keyPriceForm = new FormGroup({
