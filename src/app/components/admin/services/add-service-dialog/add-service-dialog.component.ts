@@ -184,8 +184,7 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
     // @ts-ignore
     service.serviceKeys = this.listOfSelectedKeys.map((item) => ({
       idKey: item,
-      keyPrice: item.idCurrentPrice.price,
-      keyPurchasePrice: item.purchasePrice
+      keyPrice: item.idCurrentPrice.price
     }));
 
     let sumOfKeyPrices = 0;

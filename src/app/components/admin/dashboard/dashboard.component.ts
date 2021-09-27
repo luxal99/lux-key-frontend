@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Key } from '../../../models/key';
 import { KeyService } from '../../../service/key.service';
+import { DialogUtil } from '../../../util/dialog-util';
+import { KeyOverviewDialogComponent } from '../key/key-overview-dialog/key-overview-dialog.component';
+import { DialogOptions } from '../../../util/dialog-options';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +18,7 @@ export class DashboardComponent implements OnInit {
   listOfKey: Key[] = [];
   searchText = '';
 
-  constructor(private keyService: KeyService) {
+  constructor(private keyService: KeyService, private dialog: MatDialog) {
   }
 
   searchForm = new FormGroup({
@@ -41,7 +45,7 @@ export class DashboardComponent implements OnInit {
       document.getElementById('huge-label').style.display = 'none';
       // @ts-ignore
       document.getElementById('centered').style.minHeight = '30vh';
-      this.search()
+      this.search();
     }
   }
 
@@ -56,5 +60,13 @@ export class DashboardComponent implements OnInit {
     this.keyService.searchKey(this.searchText).subscribe((resp) => {
       this.listOfKey = resp;
     });
+  }
+
+  openKeyOverviewDialog(key: Key): void {
+    DialogUtil.openDialog(KeyOverviewDialogComponent, DialogOptions.setDialogConfig({
+      position: { top: '6%' },
+      width: '30%',
+      data: key,
+    }), this.dialog);
   }
 }
