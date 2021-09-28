@@ -16,12 +16,8 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
   </form>
-  <div>
-    <app-form-input [config]='grossInputConfig' [group]='serviceForm'></app-form-input>
-  </div>
-
   <mat-accordion>
-    <mat-expansion-panel hideToggle>
+    <mat-expansion-panel [expanded]='false' hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title>
           <h6><b>Izaberi ključ</b></h6>
@@ -30,20 +26,16 @@
       <form [formGroup]='searchForm'>
         <mat-form-field appearance='outline' style='margin-right: 3em'>
           <mat-label>Pretraži</mat-label>
-          <input matInput [(ngModel)]='searchText' formControlName='search'>
+          <input matInput [(ngModel)]='searchText' (input)='searchKey()' formControlName='search'>
           <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
       </form>
       <div class='ex-content'>
         <div class='row key-row' id='key-{{key.id}}' (click)='addKey(key,$event)'
-             *ngFor='let key of listOfKeys|key:searchText'>
+             *ngFor='let key of listOfKeys'>
           <div class='col'>
             <h6>Šifra</h6>
             <h5>{{key.code}}</h5>
-          </div>
-          <div class='col-6'>
-            <h6>Automobil</h6>
-            <h5 *ngIf='key.idCarModel'>{{key.idCarModel.idCarBrand.name + ' ' + key.idCarModel.name}}</h5>
           </div>
           <div class='col'>
             <h6>Akutelna cena</h6>
@@ -52,7 +44,7 @@
         </div>
       </div>
     </mat-expansion-panel>
-    <mat-expansion-panel hideToggle>
+    <mat-expansion-panel hideToggle [expanded]='false'>
       <mat-expansion-panel-header>
         <mat-panel-title>
           <h6><b>Izaberi klijenta</b></h6>
@@ -98,6 +90,18 @@
   <div style='margin-top: 1em'>
     <ckeditor [editor]='Editor' #editor></ckeditor>
   </div>
+  <div class='row key-row-info'
+       *ngFor='let key of listOfSelectedKeys'>
+    <div class='col'>
+      <h5>Šifra</h5>
+      <h4>{{key.code}}</h4>
+    </div>
+    <div class='col'>
+      <h5>Akutelna cena</h5>
+      <h4>{{key.idCurrentPrice.price}}</h4>
+    </div>
+  </div>
+  <h3>Ukupno: {{total}}</h3>
 </div>
 
 <div class='text-right'>

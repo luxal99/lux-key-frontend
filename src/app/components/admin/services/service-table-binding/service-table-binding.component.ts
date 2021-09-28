@@ -23,7 +23,7 @@ export class ServiceTableBindingComponent implements OnInit {
   @Input() list: Service[] = [];
 
   @Output() cb = new EventEmitter();
-  displayedColumns = ['date', 'client', 'gross', 'option'];
+  displayedColumns = ['date', 'gross', 'option'];
 
   constructor(private snackBar: MatSnackBar, private spinnerService: SpinnerService,
               private dialog: MatDialog, private serviceService: ServiceService) {

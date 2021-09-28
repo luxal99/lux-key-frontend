@@ -1,19 +1,19 @@
-import {Component, OnInit} from '@angular/core';
-import {ServiceService} from '../../../service/service.service';
-import {DefaultComponent} from '../../../util/default-component';
-import {Service} from '../../../models/service';
-import {DialogUtil} from '../../../util/dialog-util';
-import {AddServiceDialogComponent} from './add-service-dialog/add-service-dialog.component';
-import {DialogOptions} from '../../../util/dialog-options';
-import {MatDialog} from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { ServiceService } from '../../../service/service.service';
+import { DefaultComponent } from '../../../util/default-component';
+import { Service } from '../../../models/service';
+import { DialogUtil } from '../../../util/dialog-util';
+import { AddServiceDialogComponent } from './add-service-dialog/add-service-dialog.component';
+import { DialogOptions } from '../../../util/dialog-options';
+import { MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {FormControlNames} from '../../../constant/const';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControlNames } from '../../../constant/const';
 
 @Component({
   selector: 'app-services',
   templateUrl: './services.component.html',
-  styleUrls: ['./services.component.sass']
+  styleUrls: ['./services.component.sass'],
 })
 export class ServicesComponent extends DefaultComponent<Service> implements OnInit {
 
@@ -28,7 +28,7 @@ export class ServicesComponent extends DefaultComponent<Service> implements OnIn
 
   dateRangeForm = new FormGroup({
     startDate: new FormControl(this.startOfMonth, Validators.required),
-    endDate: new FormControl(this.endOfMonth, Validators.required)
+    endDate: new FormControl(this.endOfMonth, Validators.required),
   });
 
   constructor(private serviceService: ServiceService, private dialog: MatDialog) {
@@ -50,11 +50,10 @@ export class ServicesComponent extends DefaultComponent<Service> implements OnIn
 
   openAddServiceDialog(): void {
     DialogUtil.openDialog(AddServiceDialogComponent, DialogOptions.setDialogConfig({
-      position: {right: '0'},
       width: '50%',
-      height: '100vh'
+      maxHeight: '80vh',
     }), this.dialog).afterClosed().subscribe(() => {
-      this.getServicesInCurrentWeek()
+      this.getServicesInCurrentWeek();
     });
   }
 

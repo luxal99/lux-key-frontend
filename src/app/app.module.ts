@@ -43,6 +43,7 @@ import { BindCarBrandsPipe } from './pipes/bind-car-brands.pipe';
 import { SearchPipe } from './pipes/search.pipe';
 import { KeyBrandOverviewComponent } from './components/admin/code-book/key-brand-overview/key-brand-overview.component';
 import { ReportsComponent } from './components/admin/reports/reports.component';
+import { SumKeyPipe } from './pipes/sum-key.pipe';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { ReportsComponent } from './components/admin/reports/reports.component';
     SearchPipe,
     KeyBrandOverviewComponent,
     ReportsComponent,
+    SumKeyPipe,
   ],
   imports: [
     BrowserModule,

@@ -1,42 +1,38 @@
-import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import * as moment from 'moment';
-import {ServiceService} from '../../../../service/service.service';
-import {DefaultComponent} from '../../../../util/default-component';
-import {Service} from '../../../../models/service';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Key} from '../../../../models/key';
-import {KeyService} from '../../../../service/key.service';
-import {FieldConfig} from '../../../../models/FieldConfig';
+import { ServiceService } from '../../../../service/service.service';
+import { DefaultComponent } from '../../../../util/default-component';
+import { Service } from '../../../../models/service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Key } from '../../../../models/key';
+import { KeyService } from '../../../../service/key.service';
 import {
   CLIENT_ID_PREFIX,
-  DEFAULT_BTN_CLASS_NAME,
   FormControlNames,
-  InputTypes, KEY_ID_PREFIX, Message,
+  InputTypes,
+  KEY_ID_PREFIX,
   SELECTED_CLASS_NAME,
 } from '../../../../constant/const';
-import {ServiceTypeEnum} from '../../../../ServiceTypeEnum';
 import * as ClassicEditor from 'lib/ckeditor5-build-classic';
-import {CKEditorComponent} from '@ckeditor/ckeditor5-angular';
-import {ClientService} from '../../../../service/client.service';
-import {Client} from '../../../../../client';
-import {FormBuilderConfig} from '../../../../models/FormBuilderConfig';
-import {DialogUtil} from '../../../../util/dialog-util';
-import {FormBuilderComponent} from '../../../form-components/form-builder/form-builder.component';
-import {DialogOptions} from '../../../../util/dialog-options';
-import {MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
-import {ServiceKey} from '../../../../models/serviceKey';
-import {ServiceKeyService} from '../../../../service/service-key.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {SnackBarUtil} from '../../../../util/snackbar-util';
+import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
+import { ClientService } from '../../../../service/client.service';
+import { Client } from '../../../../../client';
+import { FormBuilderConfig } from '../../../../models/FormBuilderConfig';
+import { DialogUtil } from '../../../../util/dialog-util';
+import { FormBuilderComponent } from '../../../form-components/form-builder/form-builder.component';
+import { DialogOptions } from '../../../../util/dialog-options';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { ServiceKeyService } from '../../../../service/service-key.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-service-dialog',
   templateUrl: './add-service-dialog.component.html',
-  styleUrls: ['./add-service-dialog.component.sass']
+  styleUrls: ['./add-service-dialog.component.sass'],
 })
 export class AddServiceDialogComponent extends DefaultComponent<Service> implements OnInit {
 
-  @ViewChild('editor', {static: false}) editorComponent!: CKEditorComponent;
+  @ViewChild('editor', { static: false }) editorComponent!: CKEditorComponent;
   public Editor = ClassicEditor;
 
   listOfSelectedKeys: Key[] = [];
@@ -51,14 +47,14 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
 
   searchForm = new FormGroup({
     search: new FormControl(''),
-    searchClient: new FormControl()
+    searchClient: new FormControl(),
   });
 
   serviceForm = new FormGroup({
     date: new FormControl(this.data ? this.data.date : new Date(), Validators.required),
-    gross: new FormControl(this.data ? this.data.gross : '', Validators.required)
   });
-  grossInputConfig: FieldConfig = {name: FormControlNames.GROSS_FORM_CONTROL, type: InputTypes.TEXT, label: 'Ukupno'};
+
+  total = 0;
   searchText = '';
   searchClientText = '';
 
@@ -70,7 +66,6 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
   }
 
   ngOnInit(): void {
-    this.getKeys();
     this.initValues();
     this.getClients();
   }
@@ -99,8 +94,8 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
     }
   }
 
-  getKeys(): void {
-    this.keyService.getAll().subscribe((resp) => {
+  searchKey(): void {
+    this.keyService.searchKey(this.searchText).subscribe((resp) => {
       this.listOfKeys = resp;
     });
   }
@@ -120,7 +115,12 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
     } else {
       element.classList.add(SELECTED_CLASS_NAME);
       this.listOfSelectedKeys.push(key);
+      this.total += key.idCurrentPrice.price;
     }
+  }
+
+  removeKey(key): void {
+    this.listOfSelectedKeys.splice(this.listOfSelectedKeys.indexOf(key), 1);
   }
 
   openAddClientDialog(): void {
@@ -130,30 +130,30 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
           name: FormControlNames.FIRST_NAME_FORM_CONTROL,
           type: InputTypes.INPUT,
           validation: [Validators.required],
-          label: 'Ime'
+          label: 'Ime',
         },
         {
           name: FormControlNames.LAST_NAME_FORM_CONTROL,
           type: InputTypes.INPUT,
           validation: [Validators.required],
-          label: 'Prezime'
+          label: 'Prezime',
         },
         {
           name: FormControlNames.TELEPHONE_FORM_CONTROL,
           type: InputTypes.INPUT,
           validation: [Validators.required],
-          label: 'Kontakt telefon'
-        }
+          label: 'Kontakt telefon',
+        },
       ],
       headerText: 'Dodaj klijenta',
-      service: this.clientService
+      service: this.clientService,
 
     };
     DialogUtil.openDialog(FormBuilderComponent,
       DialogOptions.setDialogConfig({
-        position: {top: '6%'},
+        position: { top: '6%' },
         width: '30%',
-        data: configData
+        data: configData,
       }), this.dialog).afterClosed().subscribe(() => {
       this.getClients();
     });
@@ -184,13 +184,13 @@ export class AddServiceDialogComponent extends DefaultComponent<Service> impleme
     // @ts-ignore
     service.serviceKeys = this.listOfSelectedKeys.map((item) => ({
       idKey: item,
-      keyPrice: item.idCurrentPrice.price
+      keyPrice: item.idCurrentPrice.price,
     }));
 
     let sumOfKeyPrices = 0;
 
     service.serviceKeys.filter((item) => sumOfKeyPrices += item.idKey.idCurrentPrice.price);
-    service.codingServicePrice = service.gross - sumOfKeyPrices;
+    service.gross = sumOfKeyPrices;
     if (this.data) {
       service.id = this.data.id;
       super.update(service);

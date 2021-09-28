@@ -9,11 +9,6 @@
     <td mat-cell *matCellDef="let element"> {{element.date}} </td>
   </ng-container>
 
-  <!-- Weight Column -->
-  <ng-container matColumnDef="client">
-    <th mat-header-cell *matHeaderCellDef> Klijent</th>
-    <td mat-cell *matCellDef="let element"> {{element.idClient.firstName + ' ' + element.idClient.lastName}} </td>
-  </ng-container>
 
   <!-- Symbol Column -->
   <ng-container matColumnDef="gross">
