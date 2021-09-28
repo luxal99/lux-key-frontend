@@ -9,7 +9,8 @@
       <h4>{{report.createdDate|date}}</h4>
     </div>
     <div class='col'>
-      <a target='_blank' [href]='report.path' [download]="currentDate+'.xlsx'">
+      <a target='_blank' [href]="'https://luxkey.luxal.dev/assets/reports/'+currentDate+'.xlsx'"
+         [download]="currentDate+'.xlsx'">
         <button mat-raised-button>Preuzmi</button>
       </a>
       <button mat-raised-button color='warn'>Obriši</button>
