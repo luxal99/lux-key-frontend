@@ -21,6 +21,6 @@ export class KeyService extends GenericService<Key> {
   }
 
   generateReport(): Observable<any> {
-    return this.http.post(this.route + '/generate', {});
+    return this.http.post(this.route + '/generate', null, { responseType: 'text' });
   }
 }

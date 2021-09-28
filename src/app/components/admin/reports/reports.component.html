@@ -13,7 +13,7 @@
          [download]="currentDate+'.xlsx'">
         <button mat-raised-button>Preuzmi</button>
       </a>
-      <button mat-raised-button color='warn'>Obriši</button>
+      <button mat-raised-button color='warn' (click)='deleteReport(report.id)'>Obriši</button>
     </div>
   </div>
 </div>
