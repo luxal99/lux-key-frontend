@@ -41,6 +41,7 @@ import { SumGrossPipe } from './pipes/sum-gross.pipe';
 import { TokenInterceptor } from './interceptor/token.interceptor';
 import { BindCarBrandsPipe } from './pipes/bind-car-brands.pipe';
 import { SearchPipe } from './pipes/search.pipe';
+import { KeyBrandOverviewComponent } from './components/admin/code-book/key-brand-overview/key-brand-overview.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { SearchPipe } from './pipes/search.pipe';
     SumGrossPipe,
     BindCarBrandsPipe,
     SearchPipe,
+    KeyBrandOverviewComponent,
   ],
   imports: [
     BrowserModule,

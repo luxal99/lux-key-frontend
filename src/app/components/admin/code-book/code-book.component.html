@@ -17,7 +17,7 @@
       </div>
 
     </mat-tab>
-    <mat-tab label="Kategorije ključeva">
+    <mat-tab label="Šifarnik ključeva">
       <div class="tab-content">
         <mat-accordion>
           <mat-expansion-panel [expanded]="true" >
@@ -38,6 +38,15 @@
             </mat-expansion-panel-header>
 
             <app-key-sub-category-overview></app-key-sub-category-overview>
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <b>Pregled brendova</b>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <app-key-brand-overview></app-key-brand-overview>
           </mat-expansion-panel>
         </mat-accordion>
       </div>

@@ -1,0 +1,17 @@
+<div class="text-right">
+  <button mat-button class="default-btn" (click)="openAddKeyBrandDialog()">Dodaj</button>
+</div>
+<mat-spinner #spinner diameter="25"></mat-spinner>
+<div class="row" *ngFor="let keyCategory of listOfItems">
+  <div class="col-5" (click)="openAddKeyBrandDialog(keyCategory)">
+    <h6>{{keyCategory.name}}</h6>
+  </div>
+  <div class="col-5" (click)="openAddKeyBrandDialog(keyCategory)">
+    <h6>{{keyCategory.createdDate|date}}</h6>
+  </div>
+  <div class="col-2">
+    <button mat-icon-button (click)="delete(keyCategory.id)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>

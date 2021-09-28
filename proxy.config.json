@@ -10,7 +10,8 @@
       "/key",
       "/jwt",
       "/service",
-      "/service-key"
+      "/service-key",
+      "/key-brand"
     ],
     "target": "http://localhost:8080/",
     "secure": false

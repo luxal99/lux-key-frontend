@@ -51,6 +51,7 @@ export class RestRoutes {
   static KEY_SUB_CATEGORY = 'key-sub-category';
   static SERVICE = 'service';
   static SERVICE_KEY = 'service-key';
+  static KEY_BRAND = 'key-brand';
 }
 
 export class SpinnerOptions {
