@@ -19,4 +19,8 @@ export class KeyService extends GenericService<Key> {
     const params = new HttpParams().set('search', search);
     return this.http.get<Key[]>(this.route + '/search', { params });
   }
+
+  generateReport(): Observable<any> {
+    return this.http.post(this.route + '/generate', {});
+  }
 }

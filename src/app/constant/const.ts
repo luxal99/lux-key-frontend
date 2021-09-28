@@ -53,6 +53,7 @@ export class RestRoutes {
   static SERVICE = 'service';
   static SERVICE_KEY = 'service-key';
   static KEY_BRAND = 'key-brand';
+  static REPORT = 'report';
 }
 
 export class SpinnerOptions {
