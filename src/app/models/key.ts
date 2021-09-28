@@ -9,9 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import {KeySubCategory} from './keySubCategory';
-import {KeyPrice} from './keyPrice';
-import {CarModel} from './carModel';
+import { KeySubCategory } from './keySubCategory';
+import { KeyPrice } from './keyPrice';
 import { CarBrand } from './carBrand';
 
 
@@ -22,10 +21,9 @@ export interface Key {
   code: string;
   createdDate: string;
   lastModifiedDate: string;
-  idCarBrand: CarBrand;
+  carBrands: CarBrand[];
   idCurrentPrice: KeyPrice;
   idKeySubCategory: KeySubCategory;
   keyPrices: KeyPrice[];
-  purchasePrice?: number
 }
 
