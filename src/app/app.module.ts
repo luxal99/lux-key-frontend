@@ -42,6 +42,7 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
 import { BindCarBrandsPipe } from './pipes/bind-car-brands.pipe';
 import { SearchPipe } from './pipes/search.pipe';
 import { KeyBrandOverviewComponent } from './components/admin/code-book/key-brand-overview/key-brand-overview.component';
+import { ReportsComponent } from './components/admin/reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { KeyBrandOverviewComponent } from './components/admin/code-book/key-bran
     BindCarBrandsPipe,
     SearchPipe,
     KeyBrandOverviewComponent,
+    ReportsComponent,
   ],
   imports: [
     BrowserModule,
