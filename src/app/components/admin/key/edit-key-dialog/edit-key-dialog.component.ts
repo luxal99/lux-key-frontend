@@ -24,10 +24,10 @@ export class EditKeyDialogComponent extends DefaultComponent<Key> implements OnI
   listOfKeyCategories: KeyCategory[] = [];
 
   keyForm = new FormGroup({
-    name: new FormControl('', Validators.required),
     amount: new FormControl('', Validators.required),
     code: new FormControl('', Validators.required),
     idCurrentPrice: new FormControl(''),
+    idKeyBrand: new FormControl('', Validators.required),
     idKeySubCategory: new FormControl('', Validators.required),
     carBrands: new FormControl(''),
   });
