@@ -1,7 +1,7 @@
 <mat-tab-group>
   <mat-tab label='Osnovne informacije'>
     <div class='tab-content'>
-      <app-form-input [model]='data.name' [config]='nameInputConfig' [group]='keyForm'></app-form-input>
+      <app-form-select [config]='keyBrandSelectConfig' [model]='data.idKeyBrand' [group]='keyForm'></app-form-select>
       <app-form-input [model]='data.amount' [config]='amountInputConfig' [group]='keyForm'></app-form-input>
       <app-form-input [model]='data.code' [config]='codeInputConfig' [group]='keyForm'></app-form-input>
       <app-form-select [model]='data.idCurrentPrice' bindValue='price' label='Cena'

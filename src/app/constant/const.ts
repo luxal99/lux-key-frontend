@@ -27,6 +27,7 @@ export class FormControlNames {
   static PURCHASE_PRICE_FORM_CONTROL = 'purchasePrice';
   static START_DATE_FORM_CONTROL = 'startDate';
   static END_DATE_FORM_CONTROL = 'endDate';
+  static ID_KEY_BRAND_FORM_CONTROL = 'idKeyBrand';
 }
 
 export class InputTypes {

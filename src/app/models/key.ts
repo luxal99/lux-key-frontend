@@ -12,17 +12,18 @@
 import { KeySubCategory } from './keySubCategory';
 import { KeyPrice } from './keyPrice';
 import { CarBrand } from './carBrand';
+import { KeyBrand } from './KeyBrand';
 
 
 export interface Key {
   id: number;
-  name: string;
   amount: number;
   code: string;
   createdDate: string;
   lastModifiedDate: string;
   carBrands: CarBrand[];
   idCurrentPrice: KeyPrice;
+  idKeyBrand: KeyBrand;
   idKeySubCategory: KeySubCategory;
   keyPrices: KeyPrice[];
 }

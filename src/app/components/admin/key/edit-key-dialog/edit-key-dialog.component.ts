@@ -12,6 +12,7 @@ import { KeyCategoryService } from '../../../../service/key-category.service';
 import { CarBrandService } from '../../../../service/car-brand.service';
 import { KeyPrice } from '../../../../models/keyPrice';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { KeyBrandService } from '../../../../service/key-brand.service';
 
 @Component({
   selector: 'app-edit-key-dialog',
@@ -34,7 +35,10 @@ export class EditKeyDialogComponent extends DefaultComponent<Key> implements OnI
   keyPriceForm = new FormGroup({
     price: new FormControl('', Validators.required),
   });
-  nameInputConfig: FieldConfig = { name: FormControlNames.NAME_FORM_CONTROL, type: InputTypes.TEXT, label: 'Naziv' };
+  keyBrandSelectConfig: FieldConfig = {
+    name: FormControlNames.ID_KEY_BRAND_FORM_CONTROL,
+    type: InputTypes.SELECT, label: 'Brend',
+  };
   amountInputConfig: FieldConfig = {
     name: FormControlNames.AMOUNT_FORM_CONTROL,
     type: InputTypes.NUMBER,
@@ -62,7 +66,8 @@ export class EditKeyDialogComponent extends DefaultComponent<Key> implements OnI
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Key, private keyService: KeyService, private sb: MatSnackBar,
               private keyPriceService: KeyPriceService, private readonly changeDetectorRef: ChangeDetectorRef,
-              public keyCategoryService: KeyCategoryService, private carBrandService: CarBrandService) {
+              public keyCategoryService: KeyCategoryService, private carBrandService: CarBrandService,
+              private keyBrandService: KeyBrandService) {
     super(keyService);
     this.snackBar = sb;
   }
@@ -70,6 +75,7 @@ export class EditKeyDialogComponent extends DefaultComponent<Key> implements OnI
   ngOnInit(): void {
     this.getKeyCategories();
     this.getCarBrands();
+    this.getKeyBrands();
   }
 
   ngAfterViewChecked(): void {
@@ -105,5 +111,11 @@ export class EditKeyDialogComponent extends DefaultComponent<Key> implements OnI
     this.data.keyPrices.push(await super.genericPromiseSubscribe(this.keyPriceService.save(
       { idKey: this.data, price: this.keyPriceForm.get(FormControlNames.PRICE_FORM_CONTROL).value },
     )));
+  }
+
+  getKeyBrands(): void {
+    this.keyBrandService.getAll().subscribe((resp) => {
+      this.keyBrandSelectConfig.options = resp;
+    });
   }
 }

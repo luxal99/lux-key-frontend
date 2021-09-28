@@ -10,6 +10,7 @@ import { FormControlNames, InputTypes } from '../../../../constant/const';
 import { KeyCategory } from '../../../../models/keyCategory';
 import { CarBrandService } from '../../../../service/car-brand.service';
 import { KeyPriceService } from '../../../../service/key-price.service';
+import { KeyBrandService } from '../../../../service/key-brand.service';
 
 @Component({
   selector: 'app-add-key-dialog',
@@ -20,7 +21,7 @@ export class AddKeyDialogComponent extends DefaultComponent<Key> implements OnIn
 
   listOfKeyCategories: KeyCategory[] = [];
   keyForm = new FormGroup({
-    name: new FormControl('', Validators.required),
+    idKeyBrand: new FormControl('', Validators.required),
     amount: new FormControl('', Validators.required),
     code: new FormControl('', Validators.required),
     price: new FormControl('', Validators.required),
@@ -29,7 +30,10 @@ export class AddKeyDialogComponent extends DefaultComponent<Key> implements OnIn
     carBrands: new FormControl(''),
   });
 
-  nameInputConfig: FieldConfig = { name: FormControlNames.NAME_FORM_CONTROL, type: InputTypes.TEXT, label: 'Naziv' };
+  keyBrandSelectConfig: FieldConfig = {
+    name: FormControlNames.ID_KEY_BRAND_FORM_CONTROL,
+    type: InputTypes.SELECT, label: 'Brend',
+  };
   amountInputConfig: FieldConfig = {
     name: FormControlNames.AMOUNT_FORM_CONTROL,
     type: InputTypes.NUMBER,
@@ -50,7 +54,8 @@ export class AddKeyDialogComponent extends DefaultComponent<Key> implements OnIn
   };
 
   constructor(private keyService: KeyService, private sb: MatSnackBar, private keyPriceService: KeyPriceService,
-              public keyCategoryService: KeyCategoryService, private carBrandService: CarBrandService) {
+              public keyCategoryService: KeyCategoryService, private carBrandService: CarBrandService,
+              private keyBrandService: KeyBrandService) {
     super(keyService);
     this.snackBar = sb;
   }
@@ -59,11 +64,18 @@ export class AddKeyDialogComponent extends DefaultComponent<Key> implements OnIn
   ngOnInit(): void {
     this.getKeyCategories();
     this.getCarBrands();
+    this.getKeyBrands();
   }
 
   getKeyCategories(): void {
     this.keyCategoryService.getAll().subscribe((resp) => {
       this.listOfKeyCategories = resp;
+    });
+  }
+
+  getKeyBrands(): void {
+    this.keyBrandService.getAll().subscribe((resp) => {
+      this.keyBrandSelectConfig.options = resp;
     });
   }
 
