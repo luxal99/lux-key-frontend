@@ -39,7 +39,9 @@ export class AddKeyDialogComponent extends DefaultComponent<Key> implements OnIn
   priceInputConfig: FieldConfig = { name: FormControlNames.PRICE_FORM_CONTROL, type: InputTypes.NUMBER, label: 'Cena' };
   carBrandSelectConfig: FieldConfig = {
     name: FormControlNames.CAR_BRANDS_FORM_CONTROL,
-    type: InputTypes.SELECT, label: 'Brend automobila', multipleOptions: true,
+    type: InputTypes.SELECT, label: 'Brend automobila',
+    multipleOptions: true,
+    implSearch: true,
   };
   idKeySubCategoriesGroupSelect: FieldConfig = {
     name: FormControlNames.ID_KEY_SUB_CATEGORY_FORM_CONTROL,

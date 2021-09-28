@@ -1,6 +1,7 @@
 <div class='dynamic-field form-select' [formGroup]='group'>
   <mat-form-field [appearance]='appearance' [style]="{'width':width}">
     <mat-label>{{config.label}}</mat-label>
+
     <mat-select [disabled]='isDisabled' [compareWith]='compareObjects' (selectionChange)='onOptionClick()'
                 [(ngModel)]='model'
                 [formControlName]='config.name'
@@ -8,16 +9,10 @@
                 *ngIf='!config.multipleOptions'
     >
       <mat-option value=''>---</mat-option>
-      <ng-template [ngIf]='!config.multipleOptions'>
-        <mat-option (click)='onOptionClick()' *ngFor='let item of config.options' [value]='item'>
-          {{item[bindValue] || item }}
-        </mat-option>
-      </ng-template>
-      <ng-template [ngIf]='config.multipleOptions'>
-        <mat-option (click)='onOptionClick()' *ngFor='let item of config.options' [value]='item' >
-          {{item[bindValue] || item }}
-        </mat-option>
-      </ng-template>
+      <mat-option (click)='onOptionClick()' *ngFor='let item of config.options|search:searchProperty:searchText'
+                  [value]='item'>
+        {{item[bindValue] || item }}
+      </mat-option>
     </mat-select>
     <mat-select [disabled]='isDisabled' [compareWith]='compareObjects' (selectionChange)='onOptionClick()'
                 [(ngModel)]='model'
@@ -26,17 +21,14 @@
                 *ngIf='config.multipleOptions'
                 multiple
     >
+      <form [formGroup]='searchForm' *ngIf='config.implSearch'>
+        <input [(ngModel)]='searchText' formControlName='search' matInput placeholder='Pretraži'>
+      </form>
       <mat-option value=''>---</mat-option>
-      <ng-template [ngIf]='!config.multipleOptions'>
-        <mat-option (click)='onOptionClick()' *ngFor='let item of config.options' [value]='item'>
-          {{item[bindValue] || item }}
-        </mat-option>
-      </ng-template>
-      <ng-template [ngIf]='config.multipleOptions'>
-        <mat-option (click)='onOptionClick()' *ngFor='let item of config.options' [value]='item' >
-          {{item[bindValue] || item }}
-        </mat-option>
-      </ng-template>
+      <mat-option (click)='onOptionClick()' *ngFor='let item of config.options|search:searchProperty:searchText'
+                  [value]='item'>
+        {{item[bindValue] || item }}
+      </mat-option>
     </mat-select>
   </mat-form-field>
 </div>
