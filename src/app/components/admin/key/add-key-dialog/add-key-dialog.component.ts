@@ -67,7 +67,8 @@ export class AddKeyDialogComponent extends DefaultComponent<Key> implements OnIn
 
   getCarBrands(): void {
     this.carBrandService.getAll().subscribe((resp) => {
-      this.carBrandSelectConfig.options = resp;
+      this.carBrandSelectConfig.options = resp.sort((a, b) =>
+        a.name.localeCompare(b.name));
     });
   }
 

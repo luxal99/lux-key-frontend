@@ -39,6 +39,7 @@ import { ServiceTableBindingComponent } from './components/admin/services/servic
 import { ServiceOverviewDialogComponent } from './components/admin/services/service-overview-dialog/service-overview-dialog.component';
 import { SumGrossPipe } from './pipes/sum-gross.pipe';
 import { TokenInterceptor } from './interceptor/token.interceptor';
+import { BindCarBrandsPipe } from './pipes/bind-car-brands.pipe';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
     ServiceTableBindingComponent,
     ServiceOverviewDialogComponent,
     SumGrossPipe,
+    BindCarBrandsPipe,
   ],
   imports: [
     BrowserModule,
