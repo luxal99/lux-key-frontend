@@ -77,4 +77,5 @@ export class AdminComponent implements OnInit {
   lazyLoad(component: ComponentType<any>): void {
     LazyLoadComponentsUtil.loadComponent(component, this.entry, this.resolver);
   }
+
 }

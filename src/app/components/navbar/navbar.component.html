@@ -1,14 +1,16 @@
-<div class="component">
-  <div class="row">
-    <div class="col-6">
-      <div class="inline w-100">
+<div class='component'>
+  <div class='row'>
+    <div class='col-6'>
+      <div class='inline w-100'>
 
-        <button mat-icon-button (click)="menuBtnClick.emit(true)">
+        <button mat-icon-button (click)='menuBtnClick.emit(true)'>
           <mat-icon>drag_handle</mat-icon>
         </button>
         <h4><b>{{header}}</b></h4>
       </div>
     </div>
-    <div class="col-6"></div>
+    <div class='col-6 text-right'>
+      <button mat-button (click)='logout()'><i class='fa fa-sign-out' aria-hidden='true'></i> Logout</button>
+    </div>
   </div>
 </div>
