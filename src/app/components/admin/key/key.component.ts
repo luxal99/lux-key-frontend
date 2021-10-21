@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, ComponentRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { DefaultComponent } from '../../../util/default-component';
 import { Key } from '../../../models/key';
 import { KeyService } from '../../../service/key.service';
@@ -15,6 +15,10 @@ import { FormControlNames, InputTypes } from '../../../constant/const';
 import { CarBrandService } from '../../../service/car-brand.service';
 import { KeySubCategoryService } from '../../../service/key-sub-category.service';
 import { KeySubCategory } from '../../../models/keySubCategory';
+import { KeyCategoryService } from '../../../service/key-category.service';
+import { LazyLoadComponentsUtil } from '../../../util/lazy-loading-components';
+import { KeySubCategoryViewComponent } from './key-sub-category-view/key-sub-category-view.component';
+import { KeyCategoryViewComponent } from './key-category-view/key-category-view.component';
 
 @Component({
   selector: 'app-key',
@@ -22,6 +26,8 @@ import { KeySubCategory } from '../../../models/keySubCategory';
   styleUrls: ['./key.component.sass'],
 })
 export class KeyComponent extends DefaultComponent<KeySubCategory> implements OnInit {
+
+  @ViewChild('keyEntry', { read: ViewContainerRef, static: false }) keyEntry: ViewContainerRef;
 
   searchForm = new FormGroup({
     search: new FormControl(),
@@ -37,7 +43,8 @@ export class KeyComponent extends DefaultComponent<KeySubCategory> implements On
 
   constructor(public keyService: KeyService, private sb: MatSnackBar, private dialog: MatDialog,
               private keySubCategoriesService: KeySubCategoryService,
-              private carBrandService: CarBrandService) {
+              private keyCategoryService: KeyCategoryService,
+              private carBrandService: CarBrandService, private resolver: ComponentFactoryResolver) {
     super(keySubCategoriesService);
     this.snackBar = sb;
   }
@@ -45,6 +52,9 @@ export class KeyComponent extends DefaultComponent<KeySubCategory> implements On
   async ngOnInit(): Promise<void> {
     super.ngOnInit();
     await this.initCarBrandOptions();
+    setTimeout(() => {
+      this.loadKeyCategories();
+    }, 100);
   }
 
 
@@ -83,5 +93,10 @@ export class KeyComponent extends DefaultComponent<KeySubCategory> implements On
     this.genericSubscribe(this.keyService.delete(id), () => {
       this.getAll();
     });
+  }
+
+  loadKeyCategories(): void {
+    const keyCategoryViewComponent: ComponentRef<KeyCategoryViewComponent> = LazyLoadComponentsUtil.loadComponent(KeyCategoryViewComponent, this.keyEntry, this.resolver);
+    keyCategoryViewComponent.instance.keyEntry = this.keyEntry;
   }
 }

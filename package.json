@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "ng serve --proxy-config proxy.config.json",
+    "start": "ng serve --watch --proxy-config proxy.config.json",
     "build": "ng build --prod",
     "deploy": "rsync -avz -e 'ssh' ./lux-key-frontend/* root@161.35.71.233:/var/www/app.luxkey.com"
   },

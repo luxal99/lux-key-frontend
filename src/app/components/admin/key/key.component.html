@@ -7,42 +7,6 @@
     </div>
   </div>
   <mat-spinner diameter='25' #spinner></mat-spinner>
-  <mat-tab-group>
-    <mat-tab *ngFor='let keySubCategory of listOfItems'
-             [label]="keySubCategory.idKeyCategory.name+' | '+keySubCategory.name">
-      <div class='inline' style='margin-top: 2em'>
-        <form [formGroup]='searchForm'>
-          <mat-form-field appearance='outline'>
-            <mat-label>Pretraži</mat-label>
-            <input matInput [(ngModel)]='searchText' formControlName='search'>
-            <mat-icon matSuffix>search</mat-icon>
-          </mat-form-field>
-        </form>
-      </div>
-      <div class='key-binding'>
-        <div class='row key-row' *ngFor='let key of keySubCategory.keys|key:searchText'>
-          <div class='col' (click)='openEditKeyDialog(key)'>
-            <h6>Šifra</h6>
-            <h5>{{key.code}}</h5>
-          </div>
-          <div class='col' (click)='openEditKeyDialog(key)'>
-            <h6>Količina</h6>
-            <h5>{{key.amount}}</h5>
-          </div>
-          <div class='col' (click)='openEditKeyDialog(key)'>
-            <h6>Akutelna cena</h6>
-            <h5>{{key.idCurrentPrice.price}}</h5>
-          </div>
-          <div class='col'>
-            <h6 style='visibility: hidden'>Opt</h6>
-            <button (click)='openKeyOverviewDialog(key)' mat-button class='green-border-btn'>Pregled</button>
-            <button (click)='deleteKey(key.id)' class='red-border-btn' mat-button>
-              Obriši
-            </button>
-          </div>
-
-        </div>
-      </div>
-    </mat-tab>
-  </mat-tab-group>
+  <div #keyEntry>
+  </div>
 </div>
