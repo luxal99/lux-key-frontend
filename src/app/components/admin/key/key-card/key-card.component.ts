@@ -1,4 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ComponentFactoryResolver,
+  ComponentRef,
+  Input,
+  OnInit,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { KeyService } from '../../../../service/key.service';
 import { KeyBehaviorService } from '../../../../service/util/key-behavior.service';
 import { Key } from '../../../../models/key';
@@ -13,6 +21,8 @@ import { SpinnerService } from '../../../../service/spinner-service.service';
 import { ConfirmDialogComponent } from '../../../confirm-dialog/confirm-dialog.component';
 import { BehaviorSubject } from 'rxjs';
 import { AddKeyDialogComponent } from '../add-key-dialog/add-key-dialog.component';
+import { KeySubCategoryViewComponent } from '../key-sub-category-view/key-sub-category-view.component';
+import { LazyLoadComponentsUtil } from '../../../../util/lazy-loading-components';
 
 @Component({
   selector: 'app-key-card',
@@ -21,7 +31,9 @@ import { AddKeyDialogComponent } from '../add-key-dialog/add-key-dialog.componen
 })
 export class KeyCardComponent implements OnInit {
 
+  @Input() keyEntry: ViewContainerRef;
   @ViewChild('spinner') spinner!: MatSpinner;
+
   searchForm = new FormGroup({
     search: new FormControl(),
     carBrand: new FormControl(''),
@@ -33,7 +45,8 @@ export class KeyCardComponent implements OnInit {
   listOfKeys: Key[] = [];
 
   constructor(private keyService: KeyService, private dialog: MatDialog,
-              private keyBehaviorService: KeyBehaviorService, private spinnerService: SpinnerService) {
+              private resolver: ComponentFactoryResolver,
+              public keyBehaviorService: KeyBehaviorService, private spinnerService: SpinnerService) {
   }
 
   ngOnInit(): void {
@@ -41,7 +54,7 @@ export class KeyCardComponent implements OnInit {
   }
 
   getKeysBySubCategory(): void {
-    this.keyService.findKeyByKeySubCategory(this.keyBehaviorService.getIdKeySubCategory()).subscribe((resp) => {
+    this.keyService.findKeyByKeySubCategory(this.keyBehaviorService.getIdKeySubCategory().id).subscribe((resp) => {
       this.listOfKeys = resp;
       this.spinnerService.hide(this.spinner);
     });
@@ -88,5 +101,10 @@ export class KeyCardComponent implements OnInit {
         });
       }
     });
+  }
+
+  loadKeySubCategories(): void {
+    const keySubCategoryViewComponent: ComponentRef<KeySubCategoryViewComponent> = LazyLoadComponentsUtil.loadComponent(KeySubCategoryViewComponent, this.keyEntry, this.resolver);
+    keySubCategoryViewComponent.instance.keyEntry = this.keyEntry;
   }
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { KeySubCategory } from '../../models/keySubCategory';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 export class KeyBehaviorService {
 
   private idKeyCategory = new BehaviorSubject(0);
-  private idKeySubCategory = new BehaviorSubject(0);
+  private idKeySubCategory = new BehaviorSubject({} as KeySubCategory);
 
   constructor() {
   }
@@ -20,11 +21,11 @@ export class KeyBehaviorService {
     return this.idKeyCategory.value;
   }
 
-  addKeySubCategory(idKeySubCategory: number) {
+  addKeySubCategory(idKeySubCategory: KeySubCategory) {
     this.idKeySubCategory.next(idKeySubCategory);
   }
 
-  getIdKeySubCategory(): number {
+  getIdKeySubCategory(): KeySubCategory {
     return this.idKeySubCategory.value;
   }
 }

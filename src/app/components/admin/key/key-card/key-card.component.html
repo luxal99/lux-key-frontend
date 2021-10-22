@@ -1,8 +1,10 @@
 <div class='text-right'>
   <button (click)='openAddKeyDialog()' mat-button class='default-btn'>Dodaj</button>
 </div>
+<button style='font-weight: bold' (click)='loadKeySubCategories()' color='primary' mat-button><mat-icon>keyboard_backspace</mat-icon> Nazad</button>
 <div class='container mt-4'>
   <mat-spinner diameter='25' #spinner></mat-spinner>
+  <h5 style='font-weight: bold;color: #ff5454'>{{keyBehaviorService.getIdKeySubCategory().name}}</h5>
   <h5>Ukupno: {{listOfKeys.length}}</h5>
   <form [formGroup]='searchForm'>
     <mat-form-field class='w-100' appearance='standard'>
