@@ -1,0 +1,8 @@
+<div class='container mt-3'>
+  <div class='row'>
+    <div class='col-sm-6' (click)='addIdKeyCategory(keyCategory.id)'
+         *ngFor='let keyCategory of lisOfCategories'>
+      <h6 class='text-center'>{{keyCategory.name}}</h6>
+    </div>
+  </div>
+</div>

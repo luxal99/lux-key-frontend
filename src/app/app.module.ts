@@ -44,6 +44,10 @@ import { SearchPipe } from './pipes/search.pipe';
 import { KeyBrandOverviewComponent } from './components/admin/code-book/key-brand-overview/key-brand-overview.component';
 import { ReportsComponent } from './components/admin/reports/reports.component';
 import { SumKeyPipe } from './pipes/sum-key.pipe';
+import { KeyCategoryViewComponent } from './components/admin/key/key-category-view/key-category-view.component';
+import { KeySubCategoryViewComponent } from './components/admin/key/key-sub-category-view/key-sub-category-view.component';
+import { KeyCardComponent } from './components/admin/key/key-card/key-card.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +86,10 @@ import { SumKeyPipe } from './pipes/sum-key.pipe';
     KeyBrandOverviewComponent,
     ReportsComponent,
     SumKeyPipe,
+    KeyCategoryViewComponent,
+    KeySubCategoryViewComponent,
+    KeyCardComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
