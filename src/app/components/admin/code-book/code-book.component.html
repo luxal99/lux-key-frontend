@@ -1,15 +1,15 @@
-<div class="component">
-  <mat-tab-group dynamicHeight animationDuration="200ms">
-    <mat-tab label="Automobili">
-      <div class="tab-content">
+<div class='component'>
+  <mat-tab-group dynamicHeight animationDuration='200ms'>
+    <mat-tab label='Automobili'>
+      <div class='tab-content'>
         <mat-accordion>
-          <mat-expansion-panel [expanded]="true">
+          <mat-expansion-panel [expanded]='true'>
             <mat-expansion-panel-header>
               <mat-panel-title>
                 <b>Pregled brendova</b>
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <div class="m-t-2 expansion-content">
+            <div class='m-t-2 expansion-content'>
               <app-car-brand-overview></app-car-brand-overview>
             </div>
           </mat-expansion-panel>
@@ -17,16 +17,16 @@
       </div>
 
     </mat-tab>
-    <mat-tab label="Šifarnik ključeva">
-      <div class="tab-content">
+    <mat-tab label='Šifarnik ključeva'>
+      <div class='tab-content'>
         <mat-accordion>
-          <mat-expansion-panel [expanded]="true" >
+          <mat-expansion-panel [expanded]='true'>
             <mat-expansion-panel-header>
               <mat-panel-title>
                 <b>Pregled kategorija</b>
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <div class="m-t-2 expansion-content">
+            <div class='m-t-2 expansion-content'>
               <app-key-category-overview></app-key-category-overview>
             </div>
           </mat-expansion-panel>
@@ -51,7 +51,11 @@
         </mat-accordion>
       </div>
     </mat-tab>
-    <mat-tab label='Šifarnik usluga'></mat-tab>
+    <mat-tab label='Šifarnik usluga'>
+      <div class='tab-content'>
+        <app-work-service-overview></app-work-service-overview>
+      </div>
+    </mat-tab>
   </mat-tab-group>
 
 </div>

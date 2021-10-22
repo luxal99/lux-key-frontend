@@ -1,1 +1,19 @@
-<p>work-service-overview works!</p>
+<div class='text-right'>
+  <button mat-button class='default-btn' (click)='openAddWorkServiceDialog()'>Dodaj</button>
+</div>
+<mat-spinner #spinner diameter='25'></mat-spinner>
+<div class='content'>
+  <div class='row' *ngFor='let keyCategory of listOfItems'>
+    <div class='col-5'>
+      <h6>{{keyCategory.name}}</h6>
+    </div>
+    <div class='col-5'>
+      <h6>{{keyCategory.createdDate}}</h6>
+    </div>
+    <div class='col-2'>
+      <button mat-icon-button (click)='delete(keyCategory.id)'>
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
