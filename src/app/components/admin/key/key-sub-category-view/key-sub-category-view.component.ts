@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, Input, OnInit, ViewContainerRef } from '@angular/core';
 import { KeySubCategory } from '../../../../models/keySubCategory';
 import { KeySubCategoryService } from '../../../../service/key-sub-category.service';
-import { KeyCategoryIdStoreService } from '../../../../service/util/key-category-id-store.service';
+import { KeyBehaviorService } from '../../../../service/util/key-behavior.service';
+import { LazyLoadComponentsUtil } from '../../../../util/lazy-loading-components';
+import { KeyCardComponent } from '../key-card/key-card.component';
 
 @Component({
   selector: 'app-key-sub-category-view',
@@ -10,10 +12,12 @@ import { KeyCategoryIdStoreService } from '../../../../service/util/key-category
 })
 export class KeySubCategoryViewComponent implements OnInit {
 
+  @Input() keyEntry: ViewContainerRef;
   lisOfKeySubCategories: KeySubCategory[] = [];
 
   constructor(private keySubCategoryService: KeySubCategoryService,
-              private keyCategoryStoreIdService: KeyCategoryIdStoreService) {
+              private keyBehaviorService: KeyBehaviorService,
+              private resolver: ComponentFactoryResolver) {
   }
 
   ngOnInit(): void {
@@ -21,9 +25,18 @@ export class KeySubCategoryViewComponent implements OnInit {
   }
 
   getAllKeySubCategoryByKeyCategory(): void {
-    this.keySubCategoryService.findByKeyCategory(this.keyCategoryStoreIdService.get()).subscribe((resp) => {
+    this.keySubCategoryService.findByKeyCategory(this.keyBehaviorService.get()).subscribe((resp) => {
       this.lisOfKeySubCategories = resp;
     });
+  }
+
+  addKeySubCategory(idKeySubCategory: number): void {
+    this.keyBehaviorService.addKeySubCategory(idKeySubCategory);
+    this.loadKeyCardView();
+  }
+
+  loadKeyCardView(): void {
+    LazyLoadComponentsUtil.loadComponent(KeyCardComponent, this.keyEntry, this.resolver);
   }
 
 }

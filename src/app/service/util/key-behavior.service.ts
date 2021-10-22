@@ -4,9 +4,10 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class KeyCategoryIdStoreService {
+export class KeyBehaviorService {
 
   private idKeyCategory = new BehaviorSubject(0);
+  private idKeySubCategory = new BehaviorSubject(0);
 
   constructor() {
   }
@@ -17,5 +18,13 @@ export class KeyCategoryIdStoreService {
 
   get(): number {
     return this.idKeyCategory.value;
+  }
+
+  addKeySubCategory(idKeySubCategory: number) {
+    this.idKeySubCategory.next(idKeySubCategory);
+  }
+
+  getIdKeySubCategory(): number {
+    return this.idKeySubCategory.value;
   }
 }

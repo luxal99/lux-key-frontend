@@ -1,6 +1,7 @@
 import {
   Component,
   ComponentFactoryResolver,
+  ComponentRef,
   EventEmitter,
   Input,
   OnInit,
@@ -9,7 +10,7 @@ import {
 } from '@angular/core';
 import { KeyCategory } from '../../../../models/keyCategory';
 import { KeyCategoryService } from '../../../../service/key-category.service';
-import { KeyCategoryIdStoreService } from '../../../../service/util/key-category-id-store.service';
+import { KeyBehaviorService } from '../../../../service/util/key-behavior.service';
 import { LazyLoadComponentsUtil } from '../../../../util/lazy-loading-components';
 import { KeySubCategoryViewComponent } from '../key-sub-category-view/key-sub-category-view.component';
 
@@ -21,11 +22,11 @@ import { KeySubCategoryViewComponent } from '../key-sub-category-view/key-sub-ca
 export class KeyCategoryViewComponent implements OnInit {
 
   lisOfCategories: KeyCategory[] = [];
-  @Input()keyEntry: ViewContainerRef
+  @Input() keyEntry: ViewContainerRef;
   @Output() onKeyCategorySelect = new EventEmitter();
 
   constructor(private keyCategoryService: KeyCategoryService,
-              private keyCategoryStoreIdService: KeyCategoryIdStoreService,
+              private keyBehaviorService: KeyBehaviorService,
               private resolver: ComponentFactoryResolver) {
   }
 
@@ -40,11 +41,12 @@ export class KeyCategoryViewComponent implements OnInit {
   }
 
   addIdKeyCategory(idKeyCategory: number) {
-    this.keyCategoryStoreIdService.add(idKeyCategory);
-    this.loadKeySubCategories()
+    this.keyBehaviorService.add(idKeyCategory);
+    this.loadKeySubCategories();
   }
 
   loadKeySubCategories(): void {
-    LazyLoadComponentsUtil.loadComponent(KeySubCategoryViewComponent, this.keyEntry, this.resolver);
+    const keySubCategoryViewComponent: ComponentRef<KeySubCategoryViewComponent> = LazyLoadComponentsUtil.loadComponent(KeySubCategoryViewComponent, this.keyEntry, this.resolver);
+    keySubCategoryViewComponent.instance.keyEntry = this.keyEntry;
   }
 }

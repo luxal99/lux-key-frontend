@@ -29,11 +29,6 @@ export class KeyComponent extends DefaultComponent<KeySubCategory> implements On
 
   @ViewChild('keyEntry', { read: ViewContainerRef, static: false }) keyEntry: ViewContainerRef;
 
-  searchForm = new FormGroup({
-    search: new FormControl(),
-    carBrand: new FormControl(''),
-  });
-  searchText = '';
 
   carBrandSelectConfig: FieldConfig = {
     name: FormControlNames.CAR_BRAND_FORM_CONTROL,
@@ -62,38 +57,6 @@ export class KeyComponent extends DefaultComponent<KeySubCategory> implements On
     this.carBrandSelectConfig.options = await this.carBrandService.getAll().toPromise();
   }
 
-  openAddKeyDialog(): void {
-    DialogUtil.openDialog(AddKeyDialogComponent, DialogOptions.setDialogConfig({
-      position: { top: '6%' },
-      width: '30%',
-    }), this.dialog).afterClosed().subscribe(() => {
-      this.getAll();
-    });
-  }
-
-  openEditKeyDialog(key: Key): void {
-    DialogUtil.openDialog(EditKeyDialogComponent, DialogOptions.setDialogConfig({
-      position: { top: '1%' },
-      width: '30%',
-      data: key,
-    }), this.dialog).afterClosed().subscribe(() => {
-      this.getAll();
-    });
-  }
-
-  openKeyOverviewDialog(key: Key): void {
-    DialogUtil.openDialog(KeyOverviewDialogComponent, DialogOptions.setDialogConfig({
-      position: { top: '6%' },
-      width: '30%',
-      data: key,
-    }), this.dialog);
-  }
-
-  deleteKey(id: number): void {
-    this.genericSubscribe(this.keyService.delete(id), () => {
-      this.getAll();
-    });
-  }
 
   loadKeyCategories(): void {
     const keyCategoryViewComponent: ComponentRef<KeyCategoryViewComponent> = LazyLoadComponentsUtil.loadComponent(KeyCategoryViewComponent, this.keyEntry, this.resolver);

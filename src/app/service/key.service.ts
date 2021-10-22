@@ -21,8 +21,8 @@ export class KeyService extends GenericService<Key> {
     return this.http.get<Key[]>(this.route + '/search', { params });
   }
 
-  findKeyByKeySubCategory(idKeySubCategory: number): Observable<KeySubCategory[]> {
-    return this.http.get<KeySubCategory[]>(this.route + '/by-key-sub-category', {
+  findKeyByKeySubCategory(idKeySubCategory: number): Observable<Key[]> {
+    return this.http.get<Key[]>(this.route + '/by-key-sub-category', {
       params: { idKeySubCategory },
       responseType: 'json',
     });

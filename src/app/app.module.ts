@@ -47,6 +47,7 @@ import { SumKeyPipe } from './pipes/sum-key.pipe';
 import { KeyCategoryViewComponent } from './components/admin/key/key-category-view/key-category-view.component';
 import { KeySubCategoryViewComponent } from './components/admin/key/key-sub-category-view/key-sub-category-view.component';
 import { KeyCardComponent } from './components/admin/key/key-card/key-card.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { KeyCardComponent } from './components/admin/key/key-card/key-card.compo
     KeyCategoryViewComponent,
     KeySubCategoryViewComponent,
     KeyCardComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
