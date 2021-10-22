@@ -19,6 +19,7 @@
         <img class='img-fluid' width='200px' src='assets/img/logo.png'>
         <h5>{{key.idKeyBrand.name}}</h5>
         <h5>{{key.carBrands|bindCarBrands}}</h5>
+        <h5 class='code'>{{key.code}}</h5>
         <h4>{{(key.idCurrentPrice.price|number) +'din'}}</h4>
       </div>
       <button mat-icon-button color='accent' (click)='openEditKeyDialog(key)'>
