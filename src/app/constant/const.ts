@@ -28,6 +28,8 @@ export class FormControlNames {
   static START_DATE_FORM_CONTROL = 'startDate';
   static END_DATE_FORM_CONTROL = 'endDate';
   static ID_KEY_BRAND_FORM_CONTROL = 'idKeyBrand';
+  static NOTES = 'notes';
+  static SERVICE_TYPE = 'serviceType';
 }
 
 export class InputTypes {
@@ -37,6 +39,7 @@ export class InputTypes {
   static PASSWORD = 'password';
   static SELECT = 'select';
   static AUTOCOMPLETE = 'autocomplete';
+  static DATE = 'date';
 }
 
 export class RestRoutes {

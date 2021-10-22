@@ -1,6 +1,10 @@
 <div class="component">
   <div class="text-right">
-    <button mat-button class="default-btn" (click)="openAddServiceDialog()">Dodaj</button>
+    <button class="default-btn"  mat-button [matMenuTriggerFor]="menu">Dodaj</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="openAddServiceDialog()">Servis kljuc</button>
+      <button mat-menu-item (click)="openAddKeySubCategoryDialog()">Usluga</button>
+    </mat-menu>
   </div>
   <mat-tab-group>
     <mat-tab label="Nedeljni pregled">

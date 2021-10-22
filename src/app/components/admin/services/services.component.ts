@@ -8,7 +8,11 @@ import { DialogOptions } from '../../../util/dialog-options';
 import { MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FormControlNames } from '../../../constant/const';
+import { FormControlNames, InputTypes } from '../../../constant/const';
+import { KeySubCategory } from '../../../models/keySubCategory';
+import { FormBuilderConfig } from '../../../models/FormBuilderConfig';
+import { FormBuilderComponent } from '../../form-components/form-builder/form-builder.component';
+import { ServiceType } from '../../../enum/ServiceType';
 
 @Component({
   selector: 'app-services',
@@ -63,6 +67,45 @@ export class ServicesComponent extends DefaultComponent<Service> implements OnIn
     this.serviceService.findServiceByDate(startDate, endDate).subscribe((resp) => {
       this.listOfDateRangeServices = resp;
       this.getSpinnerService.hide(this.spinner);
+    });
+  }
+
+  async openAddKeySubCategoryDialog(keySubCategory?: KeySubCategory): Promise<void> {
+    const configData: FormBuilderConfig = {
+      formFields: [
+        {
+          name: FormControlNames.DATE_FORM_CONTROL,
+          type: InputTypes.DATE,
+          label: 'Datum',
+          value: new Date(),
+          validation: [Validators.required],
+        },
+        {
+          name: FormControlNames.NOTES,
+          type: InputTypes.INPUT,
+          label: 'Beleška',
+          validation: [Validators.required],
+        },
+        {
+          name: FormControlNames.SERVICE_TYPE,
+          type: InputTypes.SELECT,
+          label: 'Beleška',
+          options: Object.values(ServiceType),
+          validation: [Validators.required],
+        },
+      ],
+      formValues: keySubCategory,
+      headerText: 'Dodaj model automobila',
+      service: this.serviceService,
+
+    };
+    DialogUtil.openDialog(FormBuilderComponent,
+      DialogOptions.setDialogConfig({
+        position: { top: '6%' },
+        width: '30%',
+        data: configData,
+      }), this.dialog).afterClosed().subscribe(() => {
+      this.getAll();
     });
   }
 }
