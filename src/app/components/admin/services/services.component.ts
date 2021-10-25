@@ -12,7 +12,7 @@ import { FormControlNames, InputTypes } from '../../../constant/const';
 import { KeySubCategory } from '../../../models/keySubCategory';
 import { FormBuilderConfig } from '../../../models/FormBuilderConfig';
 import { FormBuilderComponent } from '../../form-components/form-builder/form-builder.component';
-import { ServiceType } from '../../../enum/ServiceType';
+import { WorkServiceService } from '../../../service/work-service.service';
 
 @Component({
   selector: 'app-services',
@@ -35,7 +35,8 @@ export class ServicesComponent extends DefaultComponent<Service> implements OnIn
     endDate: new FormControl(this.endOfMonth, Validators.required),
   });
 
-  constructor(private serviceService: ServiceService, private dialog: MatDialog) {
+  constructor(private serviceService: ServiceService, private dialog: MatDialog,
+              private workService: WorkServiceService) {
     super(serviceService);
   }
 
@@ -83,14 +84,14 @@ export class ServicesComponent extends DefaultComponent<Service> implements OnIn
         {
           name: FormControlNames.NOTES,
           type: InputTypes.INPUT,
-          label: 'Beleška',
+          label: 'Naslov',
           validation: [Validators.required],
         },
         {
-          name: FormControlNames.SERVICE_TYPE,
+          name: FormControlNames.ID_WORK_SERVICE,
           type: InputTypes.SELECT,
-          label: 'Beleška',
-          options: Object.values(ServiceType),
+          label: 'Usluga',
+          options: await this.workService.getAll().toPromise(),
           validation: [Validators.required],
         },
       ],

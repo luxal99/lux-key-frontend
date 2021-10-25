@@ -49,6 +49,7 @@ import { KeySubCategoryViewComponent } from './components/admin/key/key-sub-cate
 import { KeyCardComponent } from './components/admin/key/key-card/key-card.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { FormDateComponent } from './components/form-components/form-date/form-date.component';
+import { WorkServiceOverviewComponent } from './components/admin/code-book/work-service-overview/work-service-overview.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +93,7 @@ import { FormDateComponent } from './components/form-components/form-date/form-d
     KeyCardComponent,
     ConfirmDialogComponent,
     FormDateComponent,
+    WorkServiceOverviewComponent,
   ],
   imports: [
     BrowserModule,
