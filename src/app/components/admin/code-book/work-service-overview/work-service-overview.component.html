@@ -1,1 +1,17 @@
-<p>work-service-overview works!</p>
+<div class="text-right">
+  <button mat-button class="default-btn mt-2" (click)="openAddWorkServiceDialog()">Dodaj</button>
+</div>
+<mat-spinner #spinner diameter="25"></mat-spinner>
+<div class="row" *ngFor="let workService of listOfWorkServices">
+  <div class="col-5" (click)="openAddWorkServiceDialog(workService)">
+    <h6>{{workService.name}}</h6>
+  </div>
+  <div class="col-5" (click)="openAddWorkServiceDialog(workService)">
+    <h6>{{workService.price}}</h6>
+  </div>
+  <div class="col-2">
+    <button mat-icon-button (click)="delete(workService.id)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>

@@ -78,14 +78,13 @@ export class ServicesComponent extends DefaultComponent<Service> implements OnIn
           name: FormControlNames.DATE_FORM_CONTROL,
           type: InputTypes.DATE,
           label: 'Datum',
-          value: new Date(),
+          value: moment().format("YYYY-MM-DD"),
           validation: [Validators.required],
         },
         {
           name: FormControlNames.NOTES,
           type: InputTypes.INPUT,
           label: 'Naslov',
-          validation: [Validators.required],
         },
         {
           name: FormControlNames.ID_WORK_SERVICE,
@@ -94,9 +93,14 @@ export class ServicesComponent extends DefaultComponent<Service> implements OnIn
           options: await this.workService.getAll().toPromise(),
           validation: [Validators.required],
         },
+        {
+          name: FormControlNames.GROSS_FORM_CONTROL,
+          type: InputTypes.INPUT,
+          label: 'Ukupno'
+        },
       ],
       formValues: keySubCategory,
-      headerText: 'Dodaj model automobila',
+      headerText: 'Dodaj servis',
       service: this.serviceService,
 
     };
@@ -106,7 +110,7 @@ export class ServicesComponent extends DefaultComponent<Service> implements OnIn
         width: '30%',
         data: configData,
       }), this.dialog).afterClosed().subscribe(() => {
-      this.getAll();
+      this.getServicesInCurrentWeek();
     });
   }
 }
