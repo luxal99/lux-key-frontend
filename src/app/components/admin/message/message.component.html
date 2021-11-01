@@ -1,1 +1,19 @@
-<p>message works!</p>
+<div class='component'>
+  <div class='message' *ngFor='let message of listOfMessage'>
+    <h6 class='text-right'>{{message.createdDate|date}}</h6>
+    <h6>{{message.idClient.firstName + ' ' + message.idClient.lastName}}</h6>
+    <h6>Telephone: {{message.idClient.telephone }}</h6>
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Poruka
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>{{message.message}}</p>
+      </mat-expansion-panel>
+
+    </mat-accordion>
+
+  </div>
+</div>

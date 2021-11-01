@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../../../service/message.service';
-import { Message } from '../../../constant/const';
+import { Message } from 'src/app/models/Message';
 
 @Component({
   selector: 'app-message',

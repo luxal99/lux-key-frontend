@@ -13,7 +13,8 @@
       "/service-key",
       "/key-brand",
       "/report",
-      "/work-service"
+      "/work-service",
+      "/message"
     ],
     "target": "http://localhost:8080/",
     "secure": false

@@ -4,4 +4,5 @@ export interface Message {
   id?: number;
   idClient?: Client;
   message?: string;
+  createdDate?: string;
 }
