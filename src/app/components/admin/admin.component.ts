@@ -7,6 +7,7 @@ import { ClientComponent } from './client/client.component';
 import { KeyComponent } from './key/key.component';
 import { ServicesComponent } from './services/services.component';
 import { ReportsComponent } from './reports/reports.component';
+import { MessageComponent } from './message/message.component';
 
 @Component({
   selector: 'app-admin',
@@ -63,6 +64,11 @@ export class AdminComponent implements OnInit {
   loadReportsComponent(): void {
     this.header = 'Izveštaji';
     this.lazyLoad(ReportsComponent);
+  }
+
+  loadMessageComponent(): void {
+    this.header = 'Poruke';
+    this.lazyLoad(MessageComponent);
   }
 
   changeColor(e: any): void {

@@ -50,6 +50,7 @@ import { KeyCardComponent } from './components/admin/key/key-card/key-card.compo
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { FormDateComponent } from './components/form-components/form-date/form-date.component';
 import { WorkServiceOverviewComponent } from './components/admin/code-book/work-service-overview/work-service-overview.component';
+import { MessageComponent } from './components/admin/message/message.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +95,7 @@ import { WorkServiceOverviewComponent } from './components/admin/code-book/work-
     ConfirmDialogComponent,
     FormDateComponent,
     WorkServiceOverviewComponent,
+    MessageComponent,
   ],
   imports: [
     BrowserModule,
