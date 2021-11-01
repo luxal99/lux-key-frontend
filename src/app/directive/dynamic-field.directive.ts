@@ -5,11 +5,13 @@ import {FormGroup} from '@angular/forms';
 import {FormInputComponent} from '../components/form-components/form-input/form-input.component';
 import {FormSelectComponent} from '../components/form-components/form-select/form-select.component';
 import {FormAutocompleteComponent} from '../components/form-components/form-autocomplete/form-autocomplete.component';
+import { FormDateComponent } from '../components/form-components/form-date/form-date.component';
 
 const components: { [type: string]: Type<Field> } = {
   input: FormInputComponent,
   select: FormSelectComponent,
-  autocomplete: FormAutocompleteComponent
+  autocomplete: FormAutocompleteComponent,
+  date: FormDateComponent
 };
 
 @Directive({

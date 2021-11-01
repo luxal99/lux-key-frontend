@@ -2,7 +2,7 @@
   "scripts": {
     "start": "ng serve --watch --proxy-config proxy.config.json",
     "build": "ng build --prod",
-    "deploy": "rsync -avz -e 'ssh' ./lux-key-frontend/* root@161.35.71.233:/var/www/app.luxkey.com"
+    "deploy": "rsync -avz -e 'ssh' /home/luxal/PC/Project/LuxKey/lux-key-frontend/dist/lux-key-frontend/* root@161.35.71.233:/var/www/app.luxkey.com"
   },
   "dependencies": {
     "@angular/animations": "~12.2.7",

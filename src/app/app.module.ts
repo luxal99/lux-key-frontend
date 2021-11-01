@@ -48,6 +48,8 @@ import { KeyCategoryViewComponent } from './components/admin/key/key-category-vi
 import { KeySubCategoryViewComponent } from './components/admin/key/key-sub-category-view/key-sub-category-view.component';
 import { KeyCardComponent } from './components/admin/key/key-card/key-card.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { FormDateComponent } from './components/form-components/form-date/form-date.component';
+import { WorkServiceOverviewComponent } from './components/admin/code-book/work-service-overview/work-service-overview.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +92,8 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     KeySubCategoryViewComponent,
     KeyCardComponent,
     ConfirmDialogComponent,
+    FormDateComponent,
+    WorkServiceOverviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -101,8 +105,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     BrowserAnimationsModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

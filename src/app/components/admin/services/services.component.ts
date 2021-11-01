@@ -8,7 +8,11 @@ import { DialogOptions } from '../../../util/dialog-options';
 import { MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FormControlNames } from '../../../constant/const';
+import { FormControlNames, InputTypes } from '../../../constant/const';
+import { KeySubCategory } from '../../../models/keySubCategory';
+import { FormBuilderConfig } from '../../../models/FormBuilderConfig';
+import { FormBuilderComponent } from '../../form-components/form-builder/form-builder.component';
+import { WorkServiceService } from '../../../service/work-service.service';
 
 @Component({
   selector: 'app-services',
@@ -31,7 +35,8 @@ export class ServicesComponent extends DefaultComponent<Service> implements OnIn
     endDate: new FormControl(this.endOfMonth, Validators.required),
   });
 
-  constructor(private serviceService: ServiceService, private dialog: MatDialog) {
+  constructor(private serviceService: ServiceService, private dialog: MatDialog,
+              private workService: WorkServiceService) {
     super(serviceService);
   }
 
@@ -63,6 +68,49 @@ export class ServicesComponent extends DefaultComponent<Service> implements OnIn
     this.serviceService.findServiceByDate(startDate, endDate).subscribe((resp) => {
       this.listOfDateRangeServices = resp;
       this.getSpinnerService.hide(this.spinner);
+    });
+  }
+
+  async openAddKeySubCategoryDialog(keySubCategory?: KeySubCategory): Promise<void> {
+    const configData: FormBuilderConfig = {
+      formFields: [
+        {
+          name: FormControlNames.DATE_FORM_CONTROL,
+          type: InputTypes.DATE,
+          label: 'Datum',
+          value: moment().format("YYYY-MM-DD"),
+          validation: [Validators.required],
+        },
+        {
+          name: FormControlNames.NOTES,
+          type: InputTypes.INPUT,
+          label: 'Naslov',
+        },
+        {
+          name: FormControlNames.ID_WORK_SERVICE,
+          type: InputTypes.SELECT,
+          label: 'Usluga',
+          options: await this.workService.getAll().toPromise(),
+          validation: [Validators.required],
+        },
+        {
+          name: FormControlNames.GROSS_FORM_CONTROL,
+          type: InputTypes.INPUT,
+          label: 'Ukupno'
+        },
+      ],
+      formValues: keySubCategory,
+      headerText: 'Dodaj servis',
+      service: this.serviceService,
+
+    };
+    DialogUtil.openDialog(FormBuilderComponent,
+      DialogOptions.setDialogConfig({
+        position: { top: '6%' },
+        width: '30%',
+        data: configData,
+      }), this.dialog).afterClosed().subscribe(() => {
+      this.getServicesInCurrentWeek();
     });
   }
 }

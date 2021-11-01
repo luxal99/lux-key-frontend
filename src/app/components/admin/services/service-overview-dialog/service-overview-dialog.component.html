@@ -13,7 +13,7 @@
   <h5>Telefon: <b>{{data.idClient.telephone}}</b></h5>
 </div>
 <mat-divider></mat-divider>
-<div class='content'>
+<div class='content' *ngIf='data.serviceKeys.length > 0'>
   <h5><b>Ključevi</b></h5>
   <div class='row key-row' *ngFor='let serviceKey of data.serviceKeys'
        (click)='openKeyOverviewDialog(serviceKey.idKey)'>
@@ -26,6 +26,11 @@
       <h5>{{serviceKey.keyPrice}}</h5>
     </div>
   </div>
+</div>
+<div class='content' *ngIf='data.idWorkService'>
+  <h5><b>Usluga</b></h5>
+  <h6>Naziv: <b>{{data.idWorkService.name}}</b></h6>
+  <h6>Cena: <b>{{data.idWorkService.price}}</b></h6>
 </div>
 <mat-divider></mat-divider>
 <div class='content' *ngIf='data.notes'>

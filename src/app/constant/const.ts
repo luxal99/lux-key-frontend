@@ -9,6 +9,7 @@ export class FormControlNames {
   static PASSWORD_NAME_FORM_CONTROL = 'password';
   static NAME_FORM_CONTROL = 'name';
   static ID_CAR_BRAND_FORM_CONTROL = 'idCarBrand';
+  static ID_WORK_SERVICE = 'idWorkService';
   static CAR_BRANDS_FORM_CONTROL = 'carBrands';
   static ID_KEY_CATEGORY_FORM_CONTROL = 'idKeyCategory';
   static FIRST_NAME_FORM_CONTROL = 'firstName';
@@ -28,6 +29,8 @@ export class FormControlNames {
   static START_DATE_FORM_CONTROL = 'startDate';
   static END_DATE_FORM_CONTROL = 'endDate';
   static ID_KEY_BRAND_FORM_CONTROL = 'idKeyBrand';
+  static NOTES = 'notes';
+  static SERVICE_TYPE = 'serviceType';
 }
 
 export class InputTypes {
@@ -37,6 +40,7 @@ export class InputTypes {
   static PASSWORD = 'password';
   static SELECT = 'select';
   static AUTOCOMPLETE = 'autocomplete';
+  static DATE = 'date';
 }
 
 export class RestRoutes {
@@ -54,6 +58,7 @@ export class RestRoutes {
   static SERVICE_KEY = 'service-key';
   static KEY_BRAND = 'key-brand';
   static REPORT = 'report';
+  static WORK_SERVICE = 'work-service';
 }
 
 export class SpinnerOptions {

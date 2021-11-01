@@ -9,9 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import {ServiceKey} from './serviceKey';
-import {Client} from '../../client';
-import {ServiceTypeEnum} from '../ServiceTypeEnum';
+import { ServiceKey } from './serviceKey';
+import { Client } from '../../client';
+import { WorkService } from './workService';
 
 
 export interface Service {
@@ -24,6 +24,7 @@ export interface Service {
   serviceKeys: ServiceKey[];
   notes?: string;
   idClient?: Client;
-  serviceType: string
+  serviceType: string;
+  idWorkService: WorkService;
 }
 

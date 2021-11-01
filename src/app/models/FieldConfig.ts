@@ -12,4 +12,5 @@ export interface FieldConfig {
   value?: any;
   multipleOptions?: boolean;
   implSearch?: boolean;
+  onChange?: Function;
 }
