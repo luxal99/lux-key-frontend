@@ -51,6 +51,8 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { FormDateComponent } from './components/form-components/form-date/form-date.component';
 import { WorkServiceOverviewComponent } from './components/admin/code-book/work-service-overview/work-service-overview.component';
 import { MessageComponent } from './components/admin/message/message.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -105,6 +107,12 @@ import { MessageComponent } from './components/admin/message/message.component';
     ReactiveFormsModule,
     CKEditorModule,
     BrowserAnimationsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }

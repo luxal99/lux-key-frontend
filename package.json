@@ -15,6 +15,7 @@
     "@angular/platform-browser": "~12.2.7",
     "@angular/platform-browser-dynamic": "~12.2.7",
     "@angular/router": "~12.2.7",
+    "@angular/service-worker": "~12.2.7",
     "@auth0/angular-jwt": "^5.0.2",
     "@ckeditor/ckeditor5-angular": "^2.0.1",
     "@ckeditor/ckeditor5-build-classic": "^27.0.0",
