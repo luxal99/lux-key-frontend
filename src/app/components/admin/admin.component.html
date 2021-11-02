@@ -1,6 +1,9 @@
 <mat-drawer-container class='example-container' fullscreen hasBackdrop='false'>
-  <mat-drawer #drawer mode='side' opened>
+  <mat-drawer #drawer [mode]="isMobile ? 'over':'side'" [opened]='!isMobile'>
     <div>
+      <button *ngIf='isMobile' (click)='drawer.toggle()' class='text-right' mat-icon-button>
+        <mat-icon>close</mat-icon>
+      </button>
       <img class='img-fluid' src='assets/img/logo-with-letters.png'>
       <a (click)='loadDashboardComponent()'>
         <h5 (click)='changeColor($event)' id='overview-btn'>

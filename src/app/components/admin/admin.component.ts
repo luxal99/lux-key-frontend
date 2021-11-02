@@ -16,6 +16,7 @@ import { MessageComponent } from './message/message.component';
 })
 export class AdminComponent implements OnInit {
 
+  isMobile = window.screen.width <= 570;
   @ViewChild('target', { read: ViewContainerRef, static: false }) entry!: ViewContainerRef;
   header = 'Pregled';
 
