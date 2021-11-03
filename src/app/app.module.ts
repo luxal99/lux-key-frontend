@@ -11,7 +11,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AdminComponent } from './components/admin/admin.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ComponentActivatorComponent } from './components/component-activator/component-activator.component';
 import { CodeBookComponent } from './components/admin/code-book/code-book.component';
@@ -109,13 +108,10 @@ import { environment } from '../environments/environment';
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
-      // Register the ServiceWorker as soon as the app is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
     }),
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

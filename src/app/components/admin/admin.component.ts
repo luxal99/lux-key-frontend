@@ -8,6 +8,7 @@ import { KeyComponent } from './key/key.component';
 import { ServicesComponent } from './services/services.component';
 import { ReportsComponent } from './reports/reports.component';
 import { MessageComponent } from './message/message.component';
+import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-admin',
@@ -16,6 +17,7 @@ import { MessageComponent } from './message/message.component';
 })
 export class AdminComponent implements OnInit {
 
+  @ViewChild('drawer') drawer!: MatDrawer;
   isMobile = window.screen.width <= 570;
   @ViewChild('target', { read: ViewContainerRef, static: false }) entry!: ViewContainerRef;
   header = 'Pregled';
@@ -82,7 +84,13 @@ export class AdminComponent implements OnInit {
   }
 
   lazyLoad(component: ComponentType<any>): void {
-    LazyLoadComponentsUtil.loadComponent(component, this.entry, this.resolver);
+    if (this.isMobile && component !== DashboardComponent) {
+      this.drawer.toggle().then(() => {
+        LazyLoadComponentsUtil.loadComponent(component, this.entry, this.resolver);
+      });
+    } else {
+      LazyLoadComponentsUtil.loadComponent(component, this.entry, this.resolver);
+    }
   }
 
 }
