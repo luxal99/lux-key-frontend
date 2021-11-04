@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from "@angular/core";
+import { Component, Inject, OnInit, ViewChild } from "@angular/core";
 import { DefaultComponent } from "../../../../util/default-component";
 import { Key } from "../../../../models/key";
 import { KeyService } from "../../../../service/key.service";
@@ -12,6 +12,7 @@ import { CarBrandService } from "../../../../service/car-brand.service";
 import { KeyPriceService } from "../../../../service/key-price.service";
 import { KeyBrandService } from "../../../../service/key-brand.service";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { ImageUploadComponent } from "../../../../util/image-upload/image-upload.component";
 
 @Component({
   selector: "app-add-key-dialog",
@@ -19,6 +20,9 @@ import { MAT_DIALOG_DATA } from "@angular/material/dialog";
   styleUrls: ["./add-key-dialog.component.sass"],
 })
 export class AddKeyDialogComponent extends DefaultComponent<Key> implements OnInit {
+
+  @ViewChild(ImageUploadComponent) imageListComponent!: ImageUploadComponent;
+
 
   listOfKeyCategories: KeyCategory[] = [];
   keyForm = new FormGroup({
@@ -98,6 +102,7 @@ export class AddKeyDialogComponent extends DefaultComponent<Key> implements OnIn
       }).subscribe((savedKeyPrice) => {
         savedKey.idCurrentPrice = savedKeyPrice;
         super.update(savedKey);
+        this.imageListComponent.uploadImage(savedKey.id);
       });
     });
   }

@@ -5,7 +5,13 @@ import { Injectable } from "@angular/core";
 })
 export class ImageUploadService {
 
-  private _fileUpload: any ;
+  private _fileUpload: any;
+  private _isUploaded = false;
+
+  get isUploaded(): boolean {
+    return this._isUploaded;
+  }
+
 
   get fileUpload(): any {
     return this._fileUpload;
@@ -29,5 +35,9 @@ export class ImageUploadService {
 
   clearUpload(): void {
     this._fileUpload = {};
+  }
+
+  uploadFinish(): void {
+    this._isUploaded = true;
   }
 }

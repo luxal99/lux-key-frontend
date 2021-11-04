@@ -2,4 +2,8 @@
   <input type='file' id='customFile' (change)='imageUploadService.addFiles($event.target)'>
   <img src='assets/img/upload-image-icon-png-11.jpg' width='100px' height='100px'>
 </label>
-<div class='img-card' *ngIf='imageUploadService.fileUpload' [style.background-image]="'url(' + imageUploadService.fileUpload.url + ')'"></div>
+<div class='img-card' *ngIf='imageUploadService.fileUpload'
+     [style.background-image]="'url(' + imageUploadService.fileUpload.url + ')'">
+</div>
+<mat-progress-bar class='mt-3 mb-3' mode='determinate'
+                  [value]='imageUploadService.isUploaded ? 100:0'></mat-progress-bar>

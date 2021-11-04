@@ -28,6 +28,7 @@ export class ImageUploadComponent implements OnInit {
       this.keyImageService.addImage(idKey, formData).subscribe((resp) => {
         SnackBarUtil.openSnackBar(this.snackBar, "Uspešno");
         this.imageUploadService.clearUpload();
+        this.imageUploadService.uploadFinish();
       }, () => {
         SnackBarUtil.openSnackBar(this.snackBar, "Dogodila se greška");
         this.imageUploadService.clearUpload();
