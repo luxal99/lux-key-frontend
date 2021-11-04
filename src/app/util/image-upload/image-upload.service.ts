@@ -34,8 +34,9 @@ export class ImageUploadService {
   }
 
   clearUpload(): void {
-    this._fileUpload = {};
+    this._fileUpload = null;
   }
+
 
   uploadFinish(): void {
     this._isUploaded = true;

@@ -32,6 +32,7 @@ export class ImageUploadComponent implements OnInit {
       }, () => {
         SnackBarUtil.openSnackBar(this.snackBar, "Dogodila se greška");
         this.imageUploadService.clearUpload();
+        this.imageUploadService.uploadFinish();
       });
     }
   }

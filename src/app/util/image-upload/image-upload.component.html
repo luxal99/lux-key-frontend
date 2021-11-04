@@ -4,6 +4,9 @@
 </label>
 <div class='img-card' *ngIf='imageUploadService.fileUpload'
      [style.background-image]="'url(' + imageUploadService.fileUpload.url + ')'">
+  <button class='m-2' mat-mini-fab color="warn" (click)='imageUploadService.clearUpload()'>
+    <mat-icon>delete</mat-icon>
+  </button>
 </div>
 <mat-progress-bar class='mt-3 mb-3' mode='determinate'
                   [value]='imageUploadService.isUploaded ? 100:0'></mat-progress-bar>
