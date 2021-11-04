@@ -52,6 +52,7 @@ import { WorkServiceOverviewComponent } from './components/admin/code-book/work-
 import { MessageComponent } from './components/admin/message/message.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { ImageUploadComponent } from './util/image-upload/image-upload.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import { environment } from '../environments/environment';
     FormDateComponent,
     WorkServiceOverviewComponent,
     MessageComponent,
+    ImageUploadComponent,
   ],
   imports: [
     BrowserModule,

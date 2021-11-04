@@ -1,0 +1,5 @@
+<label class='custom-upload'>
+  <input type='file' id='customFile' (change)='imageUploadService.addFiles($event.target)'>
+  <img src='assets/img/upload-image-icon-png-11.jpg' width='100px' height='100px'>
+</label>
+<div class='img-card' *ngIf='imageUploadService.fileUpload' [style.background-image]="'url(' + imageUploadService.fileUpload.url + ')'"></div>
