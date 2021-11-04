@@ -5,7 +5,8 @@
   <app-form-input [config]='priceInputConfig' [group]='keyForm'></app-form-input>
   <app-form-select searchProperty='name' [config]='carBrandSelectConfig' [group]='keyForm'
                    bindValue='name'></app-form-select>
-  <app-form-select-group [config]='idKeySubCategoriesGroupSelect' [group]='keyForm' [groupList]='listOfKeyCategories'
+  <app-form-select-group [model]='data ? data.idKeySubCategory:null' [config]='idKeySubCategoriesGroupSelect'
+                         [group]='keyForm' [groupList]='listOfKeyCategories'
                          itemList='keySubCategories'></app-form-select-group>
 
   <div class='text-right'>
