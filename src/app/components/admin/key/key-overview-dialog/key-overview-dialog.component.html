@@ -8,4 +8,5 @@
   <h5 *ngIf='data.carBrands.length > 0'><b>Za:</b> {{data.carBrands|bindCarBrands}}</h5>
   <h5><b>Aktuelna cena:</b> {{data.idCurrentPrice.price}}</h5>
   <h5><b>Na stanju:</b> {{data.amount}}</h5>
+  <img class='img-fluid' [src]='data.idKeyImage.url' *ngIf='data.idKeyImage'>
 </div>
