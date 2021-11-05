@@ -84,7 +84,7 @@ export class AdminComponent implements OnInit {
   }
 
   lazyLoad(component: ComponentType<any>): void {
-    if (this.isMobile && component !== DashboardComponent) {
+    if (this.isMobile && this.drawer.opened) {
       this.drawer.toggle().then(() => {
         LazyLoadComponentsUtil.loadComponent(component, this.entry, this.resolver);
       });

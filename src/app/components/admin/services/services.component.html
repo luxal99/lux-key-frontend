@@ -1,36 +1,36 @@
-<div class="component">
-  <div class="text-right">
-    <button class="default-btn"  mat-button [matMenuTriggerFor]="menu">Dodaj</button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="openAddServiceDialog()">Servis kljuc</button>
-      <button mat-menu-item (click)="openAddKeySubCategoryDialog()">Usluga</button>
+<div class='component'>
+  <div class='text-right'>
+    <button class='default-btn' mat-button [matMenuTriggerFor]='menu'>Dodaj</button>
+    <mat-menu #menu='matMenu'>
+      <button mat-menu-item (click)='openAddServiceDialog()'>Servis kljuc</button>
+      <button mat-menu-item (click)='openAddKeySubCategoryDialog()'>Usluga</button>
     </mat-menu>
   </div>
   <mat-tab-group>
-    <mat-tab label="Nedeljni pregled">
-      <div class="tab-content">
-        <app-service-table-binding (cb)="getServicesInCurrentWeek()"
-                                   [list]="listOfCurrentWeekServices"></app-service-table-binding>
-        <div class="text-right">
+    <mat-tab label='Nedeljni pregled'>
+      <div class='tab-content'>
+        <app-service-table-binding (cb)='getServicesInCurrentWeek()'
+                                   [list]='listOfCurrentWeekServices'></app-service-table-binding>
+        <div class='text-right'>
           <h5>Ukupno: <b>{{listOfCurrentWeekServices | sumGross}}</b></h5>
         </div>
       </div>
-      <mat-spinner #spinner diameter="25"></mat-spinner>
+      <mat-spinner #spinner diameter='25'></mat-spinner>
     </mat-tab>
-    <mat-tab label="Opšti pregled">
-      <div class="tab-content">
-        <form [formGroup]="dateRangeForm">
-          <mat-form-field appearance="outline" class="example-form-field">
+    <mat-tab label='Opšti pregled'>
+      <div class='tab-content'>
+        <form [formGroup]='dateRangeForm'>
+          <mat-form-field appearance='outline' class='example-form-field'>
             <mat-label>Željeni datumi</mat-label>
-            <mat-date-range-input [rangePicker]="rangePicker">
-              <input matStartDate placeholder="Start date" formControlName="startDate">
-              <input matEndDate placeholder="End date" formControlName="endDate">
+            <mat-date-range-input [rangePicker]='rangePicker'>
+              <input matStartDate placeholder='Start date' formControlName='startDate'>
+              <input matEndDate placeholder='End date' formControlName='endDate'>
             </mat-date-range-input>
-            <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
+            <mat-datepicker-toggle matSuffix [for]='rangePicker'></mat-datepicker-toggle>
             <mat-date-range-picker #rangePicker>
               <mat-date-range-picker-actions>
-                <button mat-button style="width: 100%;" class="red-border-btn"
-                        (click)="getServicesFromRange()"
+                <button mat-button style='width: 100%;' class='red-border-btn'
+                        (click)='getServicesFromRange()'
                         matDateRangePickerApply>
                   Filtriraj
                 </button>
@@ -38,8 +38,9 @@
             </mat-date-range-picker>
           </mat-form-field>
         </form>
-        <app-service-table-binding [list]="listOfDateRangeServices"></app-service-table-binding>
-        <div class="text-right">
+        <app-service-table-binding [list]='listOfDateRangeServices'></app-service-table-binding>
+
+        <div class='text-right'>
           <h5>Ukupno: <b>{{listOfDateRangeServices | sumGross}}</b></h5>
         </div>
       </div>
