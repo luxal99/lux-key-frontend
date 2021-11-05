@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "start": "ng serve --watch --proxy-config proxy.config.json",
-    "build": "ng build --prod",
+    "start": "sed -i 's/8088/8080/' ./proxy.config.json && ng serve --watch --proxy-config proxy.config.json",
+    "build": "sed -i 's/8080/8088/' ./proxy.config.json && ng build --prod",
     "deploy": "rsync -avz -e 'ssh' /home/luxal/PC/Project/LuxKey/lux-key-frontend/dist/lux-key-frontend/* root@161.35.71.233:/var/www/app.luxkey.com"
   },
   "dependencies": {
