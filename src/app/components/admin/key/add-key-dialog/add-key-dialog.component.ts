@@ -94,6 +94,7 @@ export class AddKeyDialogComponent extends DefaultComponent<Key> implements OnIn
   saveKey(): void {
     const entity = this.keyForm.getRawValue();
     delete entity.idCurrentPrice;
+    entity.idKeySubCategory = { id: entity.idKeySubCategory.id };
 
     this.keyService.save(entity).subscribe((savedKey) => {
       this.keyPriceService.save({
