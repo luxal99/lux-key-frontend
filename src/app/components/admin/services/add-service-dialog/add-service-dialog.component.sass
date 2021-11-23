@@ -9,7 +9,6 @@ mat-form-field
 .key-row
   -webkit-transition: .3s linear
   padding: 1em
-  cursor: pointer
   margin: 1em 0
 
 .selected
@@ -32,7 +31,6 @@ mat-form-field
 .key-row:hover
   padding: 2em
   transition: .5s ease
-  background-color: $less-red
 
 .ex-content
   max-height: 300px
@@ -55,12 +53,6 @@ mat-form-field
   padding: 1em
   background-color: $component-background
 
-.col, .col-6
-  pointer-events: none
-
-.col, .col-6
-  h5, h6
-    pointer-events: none
 
 .key-row-info
   @extend .key-row
@@ -77,3 +69,6 @@ h2
 h3
   margin-top: 1em
   font-size: 18px
+mat-spinner
+  margin: 2em auto
+  display: none

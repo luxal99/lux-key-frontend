@@ -30,8 +30,8 @@
           <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
       </form>
-      <div class='ex-content'>
-        <div class='row key-row' id='key-{{key.id}}' (click)='addKey(key,$event)'
+      <div>
+        <div class='row key-row'
              *ngFor='let key of listOfKeys'>
           <div class='col'>
             <h6>Šifra</h6>
@@ -40,6 +40,16 @@
           <div class='col'>
             <h6>Akutelna cena</h6>
             <h5>{{key.idCurrentPrice.price}}</h5>
+          </div>
+          <div class='col' >
+            <div class='inline'>
+              <button mat-mini-fab class='m-1' style='background-color: #02d717'>
+                <mat-icon (click)='addKey(key)'>add</mat-icon>
+              </button>
+              <button mat-mini-fab class='m-1' color='warn' (click)='removeKey(key)'>
+                <mat-icon>remove</mat-icon>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -100,11 +110,21 @@
       <h5>Akutelna cena</h5>
       <h4>{{key.idCurrentPrice.price}}</h4>
     </div>
+    <div class='col'>
+      <div class='inline'>
+        <button mat-mini-fab style='background-color: #02d717'>
+          <mat-icon (click)='addKey(key)'>add</mat-icon>
+        </button>
+        <button mat-mini-fab color='warn' (click)='removeKey(key)'>
+          <mat-icon>remove</mat-icon>
+        </button>
+      </div>
+    </div>
   </div>
   <h3>Ukupno: {{total}}</h3>
 </div>
 
 <div class='text-right'>
-  <button mat-button class='default-btn' (click)='saveService()'>Sačuvaj</button>
+  <button mat-button class='default-btn' (click)='saveService()' [disabled]='listOfSelectedKeys.length ===0'>Sačuvaj</button>
 </div>
-<mat-spinner #spinner diameter='25s'></mat-spinner>
+<mat-spinner #spinner diameter='25'></mat-spinner>

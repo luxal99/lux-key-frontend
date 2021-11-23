@@ -53,6 +53,8 @@ import { MessageComponent } from './components/admin/message/message.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ImageUploadComponent } from './util/image-upload/image-upload.component';
+import { MatBadgeModule } from "@angular/material/badge";
+import { CountSelectedKeysPipe } from './pipes/count-selected-keys.pipe';
 
 @NgModule({
   declarations: [
@@ -99,6 +101,7 @@ import { ImageUploadComponent } from './util/image-upload/image-upload.component
     WorkServiceOverviewComponent,
     MessageComponent,
     ImageUploadComponent,
+    CountSelectedKeysPipe,
   ],
   imports: [
     BrowserModule,
@@ -108,9 +111,10 @@ import { ImageUploadComponent } from './util/image-upload/image-upload.component
     ReactiveFormsModule,
     CKEditorModule,
     BrowserAnimationsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
+    ServiceWorkerModule.register("ngsw-worker.js", {
       enabled: environment.production,
     }),
+    MatBadgeModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
