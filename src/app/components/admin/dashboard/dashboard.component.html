@@ -3,7 +3,8 @@
     <h1 class='huge-h1' id='huge-label' (click)='showSearch(input)'>Započni pretragu...</h1>
     <div [formGroup]='searchForm' style='width: 70%'>
       <mat-form-field id='search'>
-        <input #input [autofocus]='true' matInput (input)='inputChange()' formControlName='search' [(ngModel)]='searchText'>
+        <input #input [autofocus]='true' matInput (input)='inputChange()' formControlName='search'
+               [(ngModel)]='searchText'>
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
     </div>
@@ -11,6 +12,9 @@
   </div>
 
   <div class='row key-row' *ngFor='let key of listOfKey'>
+    <div class='col-1' *ngIf='key.idKeyImage' (click)='openEditKeyDialog(key)'>
+      <img alt='' [src]='key.idKeyImage.url' class='img-fluid'>
+    </div>
     <div class='col' (click)='openEditKeyDialog(key)'>
       <h6>Šifra</h6>
       <h5>{{key.code}}</h5>
