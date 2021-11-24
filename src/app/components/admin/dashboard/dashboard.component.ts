@@ -61,7 +61,7 @@ export class DashboardComponent implements OnInit {
     element.click();
   }
 
-  search(): void {
+    search(): void {
     this.keyService.searchKey(this.searchText).subscribe((resp) => {
       this.listOfKey = resp;
     });

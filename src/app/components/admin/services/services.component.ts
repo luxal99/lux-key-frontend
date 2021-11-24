@@ -43,7 +43,9 @@ export class ServicesComponent extends DefaultComponent<Service> implements OnIn
 
   ngOnInit(): void {
     this.getServicesInCurrentWeek();
-    this.getServicesFromRange();
+    setTimeout(() => {
+      this.getServicesFromRange();
+    }, 100);
   }
 
   getServicesInCurrentWeek(): void {
@@ -63,6 +65,7 @@ export class ServicesComponent extends DefaultComponent<Service> implements OnIn
   }
 
   getServicesFromRange(): void {
+    this.getSpinnerService.show(this.spinner);
     const startDate = moment(this.dateRangeForm.get(FormControlNames.START_DATE_FORM_CONTROL).value).format('YYYY-MM-DD');
     const endDate = moment(this.dateRangeForm.get(FormControlNames.END_DATE_FORM_CONTROL).value).format('YYYY-MM-DD ');
     this.serviceService.findServiceByDate(startDate, endDate).subscribe((resp) => {
