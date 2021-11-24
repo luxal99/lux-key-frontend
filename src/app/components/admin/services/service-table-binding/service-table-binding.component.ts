@@ -1,29 +1,30 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {Service} from '../../../../models/service';
-import {DialogUtil} from '../../../../util/dialog-util';
-import {ServiceOverviewDialogComponent} from '../service-overview-dialog/service-overview-dialog.component';
-import {DialogOptions} from '../../../../util/dialog-options';
-import {MatDialog} from '@angular/material/dialog';
-import {AddServiceDialogComponent} from '../add-service-dialog/add-service-dialog.component';
-import {ServiceService} from '../../../../service/service.service';
-import {SnackBarUtil} from '../../../../util/snackbar-util';
-import {Message} from '../../../../constant/const';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {SpinnerService} from '../../../../service/spinner-service.service';
-import {MatSpinner} from '@angular/material/progress-spinner';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from "@angular/core";
+import { Service } from "../../../../models/service";
+import { DialogUtil } from "../../../../util/dialog-util";
+import { ServiceOverviewDialogComponent } from "../service-overview-dialog/service-overview-dialog.component";
+import { DialogOptions } from "../../../../util/dialog-options";
+import { MatDialog } from "@angular/material/dialog";
+import { AddServiceDialogComponent } from "../add-service-dialog/add-service-dialog.component";
+import { ServiceService } from "../../../../service/service.service";
+import { SnackBarUtil } from "../../../../util/snackbar-util";
+import { Message } from "../../../../constant/const";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { SpinnerService } from "../../../../service/spinner-service.service";
+import { MatSpinner } from "@angular/material/progress-spinner";
+import { ConfirmDialogComponent } from "../../../confirm-dialog/confirm-dialog.component";
 
 @Component({
-  selector: 'app-service-table-binding',
-  templateUrl: './service-table-binding.component.html',
-  styleUrls: ['./service-table-binding.component.sass']
+  selector: "app-service-table-binding",
+  templateUrl: "./service-table-binding.component.html",
+  styleUrls: ["./service-table-binding.component.sass"]
 })
 export class ServiceTableBindingComponent implements OnInit {
 
-  @ViewChild('spinner') spinner: MatSpinner;
+  @ViewChild("spinner") spinner: MatSpinner;
   @Input() list: Service[] = [];
 
   @Output() cb = new EventEmitter();
-  displayedColumns = ['date', 'gross', 'option'];
+  displayedColumns = ["date", "gross", "option"];
 
   constructor(private snackBar: MatSnackBar, private spinnerService: SpinnerService,
               private dialog: MatDialog, private serviceService: ServiceService) {
@@ -34,9 +35,9 @@ export class ServiceTableBindingComponent implements OnInit {
 
   openServiceOverviewDialog(element: Service): void {
     DialogUtil.openDialog(ServiceOverviewDialogComponent, DialogOptions.setDialogConfig({
-      position: {right: '0'},
-      width: '40%',
-      height: '100vh',
+      position: { right: "0" },
+      width: "40%",
+      height: "100vh",
       data: element
     }), this.dialog);
 
@@ -44,22 +45,29 @@ export class ServiceTableBindingComponent implements OnInit {
 
   openEditServiceDialog(element: Service): void {
     DialogUtil.openDialog(AddServiceDialogComponent, DialogOptions.setDialogConfig({
-      position: {right: '0'},
-      width: '40%',
-      height: '100vh',
+      position: { right: "0" },
+      width: "40%",
+      height: "100vh",
       data: element
     }), this.dialog);
   }
 
   delete(id: number): void {
-    this.spinnerService.show(this.spinner);
-    this.serviceService.delete(id).subscribe(() => {
-      SnackBarUtil.openSnackBar(this.snackBar, Message.SUCCESS);
-      this.spinnerService.hide(this.spinner);
-      this.cb.emit(true);
-    }, () => {
-      this.spinnerService.hide(this.spinner);
-      SnackBarUtil.openSnackBar(this.snackBar, Message.ERR);
+    DialogUtil.openDialog(ConfirmDialogComponent, DialogOptions.setDialogConfig({
+      width: "30%",
+      data: "Da li ste sigurni ?",
+    }), this.dialog).afterClosed().subscribe((result) => {
+      if (result) {
+        this.spinnerService.show(this.spinner);
+        this.serviceService.delete(id).subscribe(() => {
+          SnackBarUtil.openSnackBar(this.snackBar, Message.SUCCESS);
+          this.spinnerService.hide(this.spinner);
+          this.cb.emit(true);
+        }, () => {
+          this.spinnerService.hide(this.spinner);
+          SnackBarUtil.openSnackBar(this.snackBar, Message.ERR);
+        });
+      }
     });
   }
 }

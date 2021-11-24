@@ -8,14 +8,15 @@
   </div>
   <mat-tab-group>
     <mat-tab label='Nedeljni pregled'>
+      <mat-spinner #spinner diameter='25'></mat-spinner>
       <div class='tab-content'>
         <app-service-table-binding (cb)='getServicesInCurrentWeek()'
                                    [list]='listOfCurrentWeekServices'></app-service-table-binding>
         <div class='text-right'>
           <h5>Ukupno: <b>{{listOfCurrentWeekServices | sumGross}}</b></h5>
         </div>
+
       </div>
-      <mat-spinner #spinner diameter='25'></mat-spinner>
     </mat-tab>
     <mat-tab label='Opšti pregled'>
       <div class='tab-content'>
@@ -38,6 +39,7 @@
             </mat-date-range-picker>
           </mat-form-field>
         </form>
+        <mat-spinner #periodSpinner diameter='25' style='margin: 2em auto'></mat-spinner>
         <app-service-table-binding [list]='listOfDateRangeServices'></app-service-table-binding>
 
         <div class='text-right'>
