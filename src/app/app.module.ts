@@ -55,6 +55,7 @@ import { environment } from '../environments/environment';
 import { ImageUploadComponent } from './util/image-upload/image-upload.component';
 import { MatBadgeModule } from "@angular/material/badge";
 import { CountSelectedKeysPipe } from './pipes/count-selected-keys.pipe';
+import { AnalyticsComponent } from './components/admin/analytics/analytics.component';
 
 @NgModule({
   declarations: [
@@ -102,6 +103,7 @@ import { CountSelectedKeysPipe } from './pipes/count-selected-keys.pipe';
     MessageComponent,
     ImageUploadComponent,
     CountSelectedKeysPipe,
+    AnalyticsComponent,
   ],
   imports: [
     BrowserModule,

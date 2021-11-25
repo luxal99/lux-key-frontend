@@ -1,6 +1,7 @@
 [
   {
     "context": [
+      "/analytics",
       "/user",
       "/car-brand",
       "/key-category",
