@@ -5,24 +5,24 @@
         <mat-icon>close</mat-icon>
       </button>
     </div>
-    <div>
+    <div class='text-center'>
       <img class='img-fluid' src='assets/img/logo-with-letters.png'>
       <a (click)='loadDashboardComponent()'>
         <h5 (click)='changeColor($event)' id='overview-btn'>
-          <i class='fa fa-home'></i> Pretraga
+          <mat-icon>home</mat-icon>
         </h5>
       </a>
-      <app-component-activator icon='fa-cogs' (load)='loadCodeBookComponent()'
+      <app-component-activator icon='auto_stories' (load)='loadCodeBookComponent()'
                                title='Šifarnik'></app-component-activator>
-      <app-component-activator icon='fa-user-o' (load)='loadClientComponent()'
+      <app-component-activator icon='account_circle' (load)='loadClientComponent()'
                                title='Klijenti'></app-component-activator>
-      <app-component-activator icon='fa-key' (load)='loadKeyComponent()'
+      <app-component-activator icon='vpn_key' (load)='loadKeyComponent()'
                                title='Ključevi'></app-component-activator>
-      <app-component-activator icon='fa-book' (load)='loadServicesComponent()'
+      <app-component-activator icon='class' (load)='loadServicesComponent()'
                                title='Servisi'></app-component-activator>
-      <app-component-activator icon='fa-book' (load)='loadReportsComponent()'
+      <app-component-activator icon='receipt' (load)='loadReportsComponent()'
                                title='Izveštaji'></app-component-activator>
-      <app-component-activator icon='fa-comment' (load)='loadMessageComponent()'
+      <app-component-activator icon='email' (load)='loadMessageComponent()'
                                title='Poruke'></app-component-activator>
     </div>
   </mat-drawer>
