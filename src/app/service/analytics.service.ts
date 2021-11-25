@@ -20,13 +20,13 @@ export class AnalyticsService {
       { responseType: "json" });
   }
 
-  getEarningByKeySubCategory(): Observable<EarningByKeySubCategoryDto> {
-    return this.http.get<EarningByKeySubCategoryDto>(this.ROUTE + "earning-by-key-sub-category",
+  getEarningByKeySubCategory(): Observable<EarningByKeySubCategoryDto[]> {
+    return this.http.get<EarningByKeySubCategoryDto[]>(this.ROUTE + "earning-by-key-sub-category",
       { responseType: "json" });
   };
 
-  getTopFivePopularKeys(): Observable<PopularKeyDto> {
-    return this.http.get<PopularKeyDto>(this.ROUTE + "top-five",
+  getTopFivePopularKeys(): Observable<PopularKeyDto[]> {
+    return this.http.get<PopularKeyDto[]>(this.ROUTE + "top-five",
       { responseType: "json" });
   };
 }
