@@ -1,7 +1,8 @@
 @import "src/styles"
 
 mat-drawer
-  width: 25vh
+  width: 10vh
+  background-color: #212121
   img
     width: 200px
 mat-icon
@@ -14,7 +15,9 @@ h5
 .active
   background-color: $default-red
   color: #ffffff
-  padding: .5em
+  padding: 1em
+  border-radius: 18px
+  margin: .5em
 
 .inactive
   color: $light-silver
@@ -23,7 +26,8 @@ h5
 
 @media screen and (max-width: 570px)
   mat-drawer
-    width: 80%
+    width: 20vh
+    padding: 1em
 
     img
       width: 100px

@@ -19,6 +19,10 @@ export class ComponentActivatorComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  loadComponent(event:any){
+    this.changeColor(event);
+    this.load.emit(true)
+  }
   changeColor(e: any): void {
     const element = document.querySelectorAll('.active');
     [].forEach.call(element, (el: any) => {
