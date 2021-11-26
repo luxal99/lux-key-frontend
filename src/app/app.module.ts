@@ -56,6 +56,7 @@ import { ImageUploadComponent } from './util/image-upload/image-upload.component
 import { MatBadgeModule } from "@angular/material/badge";
 import { CountSelectedKeysPipe } from './pipes/count-selected-keys.pipe';
 import { AnalyticsComponent } from './components/admin/analytics/analytics.component';
+import { ChartsModule } from "ng2-charts";
 
 @NgModule({
   declarations: [
@@ -112,6 +113,7 @@ import { AnalyticsComponent } from './components/admin/analytics/analytics.compo
     HttpClientModule,
     ReactiveFormsModule,
     CKEditorModule,
+    ChartsModule,
     BrowserAnimationsModule,
     ServiceWorkerModule.register("ngsw-worker.js", {
       enabled: environment.production,

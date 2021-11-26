@@ -1,8 +1,15 @@
 import { Component, OnInit } from "@angular/core";
 import { AnalyticsService } from "../../../service/analytics.service";
-import { AllTimeEarnedDto } from "../../../models/dto/AllTimeEarnedDto";
+import { TotalEarning } from "../../../models/dto/TotalEarning";
 import { PopularKeyDto } from "../../../models/dto/PopularKeyDto";
 import { EarningByKeySubCategoryDto } from "../../../models/dto/EarningByKeySubCategoryDto";
+//@ts-ignore
+import { ChartDataSets, ChartOptions, ChartType } from "chart.js";
+import { Color, Label } from "ng2-charts";
+import { DialogUtil } from "../../../util/dialog-util";
+import { KeyOverviewDialogComponent } from "../key/key-overview-dialog/key-overview-dialog.component";
+import { DialogOptions } from "../../../util/dialog-options";
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
   selector: "app-analytics",
@@ -11,17 +18,38 @@ import { EarningByKeySubCategoryDto } from "../../../models/dto/EarningByKeySubC
 })
 export class AnalyticsComponent implements OnInit {
 
-  allTimeEarned: AllTimeEarnedDto;
+  public barChartOptions: ChartOptions = {
+    responsive: true,
+  };
+  public barChartLabels: Label[] = [];
+  public barChartType: ChartType = "bar";
+  public barChartLegend = true;
+  public barChartPlugins = [];
+
+  public barChartData: ChartDataSets[] = [
+    { data: [], label: "Zarada" },
+    { data: [], label: "Količina" },
+  ];
+
+  public lineChartColors: Color[] = [
+    {
+      borderColor: "black",
+      backgroundColor: "rgb(128,9,225)",
+    },
+  ];
+  allTimeEarned: TotalEarning;
+  workServiceEarning: TotalEarning;
   listOfTopFivePopularKeys: PopularKeyDto[] = [];
   listOfEarningsByKeySubCategory: EarningByKeySubCategoryDto[] = [];
 
-  constructor(private analyticsService: AnalyticsService) {
+  constructor(private analyticsService: AnalyticsService, private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
     this.getAllTimeEarned();
     this.getTopFivePopularKeys();
     this.getEarningByKeySubCategory();
+    this.getWorkServiceEarning();
   }
 
   getAllTimeEarned() {
@@ -30,9 +58,18 @@ export class AnalyticsComponent implements OnInit {
     });
   }
 
+  getWorkServiceEarning() {
+    this.analyticsService.getWorkServiceEarning().subscribe((resp) => {
+      this.workServiceEarning = resp;
+    });
+  }
+
+
   getEarningByKeySubCategory() {
     this.analyticsService.getEarningByKeySubCategory().subscribe((resp) => {
-      this.listOfEarningsByKeySubCategory = resp;
+      this.barChartLabels = resp.map((item) => item.name);
+      this.barChartData[0].data = resp.map((item) => item.sum);
+      this.barChartData[1].data = resp.map((item) => item.count);
     });
   }
 
@@ -42,5 +79,12 @@ export class AnalyticsComponent implements OnInit {
     });
   }
 
+  openKeyOverviewDialog(id: number): void {
+    DialogUtil.openDialog(KeyOverviewDialogComponent, DialogOptions.setDialogConfig({
+      position: { top: "6%" },
+      width: "30%",
+      data: { id },
+    }), this.dialog);
+  }
 
 }

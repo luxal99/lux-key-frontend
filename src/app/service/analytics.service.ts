@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { EarningByKeySubCategoryDto } from "../models/dto/EarningByKeySubCategoryDto";
 import { PopularKeyDto } from "../models/dto/PopularKeyDto";
-import { AllTimeEarnedDto } from "../models/dto/AllTimeEarnedDto";
+import { TotalEarning } from "../models/dto/TotalEarning";
 
 @Injectable({
   providedIn: "root"
@@ -15,8 +15,8 @@ export class AnalyticsService {
   constructor(private http: HttpClient) {
   }
 
-  getAllTimeEarned(): Observable<AllTimeEarnedDto> {
-    return this.http.get<AllTimeEarnedDto>(this.ROUTE + "all-time-earned",
+  getAllTimeEarned(): Observable<TotalEarning> {
+    return this.http.get<TotalEarning>(this.ROUTE + "all-time-earned",
       { responseType: "json" });
   }
 
@@ -29,4 +29,8 @@ export class AnalyticsService {
     return this.http.get<PopularKeyDto[]>(this.ROUTE + "top-five",
       { responseType: "json" });
   };
+
+  getWorkServiceEarning(): Observable<TotalEarning> {
+    return this.http.get<TotalEarning>(this.ROUTE + "work-service-earning", { responseType: "json" });
+  }
 }

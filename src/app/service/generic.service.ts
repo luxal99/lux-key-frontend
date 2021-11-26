@@ -20,7 +20,7 @@ export class GenericService<T> {
   }
 
   findById(id: number): Observable<T> {
-    return this.http.get<T>(`${RestRoutes.API}${this.route}/` + id, {
+    return this.http.get<T>(`${this.route}/` + id, {
       responseType: 'json'
     });
   }
