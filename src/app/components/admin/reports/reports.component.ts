@@ -31,7 +31,7 @@ export class ReportsComponent implements OnInit {
   }
 
   generate(): void {
-    this.keyService.generateReport().subscribe(() => {
+    this.keyService.generateKeyServiceCountStatus().subscribe(() => {
       SnackBarUtil.openSnackBar(this.snackBar, 'Uspešno generisano');
       this.getReports()
     }, () => {
