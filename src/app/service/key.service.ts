@@ -29,6 +29,18 @@ export class KeyService extends GenericService<Key> {
   }
 
   generateReport(): Observable<any> {
-    return this.http.post(this.route + '/generate', null, { responseType: 'text' });
+    return this.http.post(this.route + '/generate', null, {
+      responseType: 'text',
+    });
+  }
+
+  generateKeyServiceCountStatus(): Observable<any> {
+    return this.http.post(
+      this.route + '/generate-key-service-count-status',
+      null,
+      {
+        responseType: 'text',
+      }
+    );
   }
 }
