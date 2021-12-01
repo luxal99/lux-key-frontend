@@ -1,0 +1,54 @@
+<div class='component'>
+  <div class='row'>
+
+    <div class='col-sm-5 text-center'>
+      <div class='all-time-earned row'>
+        <div class='col-sm'>
+          <div class='row'>
+            <div class='col-sm'>
+              <div class='circle'>
+                <h5 *ngIf='allTimeEarned'>{{allTimeEarned.total}}</h5>
+              </div>
+            </div>
+            <div class='col-sm'>
+              <h5 class='mt-4'>Ukupno od otvaranja radnje</h5>
+            </div>
+          </div>
+        </div>
+        <div class='col-sm'>
+          <div class='row'>
+            <div class='col-sm'>
+              <div class='circle'>
+                <h5 *ngIf='workServiceEarning'>{{workServiceEarning.total}}</h5>
+              </div>
+            </div>
+            <div class='col-sm'>
+              <h5 class='mt-4'>Ukupno od popravki</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='col-sm-7'>
+      <h5><b>Zarada po potkatekorijama</b></h5>
+      <canvas baseChart
+              [datasets]='barChartData'
+              [labels]='barChartLabels'
+              [options]='barChartOptions'
+              [plugins]='barChartPlugins'
+              [legend]='barChartLegend'
+              [colors]='lineChartColors'
+              [chartType]='barChartType'>
+      </canvas>
+    </div>
+  </div>
+  <h3 class='font-weight-bold'>Najpopularniji ključevi</h3>
+  <div class='row mt-3'>
+    <div (click)='openKeyOverviewDialog(key.id)' class='col-sm popular-key-card'
+         *ngFor='let key of listOfTopFivePopularKeys'>
+      <h5>{{key.code}}</h5>
+      <h4>Ugrađeno: <b>{{key.count}}</b> komada</h4>
+    </div>
+  </div>
+
+</div>
