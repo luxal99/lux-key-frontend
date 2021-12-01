@@ -6,7 +6,7 @@
       </button>
     </div>
     <div class='text-center'>
-      <img class='img-fluid' src='assets/img/logo-with-letters.png'>
+      <img class='img-fluid text-center' src='assets/img/logo.png'>
       <a (click)='loadDashboardComponent()'>
         <h5 (click)='changeColor($event)' id='overview-btn'>
           <mat-icon>home</mat-icon>
@@ -24,6 +24,8 @@
                                title='Izveštaji'></app-component-activator>
       <app-component-activator icon='email' (load)='loadMessageComponent()'
                                title='Poruke'></app-component-activator>
+      <app-component-activator icon='pie_chart' (load)='loadAnalyticsComponent()'
+                               title='Analitika'></app-component-activator>
     </div>
   </mat-drawer>
   <mat-drawer-content>

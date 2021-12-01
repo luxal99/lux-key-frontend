@@ -1,0 +1,35 @@
+@import "src/styles"
+.all-time-earned
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px
+  padding: 1em
+
+  .circle
+    border-radius: 50%
+    width: 150px
+    height: 150px
+    border: 20px solid $less-red
+    -webkit-transition: .3s linear
+    animation: test 10s infinite
+
+    h5
+      font-weight: bold
+      text-align: center
+      margin-top: 2em
+
+.col-sm-8
+  padding: 1em
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px
+
+@keyframes test
+  0%
+    border: 20px solid $less-red
+  50%
+    border-left: 20px solid $less-black
+    border-bottom: 20px solid $less-black
+
+.popular-key-card
+  margin: 1em
+  padding: 2em
+  text-align: center
+  cursor: pointer
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px
