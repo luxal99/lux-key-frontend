@@ -1,19 +1,53 @@
 <div class='component'>
-  <div class='text-right'>
-    <button class='default-btn' mat-button (click)='generate()'>Generiši</button>
-  </div>
 
-  <div class='row' *ngFor='let report of listOfReports'>
-    <div class='col'>
-      <h5>Kreirano dana:</h5>
-      <h4>{{report.createdDate|date}}</h4>
-    </div>
-    <div class='col'>
-      <a target='_blank' [href]="'https://app.luxkey.rs/assets/reports/'+currentDate+'.xlsx'"
-         [download]="currentDate+'.xlsx'">
-        <button mat-raised-button>Preuzmi</button>
-      </a>
-      <button mat-raised-button color='warn' (click)='deleteReport(report.id)'>Obriši</button>
-    </div>
-  </div>
+  <mat-tab-group mat-stetch-tabs>
+    <mat-tab label='Izveštaji ugrađenih ključeva'>
+      <div class='row header-row'>
+        <div class='col-sm'>
+          <h3>Izveštaji ugrađenih ključeva
+          </h3>
+        </div>
+        <div class='col-sm text-right'>
+          <button class='default-btn' mat-button (click)='generateBuiltInReport()'>Generiši</button>
+        </div>
+      </div>
+      <div class='row report-row' *ngFor="let report of listOfReports|search:'reportType':'BUILT_IN'">
+        <div class='col'>
+          <h5>Kreirano dana:</h5>
+          <h4>{{report.createdDate|date}}</h4>
+        </div>
+        <div class='col'>
+          <a target='_blank' [href]="'https://app.luxkey.rs/assets/reports/'+currentDate+'.xlsx'"
+             [download]="currentDate+'.xlsx'">
+            <button mat-raised-button>Preuzmi</button>
+          </a>
+          <button mat-raised-button color='warn' (click)='deleteReport(report.id)'>Obriši</button>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label='Izveštaji trenutnog stanja'>
+      <div class='row header-row'>
+        <div class='col-sm'>
+          <h3>Izveštaji trenutnog stanja
+          </h3>
+        </div>
+        <div class='col-sm text-right'>
+          <button class='default-btn' mat-button (click)='generateInStockReport()'>Generiši</button>
+        </div>
+      </div>
+      <div class='row report-row' *ngFor="let report of listOfReports|search:'reportType':'IN_STOCK'">
+        <div class='col'>
+          <h5>Kreirano dana:</h5>
+          <h4>{{report.createdDate|date}}</h4>
+        </div>
+        <div class='col'>
+          <a target='_blank' [href]="'https://app.luxkey.rs/assets/reports/'+currentDate+'.xlsx'"
+             [download]="currentDate+'.xlsx'">
+            <button mat-raised-button>Preuzmi</button>
+          </a>
+          <button mat-raised-button color='warn' (click)='deleteReport(report.id)'>Obriši</button>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
 </div>
