@@ -17,8 +17,8 @@
           <h4>{{report.createdDate|date}}</h4>
         </div>
         <div class='col'>
-          <a target='_blank' [href]="'https://app.luxkey.rs/assets/reports/'+currentDate+'.xlsx'"
-             [download]="currentDate+'.xlsx'">
+          <a target='_blank' [href]="'https://app.luxkey.rs/assets/reports/'+currentDate+'-'+report.reportType+'.xlsx'"
+             [download]="currentDate+'-'+report.reportType+'.xlsx'">
             <button mat-raised-button>Preuzmi</button>
           </a>
           <button mat-raised-button color='warn' (click)='deleteReport(report.id)'>Obriši</button>
