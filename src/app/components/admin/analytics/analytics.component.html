@@ -31,21 +31,21 @@
     </div>
     <div class='col-sm-7'>
       <h5><b>Zarada po potkatekorijama</b></h5>
-      <canvas baseChart
+      <canvas [chartType]='barChartType'
+              [colors]='lineChartColors'
               [datasets]='barChartData'
               [labels]='barChartLabels'
+              [legend]='barChartLegend'
               [options]='barChartOptions'
               [plugins]='barChartPlugins'
-              [legend]='barChartLegend'
-              [colors]='lineChartColors'
-              [chartType]='barChartType'>
+              baseChart>
       </canvas>
     </div>
   </div>
   <h3 class='font-weight-bold'>Najpopularniji ključevi</h3>
   <div class='row mt-3'>
-    <div (click)='openKeyOverviewDialog(key.id)' class='col-sm popular-key-card'
-         *ngFor='let key of listOfTopFivePopularKeys'>
+    <div (click)='openKeyOverviewDialog(key.id)' *ngFor='let key of listOfTopFivePopularKeys'
+         class='col-sm popular-key-card'>
       <h5>{{key.code}}</h5>
       <h4>Ugrađeno: <b>{{key.count}}</b> komada</h4>
     </div>

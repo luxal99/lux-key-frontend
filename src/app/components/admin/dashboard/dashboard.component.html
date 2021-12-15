@@ -1,35 +1,35 @@
 <div class='component'>
   <div class='centered' id='centered'>
-    <h1 class='huge-h1' id='huge-label' (click)='showSearch(input)'>Započni pretragu...</h1>
+    <h1 (click)='showSearch(input)' class='huge-h1' id='huge-label'>Započni pretragu...</h1>
     <div [formGroup]='searchForm' style='width: 70%'>
       <mat-form-field id='search'>
-        <input #input [autofocus]='true' matInput (input)='inputChange()' formControlName='search'
-               [(ngModel)]='searchText'>
+        <input #input (input)='inputChange()' [(ngModel)]='searchText' [autofocus]='true' formControlName='search'
+               matInput>
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
     </div>
     <mat-spinner #spinner diameter='50'></mat-spinner>
   </div>
 
-  <div class='row key-row' *ngFor='let key of listOfKey'>
-    <div class='col-1' *ngIf='key.idKeyImage' (click)='openEditKeyDialog(key)'>
-      <img alt='' [src]='key.idKeyImage.url' class='img-fluid'>
+  <div *ngFor='let key of listOfKey' class='row key-row'>
+    <div (click)='openEditKeyDialog(key)' *ngIf='key.idKeyImage' class='col-1'>
+      <img [src]='key.idKeyImage.url' alt='' class='img-fluid'>
     </div>
-    <div class='col' (click)='openEditKeyDialog(key)'>
+    <div (click)='openEditKeyDialog(key)' class='col'>
       <h6>Šifra</h6>
       <h5>{{key.code}}</h5>
     </div>
-    <div class='col' (click)='openEditKeyDialog(key)'>
+    <div (click)='openEditKeyDialog(key)' class='col'>
       <h6>Količina</h6>
       <h5>{{key.amount}}</h5>
     </div>
-    <div class='col' (click)='openEditKeyDialog(key)'>
+    <div (click)='openEditKeyDialog(key)' class='col'>
       <h6>Akutelna cena</h6>
       <h5>{{key.idCurrentPrice.price}}</h5>
     </div>
     <div class='col'>
       <h6 style='visibility: hidden'>Opt</h6>
-      <button mat-button class='green-border-btn' (click)='openKeyOverviewDialog(key)'>Pregled</button>
+      <button (click)='openKeyOverviewDialog(key)' class='green-border-btn' mat-button>Pregled</button>
       <button class='red-border-btn' mat-button>Obriši</button>
     </div>
 

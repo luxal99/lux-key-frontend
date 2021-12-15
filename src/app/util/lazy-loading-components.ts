@@ -1,6 +1,6 @@
-import {ComponentFactoryResolver, ComponentRef, ViewContainerRef} from '@angular/core';
+import { ComponentFactoryResolver, ComponentRef, ViewContainerRef } from "@angular/core";
 
-import {ComponentType} from '@angular/cdk/portal';
+import { ComponentType } from "@angular/cdk/portal";
 
 export class LazyLoadComponentsUtil<T> {
   static loadComponent(component: ComponentType<any>, entry: ViewContainerRef, resolver: ComponentFactoryResolver): ComponentRef<any> {

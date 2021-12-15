@@ -1,18 +1,18 @@
-<div class="dialog">
-  <div class="text-right">
-    <button mat-icon-button mat-dialog-close>
+<div class='dialog'>
+  <div class='text-right'>
+    <button mat-dialog-close mat-icon-button>
       <mat-icon>close</mat-icon>
     </button>
   </div>
   <h4>{{configData.headerText}}</h4>
-  <form class="dynamic-form" [formGroup]="form">
-    <ng-container *ngFor="let field of configData.formFields;" dynamicField [config]="field"
-                  [group]="form">
+  <form [formGroup]='form' class='dynamic-form'>
+    <ng-container *ngFor='let field of configData.formFields;' [config]='field' [group]='form'
+                  dynamicField>
     </ng-container>
-    <div class="text-right">
-      <button (click)="save()" [disabled]="!form.valid" mat-button class="default-btn">Dodaj</button>
+    <div class='text-right'>
+      <button (click)='save()' [disabled]='!form.valid' class='default-btn' mat-button>Dodaj</button>
 
     </div>
   </form>
-  <mat-spinner diameter="50" #spinner></mat-spinner>
+  <mat-spinner #spinner diameter='50'></mat-spinner>
 </div>

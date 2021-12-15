@@ -1,35 +1,35 @@
 <div class='text-right'>
-  <button (click)='openAddKeyDialog()' mat-button class='default-btn'>Dodaj</button>
+  <button (click)='openAddKeyDialog()' class='default-btn' mat-button>Dodaj</button>
 </div>
-<button style='font-weight: bold' (click)='loadKeySubCategories()' color='primary' mat-button>
+<button (click)='loadKeySubCategories()' color='primary' mat-button style='font-weight: bold'>
   <mat-icon>keyboard_backspace</mat-icon>
   Nazad
 </button>
 <div class='container mt-4'>
-  <mat-spinner diameter='25' #spinner></mat-spinner>
+  <mat-spinner #spinner diameter='25'></mat-spinner>
   <h5 style='font-weight: bold;color: #ff5454'>{{keyBehaviorService.getIdKeySubCategory().name}}</h5>
   <h5>Ukupno: {{listOfKeys.length}}</h5>
   <form [formGroup]='searchForm'>
-    <mat-form-field class='w-100' appearance='standard'>
+    <mat-form-field appearance='standard' class='w-100'>
       <mat-label>Pretraži</mat-label>
-      <input matInput [(ngModel)]='searchText' formControlName='search'>
+      <input [(ngModel)]='searchText' formControlName='search' matInput>
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
   </form>
   <div class='row'>
-    <div class='col-sm-4 text-center' *ngFor='let key of listOfKeys|key:searchText'>
-      <div class='card-content' (click)='openKeyOverviewDialog(key)'>
-        <img class='img-fluid' *ngIf='!key.idKeyImage' width='200px' src='assets/img/logo.png'>
-        <img class='img-fluid' *ngIf='key.idKeyImage' width='200px' [src]='key.idKeyImage.url'>
+    <div *ngFor='let key of listOfKeys|key:searchText' class='col-sm-4 text-center'>
+      <div (click)='openKeyOverviewDialog(key)' class='card-content'>
+        <img *ngIf='!key.idKeyImage' class='img-fluid' src='assets/img/logo.png' width='200px'>
+        <img *ngIf='key.idKeyImage' [src]='key.idKeyImage.url' class='img-fluid' width='200px'>
         <h5>{{key.idKeyBrand.name}}</h5>
         <h5>{{key.carBrands|bindCarBrands}}</h5>
         <h5 class='code'>{{key.code}}</h5>
         <h4>{{(key.idCurrentPrice.price|number) + 'din'}}</h4>
       </div>
-      <button mat-icon-button color='accent' (click)='openEditKeyDialog(key)'>
+      <button (click)='openEditKeyDialog(key)' color='accent' mat-icon-button>
         <mat-icon>create</mat-icon>
       </button>
-      <button (click)='deleteKey(key.id)' mat-icon-button color='primary'>
+      <button (click)='deleteKey(key.id)' color='primary' mat-icon-button>
         <mat-icon>delete</mat-icon>
       </button>
     </div>

@@ -1,11 +1,11 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {User} from '../models/user';
-import {Observable} from 'rxjs';
-import {RestRoutes} from '../constant/const';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { User } from "../models/user";
+import { Observable } from "rxjs";
+import { RestRoutes } from "../constant/const";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AuthService {
 
@@ -13,6 +13,6 @@ export class AuthService {
   }
 
   auth(user: User): Observable<string> {
-    return this.http.post(RestRoutes.USER + '/auth', user, {responseType: 'text'});
+    return this.http.post(RestRoutes.USER + "/auth", user, { responseType: "text" });
   }
 }

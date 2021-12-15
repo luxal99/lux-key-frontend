@@ -9,15 +9,15 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import {Service} from './service';
-import {Key} from './key';
+import { Service } from "./service";
+import { Key } from "./key";
 
 
 export interface ServiceKey {
   id?: number;
-  keyPrice: number;
-  idService: Service;
-  idKey: Key;
+  keyPrice?: number;
+  idService?: Service;
+  idKey?: Key;
   keyPurchasePrice?: number;
 }
 

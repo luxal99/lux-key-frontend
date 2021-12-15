@@ -1,4 +1,4 @@
-import { Key } from './key';
+import { Key } from "./key";
 
 export interface KeyBrand {
   id?: number;

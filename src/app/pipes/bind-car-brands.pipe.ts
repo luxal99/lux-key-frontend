@@ -1,16 +1,16 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { CarBrand } from '../models/carBrand';
+import { Pipe, PipeTransform } from "@angular/core";
+import { CarBrand } from "../models/carBrand";
 
 @Pipe({
-  name: 'bindCarBrands',
+  name: "bindCarBrands",
 })
 export class BindCarBrandsPipe implements PipeTransform {
 
   transform(carBrands: CarBrand[]): string {
-    let carBrandStr = '';
+    let carBrandStr = "";
 
     carBrands.filter((item) => {
-      carBrandStr += item.name + ' ';
+      carBrandStr += item.name + " ";
     });
     return carBrandStr;
   }

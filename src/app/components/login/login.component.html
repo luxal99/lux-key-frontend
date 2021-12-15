@@ -1,15 +1,15 @@
-<div class="wrapper">
-  <div class="row">
-    <div class="col-sm-4"></div>
-    <div class="col-sm-4 login-form text-center">
-      <img src="assets/img/logo-with-letters.png" class="img-fluid" width="150px">
-      <app-form-input [group]="loginForm" icon="account_circle" appearance=""
-                      [config]="usernameInputConfig"></app-form-input>
-      <app-form-input [group]="loginForm" appearance="" icon="lock"
-                      [config]="passwordInputConfig"></app-form-input>
-      <button class="default-btn w-100" mat-button [disabled]="!loginForm.valid" (click)="auth()">Login</button>
-      <mat-spinner diameter="25" #spinner></mat-spinner>
+<div class='wrapper'>
+  <div class='row'>
+    <div class='col-sm-4'></div>
+    <div class='col-sm-4 login-form text-center'>
+      <img class='img-fluid' src='assets/img/logo-with-letters.png' width='150px'>
+      <app-form-input [config]='usernameInputConfig' [group]='loginForm' appearance=''
+                      icon='account_circle'></app-form-input>
+      <app-form-input [config]='passwordInputConfig' [group]='loginForm' appearance=''
+                      icon='lock'></app-form-input>
+      <button (click)='auth()' [disabled]='!loginForm.valid' class='default-btn w-100' mat-button>Login</button>
+      <mat-spinner #spinner diameter='25'></mat-spinner>
     </div>
-    <div class="col-sm-4"></div>
+    <div class='col-sm-4'></div>
   </div>
 </div>

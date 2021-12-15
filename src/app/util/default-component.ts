@@ -1,16 +1,16 @@
-import { Component, Injectable, OnInit, ViewChild } from '@angular/core';
-import { GenericService } from '../service/generic.service';
-import { SpinnerService } from '../service/spinner-service.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatSpinner } from '@angular/material/progress-spinner';
-import { Crud } from './crud-interface';
-import { Observable } from 'rxjs';
-import * as moment from 'moment';
-import { SnackBarUtil } from './snackbar-util';
-import { Message } from '../constant/const';
+import { Component, Injectable, OnInit, ViewChild } from "@angular/core";
+import { GenericService } from "../service/generic.service";
+import { SpinnerService } from "../service/spinner-service.service";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatSpinner } from "@angular/material/progress-spinner";
+import { Crud } from "./crud-interface";
+import { Observable } from "rxjs";
+import * as moment from "moment";
+import { SnackBarUtil } from "./snackbar-util";
+import { Message } from "../constant/const";
 
 @Component({
-  template: '',
+  template: "",
   providers: [SpinnerService],
 })
 export abstract class DefaultComponent<T> implements OnInit, Crud {
@@ -18,7 +18,7 @@ export abstract class DefaultComponent<T> implements OnInit, Crud {
   @Injectable() private spinnerService: SpinnerService = new SpinnerService();
   // tslint:disable-next-line:variable-name
   private _snackBar: MatSnackBar;
-  @ViewChild('spinner') spinner: MatSpinner;
+  @ViewChild("spinner") spinner: MatSpinner;
 
   listOfItems: T[] = [];
 
@@ -59,9 +59,9 @@ export abstract class DefaultComponent<T> implements OnInit, Crud {
     this.genericService.getAll().subscribe((data) => {
       this.listOfItems = data;
       // @ts-ignore
-      this.listOfItems.filter((item) => item.createdDate ? item.createdDate = moment(item.createdDate).format('DD MMMM YYYY') : '');
+      this.listOfItems.filter((item) => item.createdDate ? item.createdDate = moment(item.createdDate).format("DD MMMM YYYY") : "");
       // @ts-ignore
-      this.listOfItems.filter((item) => item.date ? item.date = moment(item.date).format('DD MMMM YYYY') : '');
+      this.listOfItems.filter((item) => item.date ? item.date = moment(item.date).format("DD MMMM YYYY") : "");
       this.spinnerService.hide(this.spinner);
     });
   }

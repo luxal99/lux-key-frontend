@@ -1,5 +1,7 @@
 export interface PopularKeyDto {
   id: number;
   code: string;
-  count:number
+  count: number;
+  price: number,
+  amount: number
 }

@@ -1,6 +1,6 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { TOKEN_NAME } from '../constant/const';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { TOKEN_NAME } from "../constant/const";
 
 
 export class TokenInterceptor implements HttpInterceptor {

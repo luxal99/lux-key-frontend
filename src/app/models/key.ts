@@ -7,15 +7,15 @@ import { KeyImage } from "./KeyImage";
 
 export interface Key {
   id: number;
-  amount: number;
-  code: string;
-  createdDate: string;
-  lastModifiedDate: string;
-  carBrands: CarBrand[];
-  idCurrentPrice: KeyPrice;
-  idKeyBrand: KeyBrand;
-  idKeySubCategory: KeySubCategory;
-  keyPrices: KeyPrice[];
+  amount?: number;
+  code?: string;
+  createdDate?: string;
+  lastModifiedDate?: string;
+  carBrands?: CarBrand[];
+  idCurrentPrice?: KeyPrice;
+  idKeyBrand?: KeyBrand;
+  idKeySubCategory?: KeySubCategory;
+  keyPrices?: KeyPrice[];
   idKeyImage?: KeyImage;
 }
 

@@ -1,8 +1,8 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { Key } from '../models/key';
+import { Pipe, PipeTransform } from "@angular/core";
+import { Key } from "../models/key";
 
 @Pipe({
-  name: 'sumKey',
+  name: "sumKey",
 })
 export class SumKeyPipe implements PipeTransform {
 

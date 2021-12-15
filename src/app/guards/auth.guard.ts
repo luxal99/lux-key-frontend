@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
-import {PageRoutes, TOKEN_NAME} from '../constant/const';
-import {JwtService} from '../service/jwt.service';
+import { Injectable } from "@angular/core";
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
+import { PageRoutes, TOKEN_NAME } from "../constant/const";
+import { JwtService } from "../service/jwt.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AuthGuard implements CanActivate {
 
@@ -27,6 +27,6 @@ export class AuthGuard implements CanActivate {
   }
 
   returnToLogin(state: RouterStateSnapshot): void {
-    this.router.navigate([PageRoutes.LOGIN], {queryParams: {returnUrl: state.url}});
+    this.router.navigate([PageRoutes.LOGIN], { queryParams: { returnUrl: state.url } });
   }
 }

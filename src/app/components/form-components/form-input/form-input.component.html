@@ -1,9 +1,9 @@
-<div [formGroup]="group">
-  <mat-form-field [appearance]="appearance">
+<div [formGroup]='group'>
+  <mat-form-field [appearance]='appearance'>
     <mat-label>{{config.label}}</mat-label>
-    <input (input)="change.emit(true)" [(ngModel)]="model" [style.color]="color" [formControlName]="config.name"
-           matInput [type]="config.type"
-           [required]="isRequired">
+    <input (input)='change.emit(true)' [(ngModel)]='model' [formControlName]='config.name' [required]='isRequired'
+           [style.color]='color' [type]='config.type'
+           matInput>
     <mat-icon matSuffix>{{icon}}</mat-icon>
     <mat-hint>{{hint}}</mat-hint>
   </mat-form-field>

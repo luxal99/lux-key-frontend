@@ -1,8 +1,8 @@
-import {Pipe, PipeTransform} from '@angular/core';
-import {Service} from '../models/service';
+import { Pipe, PipeTransform } from "@angular/core";
+import { Service } from "../models/service";
 
 @Pipe({
-  name: 'sumGross'
+  name: "sumGross"
 })
 export class SumGrossPipe implements PipeTransform {
 

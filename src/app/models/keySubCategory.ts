@@ -1,6 +1,6 @@
-import {KeyCategory} from './keyCategory';
-import {Key} from './key';
-import { ServiceTypeEnum } from '../ServiceTypeEnum';
+import { KeyCategory } from "./keyCategory";
+import { Key } from "./key";
+import { ServiceTypeEnum } from "../ServiceTypeEnum";
 
 
 export interface KeySubCategory {
@@ -9,7 +9,7 @@ export interface KeySubCategory {
   createdDate: string;
   lastModifiedDate: string;
   idKeyCategory: KeyCategory;
-  serviceType:ServiceTypeEnum
+  serviceType: ServiceTypeEnum;
   keys: Key[];
 }
 

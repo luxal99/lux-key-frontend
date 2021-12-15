@@ -7,17 +7,17 @@ import {
   OnInit,
   Output,
   ViewContainerRef,
-} from '@angular/core';
-import { KeyCategory } from '../../../../models/keyCategory';
-import { KeyCategoryService } from '../../../../service/key-category.service';
-import { KeyBehaviorService } from '../../../../service/util/key-behavior.service';
-import { LazyLoadComponentsUtil } from '../../../../util/lazy-loading-components';
-import { KeySubCategoryViewComponent } from '../key-sub-category-view/key-sub-category-view.component';
+} from "@angular/core";
+import { KeyCategory } from "../../../../models/keyCategory";
+import { KeyCategoryService } from "../../../../service/key-category.service";
+import { KeyBehaviorService } from "../../../../service/util/key-behavior.service";
+import { LazyLoadComponentsUtil } from "../../../../util/lazy-loading-components";
+import { KeySubCategoryViewComponent } from "../key-sub-category-view/key-sub-category-view.component";
 
 @Component({
-  selector: 'app-key-category-view',
-  templateUrl: './key-category-view.component.html',
-  styleUrls: ['./key-category-view.component.sass'],
+  selector: "app-key-category-view",
+  templateUrl: "./key-category-view.component.html",
+  styleUrls: ["./key-category-view.component.sass"],
 })
 export class KeyCategoryViewComponent implements OnInit {
 

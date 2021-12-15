@@ -11,8 +11,8 @@
   <form [formGroup]='serviceForm'>
     <mat-form-field appearance='outline'>
       <mat-label>Izaberi datum</mat-label>
-      <input matInput [matDatepicker]='picker' formControlName='date'>
-      <mat-datepicker-toggle matSuffix [for]='picker'></mat-datepicker-toggle>
+      <input [matDatepicker]='picker' formControlName='date' matInput>
+      <mat-datepicker-toggle [for]='picker' matSuffix></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
   </form>
@@ -26,13 +26,29 @@
       <form [formGroup]='searchForm'>
         <mat-form-field appearance='outline' style='margin-right: 3em'>
           <mat-label>Pretraži</mat-label>
-          <input matInput [(ngModel)]='searchText' (input)='searchKey()' formControlName='search'>
+          <input (input)='searchKey()' [(ngModel)]='searchText' formControlName='search' matInput>
           <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
       </form>
       <div>
-        <div class='row key-row'
-             *ngFor='let key of listOfKeys'>
+        <div>
+          <h4><b>Najpopularniji</b></h4>
+          <div class='row'>
+            <div class='col popular-key-card' *ngFor='let key of listOfTopFivePopularKeys'>
+              <h5><b>{{key.code}}</b></h5>
+              <div class='inline'>
+                <button class='m-1' mat-mini-fab style='background-color: #02d717'>
+                  <mat-icon (click)='addKey(key)'>add</mat-icon>
+                </button>
+                <button (click)='removeKey(key)' class='m-1' color='warn' mat-mini-fab>
+                  <mat-icon>remove</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngFor='let key of listOfKeys'
+             class='row key-row'>
           <div class='col'>
             <h6>Šifra</h6>
             <h5>{{key.code}}</h5>
@@ -41,12 +57,12 @@
             <h6>Akutelna cena</h6>
             <h5>{{key.idCurrentPrice.price}}</h5>
           </div>
-          <div class='col' >
+          <div class='col'>
             <div class='inline'>
-              <button mat-mini-fab class='m-1' style='background-color: #02d717'>
+              <button class='m-1' mat-mini-fab style='background-color: #02d717'>
                 <mat-icon (click)='addKey(key)'>add</mat-icon>
               </button>
-              <button mat-mini-fab class='m-1' color='warn' (click)='removeKey(key)'>
+              <button (click)='removeKey(key)' class='m-1' color='warn' mat-mini-fab>
                 <mat-icon>remove</mat-icon>
               </button>
             </div>
@@ -54,7 +70,7 @@
         </div>
       </div>
     </mat-expansion-panel>
-    <mat-expansion-panel hideToggle [expanded]='false'>
+    <mat-expansion-panel [expanded]='false' hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title>
           <h6><b>Izaberi klijenta</b></h6>
@@ -62,21 +78,21 @@
       </mat-expansion-panel-header>
       <div>
         <div class='text-right'>
-          <button mat-icon-button (click)='openAddClientDialog()' class='red-btn'>
+          <button (click)='openAddClientDialog()' class='red-btn' mat-icon-button>
             <mat-icon>add</mat-icon>
           </button>
         </div>
         <form [formGroup]='searchForm'>
           <mat-form-field appearance='outline' style='margin-right: 3em'>
             <mat-label>Pretraži</mat-label>
-            <input matInput [(ngModel)]='searchClientText' formControlName='searchClient'>
+            <input [(ngModel)]='searchClientText' formControlName='searchClient' matInput>
             <mat-icon matSuffix>search</mat-icon>
           </mat-form-field>
         </form>
         <div class='ex-content'>
           <div class='client-binding' id='client-binding'>
-            <div class='row client-row' id='client-{{client.id}}' *ngFor='let client of listOfClients'
-                 (click)='selectClient(client,$event)'>
+            <div (click)='selectClient(client,$event)' *ngFor='let client of listOfClients' class='row client-row'
+                 id='client-{{client.id}}'>
               <div class='col'>
                 <h6>Ime</h6>
                 <h5>{{client.firstName}}</h5>
@@ -98,24 +114,24 @@
     </mat-expansion-panel>
   </mat-accordion>
   <div style='margin-top: 1em'>
-    <ckeditor [editor]='Editor' #editor></ckeditor>
+    <ckeditor #editor [editor]='Editor'></ckeditor>
   </div>
-  <div class='row key-row-info'
-       *ngFor='let key of listOfSelectedKeys'>
+  <div *ngFor='let key of listOfSelectedKeys'
+       class='row key-row-info'>
     <div class='col'>
       <h5>Šifra</h5>
       <h4>{{key.code}}</h4>
     </div>
     <div class='col'>
       <h5>Akutelna cena</h5>
-      <h4>{{key.idCurrentPrice.price}}</h4>
+      <h4>{{ key.idCurrentPrice.price}}</h4>
     </div>
     <div class='col'>
       <div class='inline'>
         <button mat-mini-fab style='background-color: #02d717'>
           <mat-icon (click)='addKey(key)'>add</mat-icon>
         </button>
-        <button mat-mini-fab color='warn' (click)='removeKey(key)'>
+        <button (click)='removeKey(key)' color='warn' mat-mini-fab>
           <mat-icon>remove</mat-icon>
         </button>
       </div>
@@ -125,6 +141,7 @@
 </div>
 
 <div class='text-right'>
-  <button mat-button class='default-btn' (click)='saveService()' [disabled]='listOfSelectedKeys.length ===0'>Sačuvaj</button>
+  <button (click)='saveService()' [disabled]='listOfSelectedKeys.length ===0' class='default-btn' mat-button>Sačuvaj
+  </button>
 </div>
 <mat-spinner #spinner diameter='25'></mat-spinner>

@@ -9,9 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ServiceKey } from './serviceKey';
-import { Client } from '../../client';
-import { WorkService } from './workService';
+import { ServiceKey } from "./serviceKey";
+import { Client } from "../../client";
+import { WorkService } from "./workService";
 
 
 export interface Service {

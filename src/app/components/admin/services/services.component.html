@@ -1,9 +1,9 @@
 <div class='component'>
   <div class='text-right'>
-    <button class='default-btn' mat-button [matMenuTriggerFor]='menu'>Dodaj</button>
+    <button [matMenuTriggerFor]='menu' class='default-btn' mat-button>Dodaj</button>
     <mat-menu #menu='matMenu'>
-      <button mat-menu-item (click)='openAddServiceDialog()'>Servis kljuc</button>
-      <button mat-menu-item (click)='openAddKeySubCategoryDialog()'>Usluga</button>
+      <button (click)='openAddServiceDialog()' mat-menu-item>Servis kljuc</button>
+      <button (click)='openAddKeySubCategoryDialog()' mat-menu-item>Usluga</button>
     </mat-menu>
   </div>
   <mat-tab-group>
@@ -24,15 +24,15 @@
           <mat-form-field appearance='outline' class='example-form-field'>
             <mat-label>Željeni datumi</mat-label>
             <mat-date-range-input [rangePicker]='rangePicker'>
-              <input matStartDate placeholder='Start date' formControlName='startDate'>
-              <input matEndDate placeholder='End date' formControlName='endDate'>
+              <input formControlName='startDate' matStartDate placeholder='Start date'>
+              <input formControlName='endDate' matEndDate placeholder='End date'>
             </mat-date-range-input>
-            <mat-datepicker-toggle matSuffix [for]='rangePicker'></mat-datepicker-toggle>
+            <mat-datepicker-toggle [for]='rangePicker' matSuffix></mat-datepicker-toggle>
             <mat-date-range-picker #rangePicker>
               <mat-date-range-picker-actions>
-                <button mat-button style='width: 100%;' class='red-border-btn'
-                        (click)='getServicesFromRange()'
-                        matDateRangePickerApply>
+                <button (click)='getServicesFromRange()' class='red-border-btn' mat-button
+                        matDateRangePickerApply
+                        style='width: 100%;'>
                   Filtriraj
                 </button>
               </mat-date-range-picker-actions>
