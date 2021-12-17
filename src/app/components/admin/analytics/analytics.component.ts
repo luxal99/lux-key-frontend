@@ -10,6 +10,7 @@ import { DialogUtil } from "../../../util/dialog-util";
 import { KeyOverviewDialogComponent } from "../key/key-overview-dialog/key-overview-dialog.component";
 import { DialogOptions } from "../../../util/dialog-options";
 import { MatDialog } from "@angular/material/dialog";
+import { MonthAnalyticsDto } from "../../../models/dto/MonthAnalyticsDto";
 
 @Component({
   selector: "app-analytics",
@@ -25,20 +26,34 @@ export class AnalyticsComponent implements OnInit {
   public barChartType: ChartType = "bar";
   public barChartLegend = true;
   public barChartPlugins = [];
+  public barChartColors: Color[] = [
+    {
+      borderColor: "black",
+      backgroundColor: "rgb(128,9,225)",
+    },
+  ];
 
   public barChartData: ChartDataSets[] = [
     { data: [], label: "Zarada" },
     { data: [], label: "Količina" },
   ];
 
+  public lineChartData: ChartDataSets[] = [
+    { data: [] },
+  ];
+
+  public lineChartLabels: Label[] = [];
+
   public lineChartColors: Color[] = [
     {
-      borderColor: "black",
-      backgroundColor: "rgb(128,9,225)",
+      borderColor: "white",
+      backgroundColor: "rgb(0,196,255)",
     },
   ];
+
   allTimeEarned: TotalEarning;
   workServiceEarning: TotalEarning;
+  listOfEarningsByMonth: MonthAnalyticsDto[];
   listOfTopFivePopularKeys: PopularKeyDto[] = [];
   listOfEarningsByKeySubCategory: EarningByKeySubCategoryDto[] = [];
 
@@ -50,6 +65,7 @@ export class AnalyticsComponent implements OnInit {
     this.getTopFivePopularKeys();
     this.getEarningByKeySubCategory();
     this.getWorkServiceEarning();
+    this.getEarningsByMonth();
   }
 
   getAllTimeEarned() {
@@ -76,6 +92,14 @@ export class AnalyticsComponent implements OnInit {
   getTopFivePopularKeys() {
     this.analyticsService.getTopFivePopularKeys().subscribe((resp) => {
       this.listOfTopFivePopularKeys = resp;
+    });
+  }
+
+  getEarningsByMonth() {
+    this.analyticsService.getEarningsByMonth().subscribe((resp) => {
+      this.lineChartLabels = resp.map((item) => item.month);
+      this.lineChartData[0].data = resp.map((item) => item.total);
+      this.listOfEarningsByMonth = resp
     });
   }
 
