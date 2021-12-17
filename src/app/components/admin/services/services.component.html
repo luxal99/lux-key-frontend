@@ -12,7 +12,13 @@
       <div class='tab-content'>
         <app-service-table-binding (cb)='getServicesInCurrentWeek()'
                                    [list]='listOfCurrentWeekServices'></app-service-table-binding>
-        <div class='text-right'>
+        <mat-paginator [length]="100"
+                       [pageSize]="10"
+                       [pageSizeOptions]="[5, 10, 25, 100]"
+                       aria-label="Select page">
+        </mat-paginator>
+
+        <div class='text-right mt-2'>
           <h5>Ukupno: <b>{{listOfCurrentWeekServices | sumGross}}</b></h5>
         </div>
 
