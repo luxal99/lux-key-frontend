@@ -1,0 +1,30 @@
+<div class="text-right">
+  <button mat-button [matMenuTriggerFor]="sortByDateMenu">
+    Sortiraj po datumu
+    <mat-icon>expand_more</mat-icon>
+  </button>
+  <mat-menu #sortByDateMenu="matMenu">
+    <button mat-menu-item (click)="sortByDateDESC.emit(true)">
+      Po datumu opadajuće
+      <mat-icon>expand_more</mat-icon>
+    </button>
+    <button mat-menu-item (click)="sortByDateASC.emit(true)">
+      Po datumu rastuće
+      <mat-icon>expand_less</mat-icon>
+    </button>
+  </mat-menu>
+  <button mat-button [matMenuTriggerFor]="sortByPriceMenu">
+    Sortiraj po ceni
+    <mat-icon>expand_more</mat-icon>
+  </button>
+  <mat-menu #sortByPriceMenu="matMenu">
+    <button mat-menu-item (click)="sortByPriceDESC.emit(true)">
+      Po ceni opadajuće
+      <mat-icon>expand_more</mat-icon>
+    </button>
+    <button mat-menu-item (click)="sortByPriceASC.emit(true)">
+      Po ceni rastuće
+      <mat-icon>expand_less</mat-icon>
+    </button>
+  </mat-menu>
+</div>

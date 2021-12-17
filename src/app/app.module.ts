@@ -57,6 +57,7 @@ import { MatBadgeModule } from "@angular/material/badge";
 import { CountSelectedKeysPipe } from './pipes/count-selected-keys.pipe';
 import { AnalyticsComponent } from './components/admin/analytics/analytics.component';
 import { ChartsModule } from "ng2-charts";
+import { ServiceHeaderToolComponent } from './components/admin/services/service-header-tool/service-header-tool.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +106,8 @@ import { ChartsModule } from "ng2-charts";
     ImageUploadComponent,
     CountSelectedKeysPipe,
     AnalyticsComponent,
+    ServiceHeaderToolComponent,
+    ServiceHeaderToolComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
+import { sortType } from "../../../types/types";
+
 export interface SortDto {
-  sortType: SortType;
+  sortType: sortType;
   columnName: string;
 }
 
-type SortType = "ASC" | "DESC"
