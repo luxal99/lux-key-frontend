@@ -12,14 +12,14 @@
       <div class='tab-content'>
         <app-service-table-binding (cb)='getServicesInCurrentWeek()'
                                    [list]='listOfCurrentWeekServices'></app-service-table-binding>
-        <mat-paginator [length]="100"
-                       [pageSize]="10"
-                       [pageSizeOptions]="[5, 10, 25, 100]"
+        <mat-paginator [length]="currentWeekDataCount"
+                       (page)='getServicesInCurrentWeek($event)'
+                       [pageSizeOptions]="[10, 15]"
                        aria-label="Select page">
         </mat-paginator>
 
         <div class='text-right mt-2'>
-          <h5>Ukupno: <b>{{listOfCurrentWeekServices | sumGross}}</b></h5>
+          <h5>Ukupno: <b>{{currentWeekTotal}}</b></h5>
         </div>
 
       </div>
@@ -48,8 +48,13 @@
         <mat-spinner #periodSpinner diameter='25' style='margin: 2em auto'></mat-spinner>
         <app-service-table-binding [list]='listOfDateRangeServices'></app-service-table-binding>
 
+        <mat-paginator [length]="customPeriodDataCount"
+                       [pageSizeOptions]="[ 10, 15]"
+                       (page)='getServicesFromRange($event)'
+                       aria-label="Select page">
+        </mat-paginator>
         <div class='text-right'>
-          <h5>Ukupno: <b>{{listOfDateRangeServices | sumGross}}</b></h5>
+          <h5>Ukupno: <b>{{customPeriodTotal}}</b></h5>
         </div>
       </div>
     </mat-tab>

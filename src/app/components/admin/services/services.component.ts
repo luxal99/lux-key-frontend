@@ -1,43 +1,62 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ServiceService } from '../../../service/service.service';
-import { DefaultComponent } from '../../../util/default-component';
-import { Service } from '../../../models/service';
-import { DialogUtil } from '../../../util/dialog-util';
-import { AddServiceDialogComponent } from './add-service-dialog/add-service-dialog.component';
-import { DialogOptions } from '../../../util/dialog-options';
-import { MatDialog } from '@angular/material/dialog';
-import * as moment from 'moment';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FormControlNames, InputTypes } from '../../../constant/const';
-import { KeySubCategory } from '../../../models/keySubCategory';
-import { FormBuilderConfig } from '../../../models/FormBuilderConfig';
-import { FormBuilderComponent } from '../../form-components/form-builder/form-builder.component';
-import { WorkServiceService } from '../../../service/work-service.service';
-import { MatSpinner } from '@angular/material/progress-spinner';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { ServiceService } from "../../../service/service.service";
+import { DefaultComponent } from "../../../util/default-component";
+import { Service } from "../../../models/service";
+import { DialogUtil } from "../../../util/dialog-util";
+import { AddServiceDialogComponent } from "./add-service-dialog/add-service-dialog.component";
+import { DialogOptions } from "../../../util/dialog-options";
+import { MatDialog } from "@angular/material/dialog";
+import * as moment from "moment";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { DATE_VALUE_FORMAT, FormControlNames, InputTypes } from "../../../constant/const";
+import { KeySubCategory } from "../../../models/keySubCategory";
+import { FormBuilderConfig } from "../../../models/FormBuilderConfig";
+import { FormBuilderComponent } from "../../form-components/form-builder/form-builder.component";
+import { WorkServiceService } from "../../../service/work-service.service";
+import { MatSpinner } from "@angular/material/progress-spinner";
+import { Query } from "../../../models/dto/query/Query";
 
 @Component({
-  selector: 'app-services',
-  templateUrl: './services.component.html',
-  styleUrls: ['./services.component.sass'],
+  selector: "app-services",
+  templateUrl: "./services.component.html",
+  styleUrls: ["./services.component.sass"],
 })
 export class ServicesComponent
   extends DefaultComponent<Service>
-  implements OnInit
-{
-  @ViewChild('periodSpinner') periodSpinner!: MatSpinner;
-  startOfMonth = moment().clone().startOf('month').format('YYYY-MM-DD');
-  endOfMonth = moment().clone().endOf('month').format('YYYY-MM-DD');
+  implements OnInit {
+  @ViewChild("periodSpinner") periodSpinner!: MatSpinner;
+  startOfMonth = moment().clone().startOf("month").format(DATE_VALUE_FORMAT);
+  endOfMonth = moment().clone().endOf("month").format(DATE_VALUE_FORMAT);
 
-  startDate: string = moment().startOf('isoWeek').format('YYYY-MM-DD');
-  endDate: string = moment().endOf('isoWeek').format('YYYY-MM-DD');
+  startDate: string = moment().startOf("isoWeek").format(DATE_VALUE_FORMAT);
+  endDate: string = moment().endOf("isoWeek").format(DATE_VALUE_FORMAT);
 
   listOfCurrentWeekServices: Service[] = [];
   listOfDateRangeServices: Service[] = [];
+
+  queryBuilder: Query = {
+    dateQuery: { startDate: this.startDate, endDate: this.endDate },
+    pagination: { rows: 10, page: 0 },
+    sort: { sortType: "DESC", columnName: "service.createdDate" },
+  };
+
+  customPeriodQueryBuilder: Query = {
+    dateQuery: { startDate: this.startOfMonth, endDate: this.endOfMonth },
+    pagination: { rows: 10, page: 0 },
+    sort: { sortType: "DESC", columnName: "service.createdDate" },
+  };
 
   dateRangeForm = new FormGroup({
     startDate: new FormControl(this.startOfMonth, Validators.required),
     endDate: new FormControl(this.endOfMonth, Validators.required),
   });
+
+  currentWeekDataCount = 0;
+  currentWeekNumberOfPages = 0;
+  currentWeekTotal = 0;
+
+  customPeriodTotal = 0;
+  customPeriodDataCount = 0;
 
   constructor(
     private serviceService: ServiceService,
@@ -54,11 +73,23 @@ export class ServicesComponent
     }, 100);
   }
 
-  getServicesInCurrentWeek(): void {
+  getServicesInCurrentWeek(page?: any): void {
+    if (page) {
+      this.getSpinnerService.show(this.spinner);
+      this.queryBuilder.pagination.page = page.pageIndex;
+      this.queryBuilder.pagination.rows = page.pageSize;
+    }
     this.serviceService
-      .findServiceByDate(this.startDate, this.endDate)
+      .findServiceByDate(encodeURI(JSON.stringify(this.queryBuilder)))
       .subscribe((resp) => {
-        this.listOfCurrentWeekServices = resp;
+        this.listOfCurrentWeekServices = resp.body;
+        this.currentWeekDataCount = Number.parseInt(
+          resp.headers.get("data_count")
+        );
+        this.currentWeekNumberOfPages = Number.parseInt(
+          resp.headers.get("number_of_pages")
+        );
+        this.currentWeekTotal = Number.parseInt(resp.headers.get("sum"));
         this.getSpinnerService.hide(this.spinner);
       });
   }
@@ -67,8 +98,8 @@ export class ServicesComponent
     DialogUtil.openDialog(
       AddServiceDialogComponent,
       DialogOptions.setDialogConfig({
-        width: '50%',
-        maxHeight: '80vh',
+        width: "50%",
+        maxHeight: "80vh",
       }),
       this.dialog
     )
@@ -78,18 +109,31 @@ export class ServicesComponent
       });
   }
 
-  getServicesFromRange(): void {
+  getServicesFromRange(page?: any): void {
+    if (page) {
+      this.getSpinnerService.show(this.spinner);
+      this.customPeriodQueryBuilder.pagination.page = page.pageIndex;
+      this.customPeriodQueryBuilder.pagination.rows = page.pageSize;
+    }
+
+    this.customPeriodQueryBuilder.dateQuery.startDate = moment(this.dateRangeForm.get(
+      FormControlNames.START_DATE_FORM_CONTROL
+    ).value).format(DATE_VALUE_FORMAT);
+    this.customPeriodQueryBuilder.dateQuery.endDate = moment(this.dateRangeForm.get(
+      FormControlNames.END_DATE_FORM_CONTROL
+    ).value).format(DATE_VALUE_FORMAT);
     this.getSpinnerService.show(this.periodSpinner);
-    const startDate = moment(
-      this.dateRangeForm.get(FormControlNames.START_DATE_FORM_CONTROL).value
-    ).format('YYYY-MM-DD');
-    const endDate = moment(
-      this.dateRangeForm.get(FormControlNames.END_DATE_FORM_CONTROL).value
-    ).format('YYYY-MM-DD ');
     this.serviceService
-      .findServiceByDate(startDate, endDate)
+      .findServiceByDate(
+        encodeURI(JSON.stringify(this.customPeriodQueryBuilder))
+      )
       .subscribe((resp) => {
-        this.listOfDateRangeServices = resp;
+        this.listOfDateRangeServices = resp.body;
+        this.customPeriodDataCount = Number.parseInt(
+          resp.headers.get("data_count")
+        );
+
+        this.customPeriodTotal = Number.parseInt(resp.headers.get("sum"));
         this.getSpinnerService.hide(this.periodSpinner);
       });
   }
@@ -102,37 +146,37 @@ export class ServicesComponent
         {
           name: FormControlNames.DATE_FORM_CONTROL,
           type: InputTypes.DATE,
-          label: 'Datum',
-          value: moment().format('YYYY-MM-DD'),
+          label: "Datum",
+          value: moment().format(DATE_VALUE_FORMAT),
           validation: [Validators.required],
         },
         {
           name: FormControlNames.NOTES,
           type: InputTypes.INPUT,
-          label: 'Naslov',
+          label: "Naslov",
         },
         {
           name: FormControlNames.ID_WORK_SERVICE,
           type: InputTypes.SELECT,
-          label: 'Usluga',
+          label: "Usluga",
           options: await this.workService.getAll().toPromise(),
           validation: [Validators.required],
         },
         {
           name: FormControlNames.GROSS_FORM_CONTROL,
           type: InputTypes.INPUT,
-          label: 'Ukupno',
+          label: "Ukupno",
         },
       ],
       formValues: keySubCategory,
-      headerText: 'Dodaj servis',
+      headerText: "Dodaj servis",
       service: this.serviceService,
     };
     DialogUtil.openDialog(
       FormBuilderComponent,
       DialogOptions.setDialogConfig({
-        position: { top: '6%' },
-        width: '30%',
+        position: { top: "6%" },
+        width: "30%",
         data: configData,
       }),
       this.dialog
