@@ -79,3 +79,5 @@ export class Message {
   static SUCCESS = "Uspešno";
   static ERR = "Dogodila se greška";
 }
+
+export const DATE_VALUE_FORMAT="YYYY-MM-DD"
