@@ -7,7 +7,6 @@ import { Key } from "../models/key";
 export class SumKeyPipe implements PipeTransform {
 
   transform(listOfKey: Key[]): number {
-    console.log(listOfKey);
     let total = 0;
     listOfKey.filter((item) => total += item.idCurrentPrice.price);
     return total;
