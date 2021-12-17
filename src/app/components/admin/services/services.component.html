@@ -1,21 +1,44 @@
 <div class='component'>
   <div class='text-right'>
-    <button [matMenuTriggerFor]='menu' class='default-btn' mat-button>Dodaj</button>
+    <button class='default-btn' mat-button [matMenuTriggerFor]='menu'>
+      Dodaj
+    </button>
     <mat-menu #menu='matMenu'>
-      <button (click)='openAddServiceDialog()' mat-menu-item>Servis kljuc</button>
-      <button (click)='openAddKeySubCategoryDialog()' mat-menu-item>Usluga</button>
+      <button mat-menu-item (click)='openAddServiceDialog()'>
+        Servis kljuc
+      </button>
+      <button mat-menu-item (click)='openAddKeySubCategoryDialog()'>
+        Usluga
+      </button>
     </mat-menu>
   </div>
   <mat-tab-group>
     <mat-tab label='Nedeljni pregled'>
       <mat-spinner #spinner diameter='25'></mat-spinner>
       <div class='tab-content'>
-        <app-service-table-binding (cb)='getServicesInCurrentWeek()'
-                                   [list]='listOfCurrentWeekServices'></app-service-table-binding>
-        <div class='text-right'>
-          <h5>Ukupno: <b>{{listOfCurrentWeekServices | sumGross}}</b></h5>
-        </div>
+        <app-service-header-tool
+          (sortByPriceDESC)="sortByPrice(queryBuilder, 'DESC', 'WEEK')"
+          (sortByPriceASC)="sortByPrice(queryBuilder, 'ASC', 'WEEK')"
+          (sortByDateDESC)="sortByDate(queryBuilder, 'DESC', 'WEEK')"
+          (sortByDateASC)="sortByDate(queryBuilder, 'ASC', 'WEEK')"
+        ></app-service-header-tool>
+        <app-service-table-binding
+          (cb)='getServicesInCurrentWeek()'
+          [list]='listOfCurrentWeekServices'
+        ></app-service-table-binding>
+        <mat-paginator
+          [length]='currentWeekPaginationData.dataCount'
+          (page)='getServicesInCurrentWeek($event)'
+          [pageSizeOptions]='[10, 15]'
+          aria-label='Select page'
+        >
+        </mat-paginator>
 
+        <div class='text-right mt-2'>
+          <h5>
+            Ukupno: <b>{{ currentWeekPaginationData.total }}</b>
+          </h5>
+        </div>
       </div>
     </mat-tab>
     <mat-tab label='Opšti pregled'>
@@ -24,26 +47,69 @@
           <mat-form-field appearance='outline' class='example-form-field'>
             <mat-label>Željeni datumi</mat-label>
             <mat-date-range-input [rangePicker]='rangePicker'>
-              <input formControlName='startDate' matStartDate placeholder='Start date'>
-              <input formControlName='endDate' matEndDate placeholder='End date'>
+              <input
+                matStartDate
+                placeholder='Start date'
+                formControlName='startDate'
+              />
+              <input
+                matEndDate
+                placeholder='End date'
+                formControlName='endDate'
+              />
             </mat-date-range-input>
-            <mat-datepicker-toggle [for]='rangePicker' matSuffix></mat-datepicker-toggle>
+            <mat-datepicker-toggle
+              matSuffix
+              [for]='rangePicker'
+            ></mat-datepicker-toggle>
             <mat-date-range-picker #rangePicker>
               <mat-date-range-picker-actions>
-                <button (click)='getServicesFromRange()' class='red-border-btn' mat-button
-                        matDateRangePickerApply
-                        style='width: 100%;'>
+                <button
+                  mat-button
+                  style='width: 100%'
+                  class='red-border-btn'
+                  (click)='getServicesFromRange()'
+                  matDateRangePickerApply
+                >
                   Filtriraj
                 </button>
               </mat-date-range-picker-actions>
             </mat-date-range-picker>
           </mat-form-field>
         </form>
-        <mat-spinner #periodSpinner diameter='25' style='margin: 2em auto'></mat-spinner>
-        <app-service-table-binding [list]='listOfDateRangeServices'></app-service-table-binding>
+        <mat-spinner
+          #periodSpinner
+          diameter='25'
+          style='margin: 2em auto'
+        ></mat-spinner>
 
+        <app-service-header-tool
+          (sortByPriceDESC)="
+            sortByPrice(customPeriodQueryBuilder, 'DESC', 'CUSTOM')
+          "
+          (sortByPriceASC)="
+            sortByPrice(customPeriodQueryBuilder, 'ASC', 'CUSTOM')
+          "
+          (sortByDateDESC)="
+            sortByDate(customPeriodQueryBuilder, 'DESC', 'CUSTOM')
+          "
+          (sortByDateASC)="sortByDate(customPeriodQueryBuilder, 'ASC', 'CUSTOM')"
+        ></app-service-header-tool>
+        <app-service-table-binding
+          [list]='listOfDateRangeServices'
+        ></app-service-table-binding>
+
+        <mat-paginator
+          [length]='customPeriodPaginationData.dataCount'
+          [pageSizeOptions]='[10, 15]'
+          (page)='getServicesFromRange($event)'
+          aria-label='Select page'
+        >
+        </mat-paginator>
         <div class='text-right'>
-          <h5>Ukupno: <b>{{listOfDateRangeServices | sumGross}}</b></h5>
+          <h5>
+            Ukupno: <b>{{ customPeriodPaginationData.total }}</b>
+          </h5>
         </div>
       </div>
     </mat-tab>

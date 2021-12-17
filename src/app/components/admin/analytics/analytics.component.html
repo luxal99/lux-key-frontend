@@ -1,54 +1,92 @@
 <div class='component'>
-  <div class='row'>
-
-    <div class='col-sm-5 text-center'>
-      <div class='all-time-earned row'>
-        <div class='col-sm'>
-          <div class='row'>
+  <mat-tab-group>
+    <mat-tab label='Osnovna analitika'>
+      <div class='row'>
+        <div class='col-sm-5 text-center'>
+          <div class='all-time-earned row'>
             <div class='col-sm'>
-              <div class='circle'>
-                <h5 *ngIf='allTimeEarned'>{{allTimeEarned.total}}</h5>
+              <div class='row'>
+                <div class='col-sm'>
+                  <div class='circle'>
+                    <h5 *ngIf='allTimeEarned'>{{ allTimeEarned.total }}</h5>
+                  </div>
+                </div>
+                <div class='col-sm'>
+                  <h5 class='mt-4'>Ukupno od otvaranja radnje</h5>
+                </div>
               </div>
             </div>
             <div class='col-sm'>
-              <h5 class='mt-4'>Ukupno od otvaranja radnje</h5>
+              <div class='row'>
+                <div class='col-sm'>
+                  <div class='circle'>
+                    <h5 *ngIf='workServiceEarning'>
+                      {{ workServiceEarning.total }}
+                    </h5>
+                  </div>
+                </div>
+                <div class='col-sm'>
+                  <h5 class='mt-4'>Ukupno od popravki</h5>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class='col-sm'>
-          <div class='row'>
-            <div class='col-sm'>
-              <div class='circle'>
-                <h5 *ngIf='workServiceEarning'>{{workServiceEarning.total}}</h5>
+        <div class='col-sm-7'>
+          <h5><b>Zarada po potkatekorijama</b></h5>
+          <canvas
+            baseChart
+            [datasets]='barChartData'
+            [labels]='barChartLabels'
+            [options]='barChartOptions'
+            [plugins]='barChartPlugins'
+            [legend]='barChartLegend'
+            [colors]='barChartColors'
+            [chartType]='barChartType'
+          >
+          </canvas>
+        </div>
+      </div>
+      <h3 class='font-weight-bold'>Najpopularniji ključevi</h3>
+      <div class='row mt-3'>
+        <div
+          (click)='openKeyOverviewDialog(key.id)'
+          class='col-sm popular-key-card'
+          *ngFor='let key of listOfTopFivePopularKeys'
+        >
+          <h5>{{ key.code }}</h5>
+          <h4>
+            Ugrađeno: <b>{{ key.count }}</b> komada
+          </h4>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label='Analitika po mesecima'>
+      <div class='component'>
+        <div class='row'>
+          <div class='col-sm-4'>
+            <h3>Zarada po mesecima</h3>
+            <div class='row month-row' *ngFor='let monthEarning of listOfEarningsByMonth'>
+              <div class='col'>
+                <h6><b>Mesec</b></h6>
+                <h5>{{monthEarning.month}}</h5>
+              </div>
+              <div class='col'>
+                <h6><b>Zarada</b></h6>
+                <h5>{{monthEarning.total}}</h5>
               </div>
             </div>
-            <div class='col-sm'>
-              <h5 class='mt-4'>Ukupno od popravki</h5>
-            </div>
+          </div>
+          <div class='col-sm-8'>
+            <canvas baseChart height="200"
+                    [datasets]='lineChartData'
+                    chartType='line'
+                    [colors]='lineChartColors'
+                    [labels]='lineChartLabels'
+                    type="line"></canvas>
           </div>
         </div>
       </div>
-    </div>
-    <div class='col-sm-7'>
-      <h5><b>Zarada po potkatekorijama</b></h5>
-      <canvas [chartType]='barChartType'
-              [colors]='lineChartColors'
-              [datasets]='barChartData'
-              [labels]='barChartLabels'
-              [legend]='barChartLegend'
-              [options]='barChartOptions'
-              [plugins]='barChartPlugins'
-              baseChart>
-      </canvas>
-    </div>
-  </div>
-  <h3 class='font-weight-bold'>Najpopularniji ključevi</h3>
-  <div class='row mt-3'>
-    <div (click)='openKeyOverviewDialog(key.id)' *ngFor='let key of listOfTopFivePopularKeys'
-         class='col-sm popular-key-card'>
-      <h5>{{key.code}}</h5>
-      <h4>Ugrađeno: <b>{{key.count}}</b> komada</h4>
-    </div>
-  </div>
-
+    </mat-tab>
+  </mat-tab-group>
 </div>
