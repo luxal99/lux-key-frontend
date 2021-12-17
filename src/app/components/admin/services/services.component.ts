@@ -196,7 +196,6 @@ export class ServicesComponent
   sortByPrice(query: Query, sortType: sortType, queryType: queryType): void {
     query.sort.sortType = sortType;
     query.sort.columnName = 'service.gross';
-    console.log(query);
     switch (queryType) {
       case 'CUSTOM':
         this.getServicesFromRange(0);
