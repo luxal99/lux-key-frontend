@@ -223,12 +223,12 @@ export class AddServiceDialogComponent
       }
     );
 
-    service.serviceKeys = [...new Map(this.listOfSelectedKeys.map((item) => ({
-      idKey: item.id,
-      amount: item.amount,
-      decrement: this.countOccurrence(item),
-      keyPrice:item.idCurrentPrice.price
-    })).map(item => [item["id"], item])).values()];
+    // service.serviceKeys = [...new Map(this.listOfSelectedKeys.map((item) => ({
+    //   idKey: item.id,
+    //   amount: item.amount,
+    //   decrement: this.countOccurrence(item),
+    //   keyPrice:item.idCurrentPrice.price
+    // })).map(item => [item["id"], item])).values()];
 
     if (this.data) {
       service.id = this.data.id;
