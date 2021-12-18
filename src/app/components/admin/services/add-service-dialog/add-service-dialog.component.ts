@@ -224,7 +224,7 @@ export class AddServiceDialogComponent
     );
 
     service.serviceKeys = [...new Map(this.listOfSelectedKeys.map((item) => ({
-      id: item.id,
+      idKey: item.id,
       amount: item.amount,
       decrement: this.countOccurrence(item),
       keyPrice:item.idCurrentPrice.price
