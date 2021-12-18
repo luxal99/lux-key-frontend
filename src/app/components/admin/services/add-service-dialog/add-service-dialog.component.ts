@@ -7,7 +7,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Key } from "../../../../models/key";
 import { KeyService } from "../../../../service/key.service";
 import {
-  CLIENT_ID_PREFIX,
+  CLIENT_ID_PREFIX, DATE_VALUE_FORMAT,
   FormControlNames,
   InputTypes,
   KEY_ID_PREFIX,
@@ -209,7 +209,7 @@ export class AddServiceDialogComponent
     const service: Service = this.serviceForm.getRawValue();
     service.notes = this.editorComponent.editorInstance.getData();
     service.idClient = this.selectedClient;
-    service.date = moment(service.date).format("YYYY-MM-DD");
+    service.date = moment(service.date).format(DATE_VALUE_FORMAT);
     service.serviceKeys = this.listOfSelectedKeys.map((item) => ({
       idKey: { id: item.id, amount: item.amount },
       keyPrice: item.idCurrentPrice.price,
