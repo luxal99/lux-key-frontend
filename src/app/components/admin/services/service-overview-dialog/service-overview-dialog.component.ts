@@ -26,4 +26,8 @@ export class ServiceOverviewDialogComponent implements OnInit {
       data: key,
     }), this.dialog);
   }
+
+  countOccurrence(key: Key): number {
+    return this.data.serviceKeys.filter((item) => item.id === key.id).length;
+  }
 }
