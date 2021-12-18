@@ -215,13 +215,21 @@ export class AddServiceDialogComponent
       keyPrice: item.idCurrentPrice.price,
     }));
 
-    service.gross = 0
+    service.gross = 0;
 
     service.serviceKeys.forEach(
       (item) => {
         service.gross += item.keyPrice;
       }
     );
+
+    service.serviceKeys = [...new Map(this.listOfSelectedKeys.map((item) => ({
+      id: item.id,
+      amount: item.amount,
+      decrement: this.countOccurrence(item),
+      keyPrice:item.idCurrentPrice.price
+    })).map(item => [item["id"], item])).values()];
+
     if (this.data) {
       service.id = this.data.id;
       this.getSpinnerService.hide(this.spinner);
@@ -230,5 +238,9 @@ export class AddServiceDialogComponent
       super.save(service);
       this.getSpinnerService.hide(this.spinner);
     }
+  }
+
+  countOccurrence(key: Key): number {
+    return this.listOfSelectedKeys.filter((item) => item.id === key.id).length;
   }
 }
