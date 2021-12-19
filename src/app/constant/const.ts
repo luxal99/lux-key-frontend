@@ -70,14 +70,14 @@ export class SpinnerOptions {
 
 export const TOKEN_NAME = "Authorization";
 
-export class PageRoutes {
-  static LOGIN = "/";
-  static ADMIN = "/admin";
-}
-
 export class Message {
   static SUCCESS = "Uspešno";
   static ERR = "Dogodila se greška";
 }
 
-export const DATE_VALUE_FORMAT="YYYY-MM-DD"
+export const DATE_VALUE_FORMAT = "YYYY-MM-DD";
+
+export class Pages {
+  static LOGIN = "/login";
+  static ADMIN = "/";
+}
