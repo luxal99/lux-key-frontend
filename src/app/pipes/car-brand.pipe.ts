@@ -1,8 +1,8 @@
-import {Pipe, PipeTransform} from '@angular/core';
-import {CarBrand} from '../models/carBrand';
+import { Pipe, PipeTransform } from "@angular/core";
+import { CarBrand } from "../models/carBrand";
 
 @Pipe({
-  name: 'carBrand'
+  name: "carBrand"
 })
 export class CarBrandPipe implements PipeTransform {
 

@@ -9,9 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ServiceKey } from './serviceKey';
-import { Client } from '../../client';
-import { WorkService } from './workService';
+import { ServiceKey } from "./serviceKey";
+import { Client } from "../../client";
+import { WorkService } from "./workService";
 
 
 export interface Service {
@@ -21,7 +21,7 @@ export interface Service {
   gross: number;
   createdDate: string;
   lastModifiedDate: string;
-  serviceKeys: ServiceKey[];
+  serviceKeys: ServiceKey[] | any[];
   notes?: string;
   idClient?: Client;
   serviceType: string;

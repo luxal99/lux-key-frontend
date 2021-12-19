@@ -1,13 +1,13 @@
-<div [formGroup]="group">
-  <mat-form-field appearance="outline">
+<div [formGroup]='group'>
+  <mat-form-field appearance='outline'>
     <mat-label>Izaberi opciju</mat-label>
-    <input type="text"
-           matInput [(ngModel)]="searchText"
-           [formControlName]="config.name"
-           [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-      <mat-option (click)="onOptionClick.emit(true)" *ngFor="let carBrand of config.options | carBrand:searchText"
-                  [value]="carBrand">
+    <input [(ngModel)]='searchText'
+           [formControlName]='config.name' [matAutocomplete]='auto'
+           matInput
+           type='text'>
+    <mat-autocomplete #auto='matAutocomplete' [displayWith]='displayFn'>
+      <mat-option (click)='onOptionClick.emit(true)' *ngFor='let carBrand of config.options | carBrand:searchText'
+                  [value]='carBrand'>
         {{carBrand.name}}
       </mat-option>
     </mat-autocomplete>

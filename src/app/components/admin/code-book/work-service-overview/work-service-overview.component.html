@@ -1,16 +1,16 @@
-<div class="text-right">
-  <button mat-button class="default-btn mt-2" (click)="openAddWorkServiceDialog()">Dodaj</button>
+<div class='text-right'>
+  <button (click)='openAddWorkServiceDialog()' class='default-btn mt-2' mat-button>Dodaj</button>
 </div>
-<mat-spinner #spinner diameter="25"></mat-spinner>
-<div class="row" *ngFor="let workService of listOfWorkServices">
-  <div class="col-5" (click)="openAddWorkServiceDialog(workService)">
+<mat-spinner #spinner diameter='25'></mat-spinner>
+<div *ngFor='let workService of listOfWorkServices' class='row'>
+  <div (click)='openAddWorkServiceDialog(workService)' class='col-5'>
     <h6>{{workService.name}}</h6>
   </div>
-  <div class="col-5" (click)="openAddWorkServiceDialog(workService)">
+  <div (click)='openAddWorkServiceDialog(workService)' class='col-5'>
     <h6>{{workService.price}}</h6>
   </div>
-  <div class="col-2">
-    <button mat-icon-button (click)="delete(workService.id)">
+  <div class='col-2'>
+    <button (click)='delete(workService.id)' mat-icon-button>
       <mat-icon>delete</mat-icon>
     </button>
   </div>

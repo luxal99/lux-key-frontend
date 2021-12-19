@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { MessageService } from '../../../service/message.service';
-import { Message } from 'src/app/models/Message';
+import { Component, OnInit } from "@angular/core";
+import { MessageService } from "../../../service/message.service";
+import { Message } from "src/app/models/Message";
 
 @Component({
-  selector: 'app-message',
-  templateUrl: './message.component.html',
-  styleUrls: ['./message.component.sass'],
+  selector: "app-message",
+  templateUrl: "./message.component.html",
+  styleUrls: ["./message.component.sass"],
 })
 export class MessageComponent implements OnInit {
 

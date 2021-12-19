@@ -1,27 +1,27 @@
-import { AfterViewChecked, ChangeDetectorRef, Component, Inject, OnChanges, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { FieldConfig } from 'src/app/models/FieldConfig';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { AuthGuard } from '../../../guards/auth.guard';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { SnackBarUtil } from 'src/app/util/snackbar-util';
-import { FormControlNames, Message } from 'src/app/constant/const';
-import { SpinnerService } from 'src/app/service/spinner-service.service';
-import { MatSpinner } from '@angular/material/progress-spinner';
-import { FormBuilderConfig } from '../../../models/FormBuilderConfig';
+import { AfterViewChecked, ChangeDetectorRef, Component, Inject, OnChanges, OnInit, ViewChild } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { FieldConfig } from "src/app/models/FieldConfig";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { AuthGuard } from "../../../guards/auth.guard";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { SnackBarUtil } from "src/app/util/snackbar-util";
+import { FormControlNames, Message } from "src/app/constant/const";
+import { SpinnerService } from "src/app/service/spinner-service.service";
+import { MatSpinner } from "@angular/material/progress-spinner";
+import { FormBuilderConfig } from "../../../models/FormBuilderConfig";
 
 @Component({
-  selector: 'app-form-builder',
-  templateUrl: './form-builder.component.html',
-  styleUrls: ['./form-builder.component.sass'],
+  selector: "app-form-builder",
+  templateUrl: "./form-builder.component.html",
+  styleUrls: ["./form-builder.component.sass"],
 })
 export class FormBuilderComponent implements OnChanges, OnInit, AfterViewChecked {
 
-  @ViewChild('spinner') spinner!: MatSpinner;
+  @ViewChild("spinner") spinner!: MatSpinner;
   form!: FormGroup;
 
   get controls(): any {
-    return this.configData.formFields.filter(({ type }) => type !== 'button');
+    return this.configData.formFields.filter(({ type }) => type !== "button");
   }
 
   get changes(): any {
@@ -111,7 +111,7 @@ export class FormBuilderComponent implements OnChanges, OnInit, AfterViewChecked
   setValue(): void {
     if (this.configData.formValues) {
       for (const [k, v] of Object.entries(this.configData.formValues)) {
-        if (k !== 'id' && k !== 'createdDate' && k !== 'lastModifiedDate') {
+        if (k !== "id" && k !== "createdDate" && k !== "lastModifiedDate") {
           this.form.controls[k].setValue(v, { emitEvent: true });
         }
       }

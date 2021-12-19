@@ -7,16 +7,16 @@
   </div>
 </div>
 <mat-divider></mat-divider>
-<div class='content' *ngIf='data.idClient'>
+<div *ngIf='data.idClient' class='content'>
   <h5><b>Klijent</b></h5>
   <h5>Ime i prezime: <b>{{data.idClient.firstName + ' ' + data.idClient.lastName}}</b></h5>
   <h5>Telefon: <b>{{data.idClient.telephone}}</b></h5>
 </div>
 <mat-divider></mat-divider>
-<div class='content' *ngIf='data.serviceKeys.length > 0'>
+<div *ngIf='data.serviceKeys.length > 0' class='content'>
   <h5><b>Ključevi</b></h5>
-  <div class='row key-row' *ngFor='let serviceKey of data.serviceKeys'
-       (click)='openKeyOverviewDialog(serviceKey.idKey)'>
+  <div (click)='openKeyOverviewDialog(serviceKey.idKey)' *ngFor='let serviceKey of data.serviceKeys'
+       class='row key-row'>
     <div class='col'>
       <h6>Šifra</h6>
       <h5>{{serviceKey.idKey.code}}</h5>
@@ -27,13 +27,13 @@
     </div>
   </div>
 </div>
-<div class='content' *ngIf='data.idWorkService'>
+<div *ngIf='data.idWorkService' class='content'>
   <h5><b>Usluga</b></h5>
   <h6>Naziv: <b>{{data.idWorkService.name}}</b></h6>
   <h6>Cena: <b>{{data.idWorkService.price}}</b></h6>
 </div>
 <mat-divider></mat-divider>
-<div class='content' *ngIf='data.notes'>
+<div *ngIf='data.notes' class='content'>
   <h5><b>Beleška</b></h5>
   <p [innerHTML]='data.notes'></p>
 </div>

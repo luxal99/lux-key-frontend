@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import {Key} from './key';
+import { Key } from "./key";
 
 
 export interface KeyPrice {

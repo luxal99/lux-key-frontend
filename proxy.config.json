@@ -9,7 +9,6 @@
       "/key-sub-category",
       "/client",
       "/key",
-      "/jwt",
       "/service",
       "/service-key",
       "/key-brand",
@@ -18,7 +17,7 @@
       "/message",
       "/key-image"
     ],
-    "target": "http://localhost:8088/",
+    "target": "http://localhost:8080/",
     "secure": false
   }
 ]

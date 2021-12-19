@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { KeySubCategory } from '../../models/keySubCategory';
+import { Injectable } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
+import { KeySubCategory } from "../../models/keySubCategory";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class KeyBehaviorService {
 

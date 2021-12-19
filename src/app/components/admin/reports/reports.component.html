@@ -1,19 +1,19 @@
 <div class='component'>
   <div class='text-right'>
-    <button class='default-btn' mat-button (click)='generate()'>Generiši</button>
+    <button (click)='generate()' class='default-btn' mat-button>Generiši</button>
   </div>
 
-  <div class='row' *ngFor='let report of listOfReports'>
+  <div *ngFor='let report of listOfReports' class='row'>
     <div class='col'>
       <h5>Kreirano dana:</h5>
       <h4>{{report.createdDate|date}}</h4>
     </div>
     <div class='col'>
-      <a target='_blank' [href]="'https://app.luxkey.rs/assets/reports/'+currentDate+'.xlsx'"
-         [download]="currentDate+'.xlsx'">
+      <a [download]="currentDate+'.xlsx'" [href]="'https://app.luxkey.rs/assets/reports/'+currentDate+'.xlsx'"
+         target='_blank'>
         <button mat-raised-button>Preuzmi</button>
       </a>
-      <button mat-raised-button color='warn' (click)='deleteReport(report.id)'>Obriši</button>
+      <button (click)='deleteReport(report.id)' color='warn' mat-raised-button>Obriši</button>
     </div>
   </div>
 </div>

@@ -11,7 +11,7 @@ import { KeyService } from "../../../../service/key.service";
 })
 export class KeyOverviewDialogComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Key ,
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Key,
               private keyService: KeyService) {
   }
 

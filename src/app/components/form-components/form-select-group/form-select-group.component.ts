@@ -1,12 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Field} from '../../../models/Field';
-import {FieldConfig} from '../../../models/FieldConfig';
-import {FormGroup} from '@angular/forms';
+import { Component, Input, OnInit } from "@angular/core";
+import { Field } from "../../../models/Field";
+import { FieldConfig } from "../../../models/FieldConfig";
+import { FormGroup } from "@angular/forms";
 
 @Component({
-  selector: 'app-form-select-group',
-  templateUrl: './form-select-group.component.html',
-  styleUrls: ['./form-select-group.component.sass']
+  selector: "app-form-select-group",
+  templateUrl: "./form-select-group.component.html",
+  styleUrls: ["./form-select-group.component.sass"]
 })
 export class FormSelectGroupComponent implements OnInit, Field {
 

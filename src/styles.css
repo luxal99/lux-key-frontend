@@ -1,13 +1,15 @@
 h1, h2, h3, h4, h5, h6, a, li, mat-checkbox, p, th, tr, td, button, .mat-step-text-label {
   font-family: "Work Sans", sans-serif !important;
 }
-:root{
+
+:root {
   --sat: env(safe-area-inset-top);
   --sar: env(safe-area-inset-right);
   --sab: env(safe-area-inset-bottom);
   --sal: env(safe-area-inset-left);
 
 }
+
 .default-btn {
   background-color: #ff4040 !important;
   color: #ffffff;

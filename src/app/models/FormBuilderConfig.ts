@@ -1,5 +1,5 @@
-import { GenericService } from '../service/generic.service';
-import { FieldConfig } from './FieldConfig';
+import { GenericService } from "../service/generic.service";
+import { FieldConfig } from "./FieldConfig";
 
 export interface FormBuilderConfig {
   service: GenericService<any>;

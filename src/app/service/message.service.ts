@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { GenericService } from './generic.service';
-import { Message, RestRoutes } from '../constant/const';
+import { Injectable } from "@angular/core";
+import { GenericService } from "./generic.service";
+import { Message, RestRoutes } from "../constant/const";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class MessageService extends GenericService<Message> {
-  route=RestRoutes.MESSAGE
+  route = RestRoutes.MESSAGE;
 }

@@ -64,7 +64,7 @@ export class KeyCardComponent implements OnInit {
     DialogUtil.openDialog(EditKeyDialogComponent, DialogOptions.setDialogConfig({
       position: { top: "1%" },
       width: "30%",
-      maxHeight:"90vh",
+      maxHeight: "90vh",
       data: key,
     }), this.dialog).afterClosed().subscribe(() => {
       this.getKeysBySubCategory();
@@ -84,7 +84,7 @@ export class KeyCardComponent implements OnInit {
       position: { top: "1%" },
       data: { idKeySubCategory: this.keyBehaviorService.getIdKeySubCategory() },
       width: "30%",
-      maxHeight:'90vh'
+      maxHeight: "90vh"
 
     }), this.dialog).afterClosed().subscribe(() => {
       this.getKeysBySubCategory();

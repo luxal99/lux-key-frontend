@@ -1,19 +1,19 @@
-<mat-spinner #spinner diameter="25"></mat-spinner>
-<div class="text-right">
-  <button mat-button class="default-btn" (click)="openAddKeySubCategoryDialog()">Dodaj</button>
+<mat-spinner #spinner diameter='25'></mat-spinner>
+<div class='text-right'>
+  <button (click)='openAddKeySubCategoryDialog()' class='default-btn' mat-button>Dodaj</button>
 </div>
-<div class="row" *ngFor="let keySubCategory of listOfItems">
-  <div (click)="openAddKeySubCategoryDialog(keySubCategory)" class="col-3">
+<div *ngFor='let keySubCategory of listOfItems' class='row'>
+  <div (click)='openAddKeySubCategoryDialog(keySubCategory)' class='col-3'>
     <h6>{{keySubCategory.name}}</h6>
   </div>
-  <div (click)="openAddKeySubCategoryDialog(keySubCategory)" class="col-3">
+  <div (click)='openAddKeySubCategoryDialog(keySubCategory)' class='col-3'>
     <h6>{{keySubCategory.idKeyCategory.name}}</h6>
   </div>
-  <div (click)="openAddKeySubCategoryDialog(keySubCategory)" class="col-3">
+  <div (click)='openAddKeySubCategoryDialog(keySubCategory)' class='col-3'>
     <h6>{{keySubCategory.createdDate}}</h6>
   </div>
-  <div class="col-3">
-    <button mat-icon-button (click)="delete(keySubCategory.id)">
+  <div class='col-3'>
+    <button (click)='delete(keySubCategory.id)' mat-icon-button>
       <mat-icon>delete</mat-icon>
     </button>
   </div>

@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpResponse} from '@angular/common/http';
-import {RestRoutes, TOKEN_NAME} from '../constant/const';
-import {Observable} from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpResponse } from "@angular/common/http";
+import { RestRoutes, TOKEN_NAME } from "../constant/const";
+import { Observable } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class JwtService {
 
@@ -12,6 +12,9 @@ export class JwtService {
   }
 
   verify(): Observable<any> {
-    return this.http.get(RestRoutes.JWT, {responseType: 'json', headers: {Authorization: sessionStorage.getItem(TOKEN_NAME)}});
+    return this.http.get(RestRoutes.JWT, {
+      responseType: "json",
+      headers: { Authorization: sessionStorage.getItem(TOKEN_NAME) }
+    });
   }
 }

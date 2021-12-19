@@ -1,7 +1,7 @@
 <mat-drawer-container class='example-container' fullscreen hasBackdrop='false'>
   <mat-drawer #drawer [mode]="isMobile ? 'over':'side'" [opened]='!isMobile'>
     <div class='text-right'>
-      <button *ngIf='isMobile' (click)='drawer.toggle()' mat-mini-fab>
+      <button (click)='drawer.toggle()' *ngIf='isMobile' mat-mini-fab>
         <mat-icon>close</mat-icon>
       </button>
     </div>
@@ -12,19 +12,19 @@
           <mat-icon>home</mat-icon>
         </h5>
       </a>
-      <app-component-activator icon='auto_stories' (load)='loadCodeBookComponent()'
+      <app-component-activator (load)='loadCodeBookComponent()' icon='auto_stories'
                                title='Šifarnik'></app-component-activator>
-      <app-component-activator icon='account_circle' (load)='loadClientComponent()'
+      <app-component-activator (load)='loadClientComponent()' icon='account_circle'
                                title='Klijenti'></app-component-activator>
-      <app-component-activator icon='vpn_key' (load)='loadKeyComponent()'
+      <app-component-activator (load)='loadKeyComponent()' icon='vpn_key'
                                title='Ključevi'></app-component-activator>
-      <app-component-activator icon='class' (load)='loadServicesComponent()'
+      <app-component-activator (load)='loadServicesComponent()' icon='class'
                                title='Servisi'></app-component-activator>
-      <app-component-activator icon='receipt' (load)='loadReportsComponent()'
+      <app-component-activator (load)='loadReportsComponent()' icon='receipt'
                                title='Izveštaji'></app-component-activator>
-      <app-component-activator icon='email' (load)='loadMessageComponent()'
+      <app-component-activator (load)='loadMessageComponent()' icon='email'
                                title='Poruke'></app-component-activator>
-      <app-component-activator icon='pie_chart' (load)='loadAnalyticsComponent()'
+      <app-component-activator (load)='loadAnalyticsComponent()' icon='pie_chart'
                                title='Analitika'></app-component-activator>
     </div>
   </mat-drawer>

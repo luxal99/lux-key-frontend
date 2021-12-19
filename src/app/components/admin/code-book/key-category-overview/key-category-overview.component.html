@@ -1,16 +1,16 @@
-<div class="text-right">
-  <button mat-button class="default-btn" (click)="openAddKeyCategoryDialog()">Dodaj</button>
+<div class='text-right'>
+  <button (click)='openAddKeyCategoryDialog()' class='default-btn' mat-button>Dodaj</button>
 </div>
-<mat-spinner #spinner diameter="25"></mat-spinner>
-<div class="row" *ngFor="let keyCategory of listOfItems">
-  <div class="col-5" (click)="openAddKeyCategoryDialog(keyCategory)">
+<mat-spinner #spinner diameter='25'></mat-spinner>
+<div *ngFor='let keyCategory of listOfItems' class='row'>
+  <div (click)='openAddKeyCategoryDialog(keyCategory)' class='col-5'>
     <h6>{{keyCategory.name}}</h6>
   </div>
-  <div class="col-5" (click)="openAddKeyCategoryDialog(keyCategory)">
+  <div (click)='openAddKeyCategoryDialog(keyCategory)' class='col-5'>
     <h6>{{keyCategory.createdDate}}</h6>
   </div>
-  <div class="col-2">
-    <button mat-icon-button (click)="delete(keyCategory.id)">
+  <div class='col-2'>
+    <button (click)='delete(keyCategory.id)' mat-icon-button>
       <mat-icon>delete</mat-icon>
     </button>
   </div>

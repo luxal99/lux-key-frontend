@@ -1,12 +1,12 @@
-<div class='dynamic-field form-select' [formGroup]='group'>
+<div [formGroup]='group' class='dynamic-field form-select'>
   <mat-form-field [appearance]='appearance' [style]="{'width':width}">
     <mat-label>{{config.label}}</mat-label>
 
-    <mat-select [disabled]='isDisabled' [compareWith]='compareObjects' (selectionChange)='onOptionClick()'
-                [(ngModel)]='model'
+    <mat-select (selectionChange)='onOptionClick()' *ngIf='!config.multipleOptions' [(ngModel)]='model'
+                [compareWith]='compareObjects'
+                [disabled]='isDisabled'
                 [formControlName]='config.name'
                 [required]='isRequired'
-                *ngIf='!config.multipleOptions'
     >
       <mat-option value=''>---</mat-option>
       <mat-option (click)='onOptionClick()' *ngFor='let item of config.options|search:searchProperty:searchText'
@@ -14,14 +14,14 @@
         {{item[bindValue] || item }}
       </mat-option>
     </mat-select>
-    <mat-select [disabled]='isDisabled' [compareWith]='compareObjects' (selectionChange)='onOptionClick()'
-                [(ngModel)]='model'
+    <mat-select (selectionChange)='onOptionClick()' *ngIf='config.multipleOptions' [(ngModel)]='model'
+                [compareWith]='compareObjects'
+                [disabled]='isDisabled'
                 [formControlName]='config.name'
                 [required]='isRequired'
-                *ngIf='config.multipleOptions'
                 multiple
     >
-      <form [formGroup]='searchForm' *ngIf='config.implSearch'>
+      <form *ngIf='config.implSearch' [formGroup]='searchForm'>
         <input [(ngModel)]='searchText' formControlName='search' matInput placeholder='Pretraži'>
       </form>
       <mat-option value=''>---</mat-option>

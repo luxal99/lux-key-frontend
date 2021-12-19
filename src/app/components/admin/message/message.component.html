@@ -1,5 +1,5 @@
 <div class='component'>
-  <div class='message' *ngFor='let message of listOfMessage'>
+  <div *ngFor='let message of listOfMessage' class='message'>
     <h6 class='text-right'>{{message.createdDate|date}}</h6>
     <h6>{{message.idClient.firstName + ' ' + message.idClient.lastName}}</h6>
     <h6>Telephone: {{message.idClient.telephone }}</h6>

@@ -1,26 +1,26 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { WorkServiceService } from '../../../../service/work-service.service';
-import { WorkService } from '../../../../models/workService';
-import { FormBuilderConfig } from '../../../../models/FormBuilderConfig';
-import { FormControlNames, InputTypes, Message } from '../../../../constant/const';
-import { Validators } from '@angular/forms';
-import { DialogUtil } from '../../../../util/dialog-util';
-import { FormBuilderComponent } from '../../../form-components/form-builder/form-builder.component';
-import { DialogOptions } from '../../../../util/dialog-options';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSpinner } from '@angular/material/progress-spinner';
-import { SpinnerService } from '../../../../service/spinner-service.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { SnackBarUtil } from '../../../../util/snackbar-util';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { WorkServiceService } from "../../../../service/work-service.service";
+import { WorkService } from "../../../../models/workService";
+import { FormBuilderConfig } from "../../../../models/FormBuilderConfig";
+import { FormControlNames, InputTypes, Message } from "../../../../constant/const";
+import { Validators } from "@angular/forms";
+import { DialogUtil } from "../../../../util/dialog-util";
+import { FormBuilderComponent } from "../../../form-components/form-builder/form-builder.component";
+import { DialogOptions } from "../../../../util/dialog-options";
+import { MatDialog } from "@angular/material/dialog";
+import { MatSpinner } from "@angular/material/progress-spinner";
+import { SpinnerService } from "../../../../service/spinner-service.service";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { SnackBarUtil } from "../../../../util/snackbar-util";
 
 @Component({
-  selector: 'app-work-service-overview',
-  templateUrl: './work-service-overview.component.html',
-  styleUrls: ['./work-service-overview.component.sass'],
+  selector: "app-work-service-overview",
+  templateUrl: "./work-service-overview.component.html",
+  styleUrls: ["./work-service-overview.component.sass"],
 })
 export class WorkServiceOverviewComponent implements OnInit {
 
-  @ViewChild('spinner') spinner: MatSpinner;
+  @ViewChild("spinner") spinner: MatSpinner;
   listOfWorkServices: WorkService[] = [];
 
   constructor(private workService: WorkServiceService, private dialog: MatDialog,
@@ -37,26 +37,26 @@ export class WorkServiceOverviewComponent implements OnInit {
         {
           name: FormControlNames.NAME_FORM_CONTROL,
           type: InputTypes.INPUT,
-          label: 'Naziv usluge',
+          label: "Naziv usluge",
           validation: [Validators.required],
         },
         {
           name: FormControlNames.PRICE_FORM_CONTROL,
           type: InputTypes.INPUT,
-          label: 'Cena usluge',
+          label: "Cena usluge",
           validation: [Validators.required],
         },
 
       ],
       formValues: workService,
-      headerText: 'Dodaj uslugu',
+      headerText: "Dodaj uslugu",
       service: this.workService,
 
     };
     DialogUtil.openDialog(FormBuilderComponent,
       DialogOptions.setDialogConfig({
-        position: { top: '6%' },
-        width: '30%',
+        position: { top: "6%" },
+        width: "30%",
         data: configData,
       }), this.dialog).afterClosed().subscribe((data) => {
       if (data) {
