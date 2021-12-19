@@ -1,6 +1,6 @@
 import { KeyCategory } from "./keyCategory";
 import { Key } from "./key";
-import { ServiceTypeEnum } from "../ServiceTypeEnum";
+import { ServiceTypeEnum } from "../enum/ServiceTypeEnum";
 
 
 export interface KeySubCategory {
