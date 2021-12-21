@@ -74,6 +74,7 @@ import { CountSelectedKeysPipe } from "./pipes/count-selected-keys.pipe";
 import { AnalyticsComponent } from "./components/admin/analytics/analytics.component";
 import { ChartsModule } from "ng2-charts";
 import { ServiceHeaderToolComponent } from './components/admin/services/service-header-tool/service-header-tool.component';
+import { MomentDatePipe } from './pipes/moment-date.pipe';
 
 @NgModule({
   declarations: [
@@ -124,6 +125,7 @@ import { ServiceHeaderToolComponent } from './components/admin/services/service-
     AnalyticsComponent,
     ServiceHeaderToolComponent,
     ServiceHeaderToolComponent,
+    MomentDatePipe,
   ],
   imports: [
     BrowserModule,

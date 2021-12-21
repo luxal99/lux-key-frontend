@@ -9,7 +9,8 @@
       <h4>{{report.createdDate|date}}</h4>
     </div>
     <div class='col'>
-      <a [download]="currentDate+'.xlsx'" [href]="'https://app.luxkey.rs/assets/reports/'+currentDate+'.xlsx'"
+      <a [download]="(report.createdDate|momentDate)+'-'+report.reportType+'.xlsx'"
+         [href]="'https://app.luxkey.rs/assets/reports/'+(report.createdDate|momentDate)+'-'+report.reportType+'.xlsx'"
          target='_blank'>
         <button mat-raised-button>Preuzmi</button>
       </a>
