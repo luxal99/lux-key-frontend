@@ -132,6 +132,7 @@ export class AddServiceDialogComponent
 
   removeKey(key): void {
     this.listOfSelectedKeys.splice(this.listOfSelectedKeys.indexOf(key), 1);
+    this.total -= key.idCurrentPrice.price;
   }
 
   getTopFivePopularKeys() {
