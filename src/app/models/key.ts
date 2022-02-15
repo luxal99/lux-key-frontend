@@ -9,6 +9,7 @@ export interface Key {
   id: number;
   amount?: number;
   code?: string;
+  purchasePrice?: number;
   createdDate?: string;
   lastModifiedDate?: string;
   carBrands?: CarBrand[];

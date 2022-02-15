@@ -1,27 +1,23 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { Field } from "../../../models/Field";
-import { FieldConfig } from "../../../models/FieldConfig";
-import { FormGroup } from "@angular/forms";
+import { Component, Input, OnInit } from '@angular/core';
+import { Field } from '../../../models/Field';
+import { FieldConfig } from '../../../models/FieldConfig';
+import { FormGroup } from '@angular/forms';
 
 @Component({
-  selector: "app-form-select-group",
-  templateUrl: "./form-select-group.component.html",
-  styleUrls: ["./form-select-group.component.sass"]
+  selector: 'app-form-select-group',
+  templateUrl: './form-select-group.component.html',
+  styleUrls: ['./form-select-group.component.sass'],
 })
 export class FormSelectGroupComponent implements OnInit, Field {
-
   @Input() config!: FieldConfig;
   @Input() group!: FormGroup;
   @Input() itemList: any[] = [];
   @Input() groupList: any[] = [];
   @Input() model: any;
 
+  constructor() {}
 
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   compareObjects(o1: any, o2: any): boolean {
     if (o2 !== null && o2 !== undefined) {
@@ -30,5 +26,4 @@ export class FormSelectGroupComponent implements OnInit, Field {
       return false;
     }
   }
-
 }

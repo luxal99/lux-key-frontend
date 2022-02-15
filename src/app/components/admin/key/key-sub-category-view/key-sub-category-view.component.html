@@ -1,13 +1,20 @@
-<button (click)='loadKeyCategories()' color='primary' mat-button style='font-weight: bold'>
+<button
+  (click)="loadKeyCategories()"
+  color="primary"
+  mat-button
+  style="font-weight: bold"
+>
   <mat-icon>keyboard_backspace</mat-icon>
   Nazad
 </button>
-<div class='container'>
-  <div class='row'>
-    <div (click)='addKeySubCategory(keySubCategory)' *ngFor='let keySubCategory of lisOfKeySubCategories'
-         class='col-sm-6'>
-      <h6 class='text-center'>{{keySubCategory.name}}</h6>
+<div class="container">
+  <div class="row">
+    <div
+      (click)="addKeySubCategory(keySubCategory)"
+      *ngFor="let keySubCategory of lisOfKeySubCategories"
+      class="col-sm-6"
+    >
+      <h6 class="text-center">{{ keySubCategory.name }}</h6>
     </div>
   </div>
-
 </div>

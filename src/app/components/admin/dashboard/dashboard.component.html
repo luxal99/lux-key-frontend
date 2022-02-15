@@ -1,37 +1,50 @@
-<div class='component'>
-  <div class='centered' id='centered'>
-    <h1 (click)='showSearch(input)' class='huge-h1' id='huge-label'>Započni pretragu...</h1>
-    <div [formGroup]='searchForm' style='width: 70%'>
-      <mat-form-field id='search'>
-        <input #input (input)='inputChange()' [(ngModel)]='searchText' [autofocus]='true' formControlName='search'
-               matInput>
+<div class="component">
+  <div class="centered" id="centered">
+    <h1 (click)="showSearch(input)" class="huge-h1" id="huge-label">
+      Započni pretragu...
+    </h1>
+    <div [formGroup]="searchForm" style="width: 70%">
+      <mat-form-field id="search">
+        <input
+          #input
+          (input)="inputChange()"
+          [(ngModel)]="searchText"
+          [autofocus]="true"
+          formControlName="search"
+          matInput
+        />
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
     </div>
-    <mat-spinner #spinner diameter='50'></mat-spinner>
+    <mat-spinner #spinner diameter="50"></mat-spinner>
   </div>
 
-  <div *ngFor='let key of listOfKey' class='row key-row'>
-    <div (click)='openEditKeyDialog(key)' *ngIf='key.idKeyImage' class='col-1'>
-      <img [src]='key.idKeyImage.url' alt='' class='img-fluid'>
+  <div *ngFor="let key of listOfKey" class="row key-row">
+    <div (click)="openEditKeyDialog(key)" *ngIf="key.idKeyImage" class="col-1">
+      <img [src]="key.idKeyImage.url" alt="" class="img-fluid" />
     </div>
-    <div (click)='openEditKeyDialog(key)' class='col'>
+    <div (click)="openEditKeyDialog(key)" class="col">
       <h6>Šifra</h6>
-      <h5>{{key.code}}</h5>
+      <h5>{{ key.code }}</h5>
     </div>
-    <div (click)='openEditKeyDialog(key)' class='col'>
+    <div (click)="openEditKeyDialog(key)" class="col">
       <h6>Količina</h6>
-      <h5>{{key.amount}}</h5>
+      <h5>{{ key.amount }}</h5>
     </div>
-    <div (click)='openEditKeyDialog(key)' class='col'>
+    <div (click)="openEditKeyDialog(key)" class="col">
       <h6>Akutelna cena</h6>
-      <h5>{{key.idCurrentPrice.price}}</h5>
+      <h5>{{ key.idCurrentPrice.price }}</h5>
     </div>
-    <div class='col'>
-      <h6 style='visibility: hidden'>Opt</h6>
-      <button (click)='openKeyOverviewDialog(key)' class='green-border-btn' mat-button>Pregled</button>
-      <button class='red-border-btn' mat-button>Obriši</button>
+    <div class="col">
+      <h6 style="visibility: hidden">Opt</h6>
+      <button
+        (click)="openKeyOverviewDialog(key)"
+        class="green-border-btn"
+        mat-button
+      >
+        Pregled
+      </button>
+      <button class="red-border-btn" mat-button>Obriši</button>
     </div>
-
   </div>
 </div>

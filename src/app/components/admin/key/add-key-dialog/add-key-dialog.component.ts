@@ -19,10 +19,10 @@ import { ImageUploadComponent } from "../../../../util/image-upload/image-upload
   templateUrl: "./add-key-dialog.component.html",
   styleUrls: ["./add-key-dialog.component.sass"],
 })
-export class AddKeyDialogComponent extends DefaultComponent<Key> implements OnInit {
-
+export class AddKeyDialogComponent
+  extends DefaultComponent<Key>
+  implements OnInit {
   @ViewChild(ImageUploadComponent) imageListComponent!: ImageUploadComponent;
-
 
   listOfKeyCategories: KeyCategory[] = [];
   keyForm = new FormGroup({
@@ -33,22 +33,38 @@ export class AddKeyDialogComponent extends DefaultComponent<Key> implements OnIn
     idCurrentPrice: new FormControl(""),
     idKeySubCategory: new FormControl("", Validators.required),
     carBrands: new FormControl(""),
+    purchasePrice: new FormControl("", Validators.required),
   });
 
   keyBrandSelectConfig: FieldConfig = {
     name: FormControlNames.ID_KEY_BRAND_FORM_CONTROL,
-    type: InputTypes.SELECT, label: "Brend",
+    type: InputTypes.SELECT,
+    label: "Brend",
   };
   amountInputConfig: FieldConfig = {
     name: FormControlNames.AMOUNT_FORM_CONTROL,
     type: InputTypes.NUMBER,
     label: "Količina",
   };
-  codeInputConfig: FieldConfig = { name: FormControlNames.CODE_FORM_CONTROL, type: InputTypes.TEXT, label: "Šifra" };
-  priceInputConfig: FieldConfig = { name: FormControlNames.PRICE_FORM_CONTROL, type: InputTypes.NUMBER, label: "Cena" };
+  purchasePrice: FieldConfig = {
+    name: FormControlNames.PURCHASE_PRICE_FORM_CONTROL,
+    type: InputTypes.NUMBER,
+    label: "Nabavna cena",
+  };
+  codeInputConfig: FieldConfig = {
+    name: FormControlNames.CODE_FORM_CONTROL,
+    type: InputTypes.TEXT,
+    label: "Šifra",
+  };
+  priceInputConfig: FieldConfig = {
+    name: FormControlNames.PRICE_FORM_CONTROL,
+    type: InputTypes.NUMBER,
+    label: "Cena",
+  };
   carBrandSelectConfig: FieldConfig = {
     name: FormControlNames.CAR_BRANDS_FORM_CONTROL,
-    type: InputTypes.SELECT, label: "Brend automobila",
+    type: InputTypes.SELECT,
+    label: "Brend automobila",
     multipleOptions: true,
     implSearch: true,
   };
@@ -58,13 +74,18 @@ export class AddKeyDialogComponent extends DefaultComponent<Key> implements OnIn
     label: "Kategorija ključa",
   };
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Key, private keyService: KeyService, private sb: MatSnackBar, private keyPriceService: KeyPriceService,
-              public keyCategoryService: KeyCategoryService, private carBrandService: CarBrandService,
-              private keyBrandService: KeyBrandService) {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: Key,
+    private keyService: KeyService,
+    private sb: MatSnackBar,
+    private keyPriceService: KeyPriceService,
+    public keyCategoryService: KeyCategoryService,
+    private carBrandService: CarBrandService,
+    private keyBrandService: KeyBrandService
+  ) {
     super(keyService);
     this.snackBar = sb;
   }
-
 
   ngOnInit(): void {
     this.getKeyCategories();
@@ -87,7 +108,8 @@ export class AddKeyDialogComponent extends DefaultComponent<Key> implements OnIn
   getCarBrands(): void {
     this.carBrandService.getAll().subscribe((resp) => {
       this.carBrandSelectConfig.options = resp.sort((a, b) =>
-        a.name.localeCompare(b.name));
+        a.name.localeCompare(b.name)
+      );
     });
   }
 
@@ -97,15 +119,16 @@ export class AddKeyDialogComponent extends DefaultComponent<Key> implements OnIn
     entity.idKeySubCategory = { id: entity.idKeySubCategory.id };
 
     this.keyService.save(entity).subscribe((savedKey) => {
-      this.keyPriceService.save({
-        price: this.keyForm.get(FormControlNames.PRICE_FORM_CONTROL).value,
-        idKey: savedKey,
-      }).subscribe((savedKeyPrice) => {
-        savedKey.idCurrentPrice = savedKeyPrice;
-        super.update(savedKey);
-        this.imageListComponent.uploadImage(savedKey.id);
-      });
+      this.keyPriceService
+        .save({
+          price: this.keyForm.get(FormControlNames.PRICE_FORM_CONTROL).value,
+          idKey: savedKey,
+        })
+        .subscribe((savedKeyPrice) => {
+          savedKey.idCurrentPrice = savedKeyPrice;
+          super.update(savedKey);
+          this.imageListComponent.uploadImage(savedKey.id);
+        });
     });
   }
-
 }

@@ -1,59 +1,55 @@
-import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
-import { Key } from "../../../models/key";
-import { KeyService } from "../../../service/key.service";
-import { DialogUtil } from "../../../util/dialog-util";
-import { KeyOverviewDialogComponent } from "../key/key-overview-dialog/key-overview-dialog.component";
-import { DialogOptions } from "../../../util/dialog-options";
-import { MatDialog } from "@angular/material/dialog";
-import { EditKeyDialogComponent } from "../key/edit-key-dialog/edit-key-dialog.component";
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Key } from '../../../models/key';
+import { KeyService } from '../../../service/key.service';
+import { DialogUtil } from '../../../util/dialog-util';
+import { KeyOverviewDialogComponent } from '../key/key-overview-dialog/key-overview-dialog.component';
+import { DialogOptions } from '../../../util/dialog-options';
+import { MatDialog } from '@angular/material/dialog';
+import { EditKeyDialogComponent } from '../key/edit-key-dialog/edit-key-dialog.component';
 
 @Component({
-  selector: "app-dashboard",
-  templateUrl: "./dashboard.component.html",
-  styleUrls: ["./dashboard.component.sass"],
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.sass'],
 })
 export class DashboardComponent implements OnInit {
-
-
   listOfKey: Key[] = [];
-  searchText = "";
+  searchText = '';
 
-  constructor(private keyService: KeyService, private dialog: MatDialog) {
-  }
+  constructor(private keyService: KeyService, private dialog: MatDialog) {}
 
   searchForm = new FormGroup({
     search: new FormControl({}),
   });
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   inputChange(): void {
     if (this.searchText.length === 0) {
       // @ts-ignore
-      document.getElementById("search").style.display = "none";
+      document.getElementById('search').style.display = 'none';
       // @ts-ignore
-      document.getElementById("huge-label").style.display = "block";
+      document.getElementById('huge-label').style.display = 'block';
 
       // @ts-ignore
-      document.getElementById("centered").style.minHeight = "70vh";
+      document.getElementById('centered').style.minHeight = '70vh';
       this.listOfKey = [];
     } else if (this.searchText.length > 1) {
       // @ts-ignore
-      document.getElementById("search").style.display = "block";
+      document.getElementById('search').style.display = 'block';
       // @ts-ignore
-      document.getElementById("huge-label").style.display = "none";
+      document.getElementById('huge-label').style.display = 'none';
       // @ts-ignore
-      document.getElementById("centered").style.minHeight = "30vh";
+      document.getElementById('centered').style.minHeight = '30vh';
       this.search();
     }
   }
 
   showSearch(element: HTMLInputElement): void {
-    document.getElementById("search").style.display = "block";
+    document.getElementById('search').style.display = 'block';
     // @ts-ignore
-    document.getElementById("huge-label").style.display = "none";
+    document.getElementById('huge-label').style.display = 'none';
     element.focus();
   }
 
@@ -68,20 +64,31 @@ export class DashboardComponent implements OnInit {
   }
 
   openKeyOverviewDialog(key: Key): void {
-    DialogUtil.openDialog(KeyOverviewDialogComponent, DialogOptions.setDialogConfig({
-      position: { top: "6%" },
-      width: "30%",
-      data: key,
-    }), this.dialog);
+    DialogUtil.openDialog(
+      KeyOverviewDialogComponent,
+      DialogOptions.setDialogConfig({
+        position: { top: '6%' },
+        width: '30%',
+        data: key,
+      }),
+      this.dialog
+    );
   }
 
   openEditKeyDialog(key: Key): void {
-    DialogUtil.openDialog(EditKeyDialogComponent, DialogOptions.setDialogConfig({
-      position: { top: "1%" },
-      width: "30%",
-      data: key,
-    }), this.dialog).afterClosed().subscribe(() => {
-      this.inputChange();
-    });
+    DialogUtil.openDialog(
+      EditKeyDialogComponent,
+      DialogOptions.setDialogConfig({
+        position: { top: '1%' },
+        maxHeight:'90vh',
+        width: '30%',
+        data: key,
+      }),
+      this.dialog
+    )
+      .afterClosed()
+      .subscribe(() => {
+        this.inputChange();
+      });
   }
 }

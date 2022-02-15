@@ -1,8 +1,8 @@
-<div [formGroup]='group'>
-  <mat-form-field [appearance]='appearance'>
+<div [formGroup]="group">
+  <mat-form-field [appearance]="appearance">
     <mat-label>Datum</mat-label>
-    <input [formControlName]='config.name' [matDatepicker]='picker' matInput>
-    <mat-datepicker-toggle [for]='picker' matSuffix></mat-datepicker-toggle>
+    <input [formControlName]="config.name" [matDatepicker]="picker" matInput />
+    <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 </div>

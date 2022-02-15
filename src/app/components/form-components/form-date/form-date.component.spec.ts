@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormDateComponent } from "./form-date.component";
+import { FormDateComponent } from './form-date.component';
 
-describe("FormDateComponent", () => {
+describe('FormDateComponent', () => {
   let component: FormDateComponent;
   let fixture: ComponentFixture<FormDateComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FormDateComponent]
-    })
-      .compileComponents();
+      declarations: [FormDateComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe("FormDateComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

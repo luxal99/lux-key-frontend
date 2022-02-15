@@ -1,33 +1,50 @@
-<div [formGroup]='group' class='dynamic-field form-select'>
-  <mat-form-field [appearance]='appearance' [style]="{'width':width}">
-    <mat-label>{{config.label}}</mat-label>
+<div [formGroup]="group" class="dynamic-field form-select">
+  <mat-form-field [appearance]="appearance" [style]="{ width: width }">
+    <mat-label>{{ config.label }}</mat-label>
 
-    <mat-select (selectionChange)='onOptionClick()' *ngIf='!config.multipleOptions' [(ngModel)]='model'
-                [compareWith]='compareObjects'
-                [disabled]='isDisabled'
-                [formControlName]='config.name'
-                [required]='isRequired'
+    <mat-select
+      (selectionChange)="onOptionClick()"
+      *ngIf="!config.multipleOptions"
+      [(ngModel)]="model"
+      [compareWith]="compareObjects"
+      [disabled]="isDisabled"
+      [formControlName]="config.name"
+      [required]="isRequired"
     >
-      <mat-option value=''>---</mat-option>
-      <mat-option (click)='onOptionClick()' *ngFor='let item of config.options|search:searchProperty:searchText'
-                  [value]='item'>
-        {{item[bindValue] || item }}
+      <mat-option value="">---</mat-option>
+      <mat-option
+        (click)="onOptionClick()"
+        *ngFor="let item of config.options | search: searchProperty:searchText"
+        [value]="item"
+      >
+        {{ item[bindValue] || item }}
       </mat-option>
     </mat-select>
-    <mat-select (selectionChange)='onOptionClick()' *ngIf='config.multipleOptions' [(ngModel)]='model'
-                [compareWith]='compareObjects'
-                [disabled]='isDisabled'
-                [formControlName]='config.name'
-                [required]='isRequired'
-                multiple
+    <mat-select
+      (selectionChange)="onOptionClick()"
+      *ngIf="config.multipleOptions"
+      [(ngModel)]="model"
+      [compareWith]="compareObjects"
+      [disabled]="isDisabled"
+      [formControlName]="config.name"
+      [required]="isRequired"
+      multiple
     >
-      <form *ngIf='config.implSearch' [formGroup]='searchForm'>
-        <input [(ngModel)]='searchText' formControlName='search' matInput placeholder='Pretraži'>
+      <form *ngIf="config.implSearch" [formGroup]="searchForm">
+        <input
+          [(ngModel)]="searchText"
+          formControlName="search"
+          matInput
+          placeholder="Pretraži"
+        />
       </form>
-      <mat-option value=''>---</mat-option>
-      <mat-option (click)='onOptionClick()' *ngFor='let item of config.options|search:searchProperty:searchText'
-                  [value]='item'>
-        {{item[bindValue] || item }}
+      <mat-option value="">---</mat-option>
+      <mat-option
+        (click)="onOptionClick()"
+        *ngFor="let item of config.options | search: searchProperty:searchText"
+        [value]="item"
+      >
+        {{ item[bindValue] || item }}
       </mat-option>
     </mat-select>
   </mat-form-field>

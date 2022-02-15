@@ -1,10 +1,16 @@
-<div [formGroup]='group'>
-  <mat-form-field [appearance]='appearance'>
-    <mat-label>{{config.label}}</mat-label>
-    <input (input)='change.emit(true)' [(ngModel)]='model' [formControlName]='config.name' [required]='isRequired'
-           [style.color]='color' [type]='config.type'
-           matInput>
-    <mat-icon matSuffix>{{icon}}</mat-icon>
-    <mat-hint>{{hint}}</mat-hint>
+<div [formGroup]="group">
+  <mat-form-field [appearance]="appearance">
+    <mat-label>{{ config.label }}</mat-label>
+    <input
+      (input)="change.emit(true)"
+      [(ngModel)]="model"
+      [formControlName]="config.name"
+      [required]="isRequired"
+      [style.color]="color"
+      [type]="config.type"
+      matInput
+    />
+    <mat-icon matSuffix>{{ icon }}</mat-icon>
+    <mat-hint>{{ hint }}</mat-hint>
   </mat-form-field>
 </div>

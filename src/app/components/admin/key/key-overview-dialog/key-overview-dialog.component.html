@@ -1,12 +1,22 @@
 <h4><b>Pregled ključa</b></h4>
 <mat-divider></mat-divider>
 <div class='content'>
-  <h5><b>Kod:</b> {{data.code}}</h5>
-  <h5><b>Naziv:</b> {{data.idKeyBrand.name}}</h5>
-  <h5><b>Kategorije:</b> {{data.idKeySubCategory.idKeyCategory.name + ' ' + data.idKeySubCategory.name}}</h5>
-  <h5><b>Datum kreiranja:</b> {{data.createdDate|date}}</h5>
-  <h5 *ngIf='data.carBrands.length > 0'><b>Za:</b> {{data.carBrands|bindCarBrands}}</h5>
-  <h5><b>Aktuelna cena:</b> {{data.idCurrentPrice.price}}</h5>
-  <h5><b>Na stanju:</b> {{data.amount}}</h5>
-  <img *ngIf='data.idKeyImage' [src]='data.idKeyImage.url' class='img-fluid'>
+  <h5><b>Kod:</b> {{ data.code }}</h5>
+  <h5><b>Naziv:</b> {{ data.idKeyBrand.name }}</h5>
+  <h5>
+    <b>Kategorije:</b>
+    {{
+    data.idKeySubCategory.idKeyCategory.name +
+    " " +
+    data.idKeySubCategory.name
+    }}
+  </h5>
+  <h5><b>Datum kreiranja:</b> {{ data.createdDate | date }}</h5>
+  <h5 *ngIf='data.carBrands.length > 0'>
+    <b>Za:</b> {{ data.carBrands | bindCarBrands }}
+  </h5>
+  <h5><b>Aktuelna cena:</b> {{ data.idCurrentPrice.price }}</h5>
+  <h5><b>Nabavna cena:</b> {{ data.purchasePrice }}</h5>
+  <h5><b>Na stanju:</b> {{ data.amount }}</h5>
+  <img *ngIf='data.idKeyImage' [src]='data.idKeyImage.url' class='img-fluid' />
 </div>

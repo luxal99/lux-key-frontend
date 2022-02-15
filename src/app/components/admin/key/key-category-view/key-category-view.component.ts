@@ -7,28 +7,28 @@ import {
   OnInit,
   Output,
   ViewContainerRef,
-} from "@angular/core";
-import { KeyCategory } from "../../../../models/keyCategory";
-import { KeyCategoryService } from "../../../../service/key-category.service";
-import { KeyBehaviorService } from "../../../../service/util/key-behavior.service";
-import { LazyLoadComponentsUtil } from "../../../../util/lazy-loading-components";
-import { KeySubCategoryViewComponent } from "../key-sub-category-view/key-sub-category-view.component";
+} from '@angular/core';
+import { KeyCategory } from '../../../../models/keyCategory';
+import { KeyCategoryService } from '../../../../service/key-category.service';
+import { KeyBehaviorService } from '../../../../service/util/key-behavior.service';
+import { LazyLoadComponentsUtil } from '../../../../util/lazy-loading-components';
+import { KeySubCategoryViewComponent } from '../key-sub-category-view/key-sub-category-view.component';
 
 @Component({
-  selector: "app-key-category-view",
-  templateUrl: "./key-category-view.component.html",
-  styleUrls: ["./key-category-view.component.sass"],
+  selector: 'app-key-category-view',
+  templateUrl: './key-category-view.component.html',
+  styleUrls: ['./key-category-view.component.sass'],
 })
 export class KeyCategoryViewComponent implements OnInit {
-
   lisOfCategories: KeyCategory[] = [];
   @Input() keyEntry: ViewContainerRef;
   @Output() onKeyCategorySelect = new EventEmitter();
 
-  constructor(private keyCategoryService: KeyCategoryService,
-              private keyBehaviorService: KeyBehaviorService,
-              private resolver: ComponentFactoryResolver) {
-  }
+  constructor(
+    private keyCategoryService: KeyCategoryService,
+    private keyBehaviorService: KeyBehaviorService,
+    private resolver: ComponentFactoryResolver
+  ) {}
 
   ngOnInit(): void {
     this.getKeyCategories();
@@ -46,7 +46,12 @@ export class KeyCategoryViewComponent implements OnInit {
   }
 
   loadKeySubCategories(): void {
-    const keySubCategoryViewComponent: ComponentRef<KeySubCategoryViewComponent> = LazyLoadComponentsUtil.loadComponent(KeySubCategoryViewComponent, this.keyEntry, this.resolver);
+    const keySubCategoryViewComponent: ComponentRef<KeySubCategoryViewComponent> =
+      LazyLoadComponentsUtil.loadComponent(
+        KeySubCategoryViewComponent,
+        this.keyEntry,
+        this.resolver
+      );
     keySubCategoryViewComponent.instance.keyEntry = this.keyEntry;
   }
 }

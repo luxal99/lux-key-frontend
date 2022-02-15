@@ -1,35 +1,56 @@
-<mat-drawer-container class='example-container' fullscreen hasBackdrop='false'>
-  <mat-drawer #drawer [mode]="isMobile ? 'over':'side'" [opened]='!isMobile'>
-    <div class='text-right'>
-      <button (click)='drawer.toggle()' *ngIf='isMobile' mat-mini-fab>
+<mat-drawer-container class="example-container" fullscreen hasBackdrop="false">
+  <mat-drawer #drawer [mode]="isMobile ? 'over' : 'side'" [opened]="!isMobile">
+    <div class="text-right">
+      <button (click)="drawer.toggle()" *ngIf="isMobile" mat-mini-fab>
         <mat-icon>close</mat-icon>
       </button>
     </div>
-    <div class='text-center'>
-      <img class='img-fluid text-center' src='assets/img/logo.png'>
-      <a (click)='loadDashboardComponent()'>
-        <h5 (click)='changeColor($event)' id='overview-btn'>
+    <div class="text-center">
+      <img class="img-fluid text-center" src="assets/img/logo.png" />
+      <a (click)="loadDashboardComponent()">
+        <h5 (click)="changeColor($event)" id="overview-btn">
           <mat-icon>home</mat-icon>
         </h5>
       </a>
-      <app-component-activator (load)='loadCodeBookComponent()' icon='auto_stories'
-                               title='Šifarnik'></app-component-activator>
-      <app-component-activator (load)='loadClientComponent()' icon='account_circle'
-                               title='Klijenti'></app-component-activator>
-      <app-component-activator (load)='loadKeyComponent()' icon='vpn_key'
-                               title='Ključevi'></app-component-activator>
-      <app-component-activator (load)='loadServicesComponent()' icon='class'
-                               title='Servisi'></app-component-activator>
-      <app-component-activator (load)='loadReportsComponent()' icon='receipt'
-                               title='Izveštaji'></app-component-activator>
-      <app-component-activator (load)='loadMessageComponent()' icon='email'
-                               title='Poruke'></app-component-activator>
-      <app-component-activator (load)='loadAnalyticsComponent()' icon='pie_chart'
-                               title='Analitika'></app-component-activator>
+      <app-component-activator
+        (load)="loadCodeBookComponent()"
+        icon="auto_stories"
+        title="Šifarnik"
+      ></app-component-activator>
+      <app-component-activator
+        (load)="loadClientComponent()"
+        icon="account_circle"
+        title="Klijenti"
+      ></app-component-activator>
+      <app-component-activator
+        (load)="loadKeyComponent()"
+        icon="vpn_key"
+        title="Ključevi"
+      ></app-component-activator>
+      <app-component-activator
+        (load)="loadServicesComponent()"
+        icon="class"
+        title="Servisi"
+      ></app-component-activator>
+      <app-component-activator
+        (load)="loadReportsComponent()"
+        icon="receipt"
+        title="Izveštaji"
+      ></app-component-activator>
+      <app-component-activator
+        (load)="loadMessageComponent()"
+        icon="email"
+        title="Poruke"
+      ></app-component-activator>
+      <app-component-activator
+        (load)="loadAnalyticsComponent()"
+        icon="pie_chart"
+        title="Analitika"
+      ></app-component-activator>
     </div>
   </mat-drawer>
   <mat-drawer-content>
-    <app-navbar (menuBtnClick)='drawer.toggle()' [header]='header'></app-navbar>
+    <app-navbar (menuBtnClick)="drawer.toggle()" [header]="header"></app-navbar>
     <div #target></div>
   </mat-drawer-content>
 </mat-drawer-container>
