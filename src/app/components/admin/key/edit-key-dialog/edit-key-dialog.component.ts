@@ -44,6 +44,7 @@ export class EditKeyDialogComponent
     idKeyBrand: new FormControl('', Validators.required),
     idKeySubCategory: new FormControl('', Validators.required),
     carBrands: new FormControl(''),
+    purchasePrice: new FormControl(''),
   });
 
   keyPriceForm = new FormGroup({
@@ -58,6 +59,11 @@ export class EditKeyDialogComponent
     name: FormControlNames.AMOUNT_FORM_CONTROL,
     type: InputTypes.NUMBER,
     label: 'Količina',
+  };
+  purchasePrice: FieldConfig = {
+    name: FormControlNames.PURCHASE_PRICE_FORM_CONTROL,
+    type: InputTypes.NUMBER,
+    label: "Nabavna cena",
   };
   codeInputConfig: FieldConfig = {
     name: FormControlNames.CODE_FORM_CONTROL,

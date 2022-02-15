@@ -80,6 +80,7 @@ export class DashboardComponent implements OnInit {
       EditKeyDialogComponent,
       DialogOptions.setDialogConfig({
         position: { top: '1%' },
+        maxHeight:'90vh',
         width: '30%',
         data: key,
       }),

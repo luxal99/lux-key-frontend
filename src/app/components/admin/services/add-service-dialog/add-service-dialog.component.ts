@@ -145,6 +145,7 @@ export class AddServiceDialogComponent
           id: item.id,
           idCurrentPrice: { price: item.price },
           code: item.code,
+          purchasePrice: item.purchasePrice,
           amount: item.amount,
         })
       );
@@ -213,9 +214,11 @@ export class AddServiceDialogComponent
     service.notes = this.editorComponent.editorInstance.getData();
     service.idClient = this.selectedClient;
     service.date = moment(service.date).format(DATE_VALUE_FORMAT);
+    console.log(this.listOfSelectedKeys);
     service.serviceKeys = this.listOfSelectedKeys.map((item) => ({
       idKey: { id: item.id, amount: item.amount },
       keyPrice: item.idCurrentPrice.price,
+      keyPurchasePrice: item.purchasePrice
     }));
 
     service.gross = 0;
