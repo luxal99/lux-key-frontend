@@ -1,43 +1,79 @@
 <mat-tab-group>
-  <mat-tab label='Osnovne informacije'>
-    <div class='tab-content'>
-      <app-form-select [config]='keyBrandSelectConfig' [group]='keyForm' [model]='data.idKeyBrand'></app-form-select>
-      <app-form-input [config]='amountInputConfig' [group]='keyForm' [model]='data.amount'></app-form-input>
-      <app-form-input [config]='codeInputConfig' [group]='keyForm' [model]='data.code'></app-form-input>
-      <app-form-select [config]='idCurrentPriceSelectConfig' [group]='keyForm' [model]='data.idCurrentPrice'
-                       bindValue='price'
-                       label='Cena'></app-form-select>
-      <app-form-select [config]='carBrandSelectConfig' [group]='keyForm'
-                       [model]='data.carBrands ?data.carBrands:null ' bindValue='name'
-                       searchProperty='name'></app-form-select>
-      <app-form-select-group [config]='idKeySubCategoriesGroupSelect' [groupList]='listOfKeyCategories' [group]='keyForm'
-                             [model]='data.idKeySubCategory'
-                             itemList='keySubCategories'></app-form-select-group>
+  <mat-tab label="Osnovne informacije">
+    <div class="tab-content">
+      <app-form-select
+        [config]="keyBrandSelectConfig"
+        [group]="keyForm"
+        [model]="data.idKeyBrand"
+      ></app-form-select>
+      <app-form-input
+        [config]="amountInputConfig"
+        [group]="keyForm"
+        [model]="data.amount"
+      ></app-form-input>
+      <app-form-input
+        [config]="codeInputConfig"
+        [group]="keyForm"
+        [model]="data.code"
+      ></app-form-input>
+      <app-form-select
+        [config]="idCurrentPriceSelectConfig"
+        [group]="keyForm"
+        [model]="data.idCurrentPrice"
+        bindValue="price"
+        label="Cena"
+      ></app-form-select>
+      <app-form-select
+        [config]="carBrandSelectConfig"
+        [group]="keyForm"
+        [model]="data.carBrands ? data.carBrands : null"
+        bindValue="name"
+        searchProperty="name"
+      ></app-form-select>
+      <app-form-select-group
+        [config]="idKeySubCategoriesGroupSelect"
+        [groupList]="listOfKeyCategories"
+        [group]="keyForm"
+        [model]="data.idKeySubCategory"
+        itemList="keySubCategories"
+      ></app-form-select-group>
       <app-image-upload></app-image-upload>
-      <div class='text-right'>
-        <button (click)='updateKey()' [disabled]='!keyForm.valid' class='default-btn' mat-button>Ažuriraj</button>
+      <div class="text-right">
+        <button
+          (click)="updateKey()"
+          [disabled]="!keyForm.valid"
+          class="default-btn"
+          mat-button
+        >
+          Ažuriraj
+        </button>
       </div>
     </div>
   </mat-tab>
-  <mat-tab label='Informacije o ceni'>
-    <div class='tab-content'>
-      <app-form-input [config]='priceInputConfig' [group]='keyPriceForm'></app-form-input>
-      <div *ngFor='let keyPrice of data.keyPrices' class='row key-price-row'>
-        <div class='col'>
+  <mat-tab label="Informacije o ceni">
+    <div class="tab-content">
+      <app-form-input
+        [config]="priceInputConfig"
+        [group]="keyPriceForm"
+      ></app-form-input>
+      <div *ngFor="let keyPrice of data.keyPrices" class="row key-price-row">
+        <div class="col">
           <h6>Cena</h6>
-          <h5>{{keyPrice.price}}</h5>
+          <h5>{{ keyPrice.price }}</h5>
         </div>
-        <div class='col text-right'>
-          <button (click)='deleteKeyPrice(keyPrice)' mat-icon-button>
+        <div class="col text-right">
+          <button (click)="deleteKeyPrice(keyPrice)" mat-icon-button>
             <mat-icon>delete</mat-icon>
           </button>
         </div>
       </div>
-      <div class='text-right'>
-        <button (click)='addKeyPrice()' class='default-btn' mat-button>Dodaj</button>
+      <div class="text-right">
+        <button (click)="addKeyPrice()" class="default-btn" mat-button>
+          Dodaj
+        </button>
       </div>
     </div>
   </mat-tab>
 </mat-tab-group>
 
-<mat-spinner #spinner diameter='25'></mat-spinner>
+<mat-spinner #spinner diameter="25"></mat-spinner>

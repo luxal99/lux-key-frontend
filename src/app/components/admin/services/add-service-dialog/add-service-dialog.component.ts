@@ -1,41 +1,43 @@
-import { Component, Inject, OnInit, ViewChild } from "@angular/core";
-import * as moment from "moment";
-import { ServiceService } from "../../../../service/service.service";
-import { DefaultComponent } from "../../../../util/default-component";
-import { Service } from "../../../../models/service";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { Key } from "../../../../models/key";
-import { KeyService } from "../../../../service/key.service";
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import * as moment from 'moment';
+import { ServiceService } from '../../../../service/service.service';
+import { DefaultComponent } from '../../../../util/default-component';
+import { Service } from '../../../../models/service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Key } from '../../../../models/key';
+import { KeyService } from '../../../../service/key.service';
 import {
-  CLIENT_ID_PREFIX, DATE_VALUE_FORMAT,
+  CLIENT_ID_PREFIX,
+  DATE_VALUE_FORMAT,
   FormControlNames,
   InputTypes,
   KEY_ID_PREFIX,
   SELECTED_CLASS_NAME,
-} from "../../../../constant/const";
-import * as ClassicEditor from "lib/ckeditor5-build-classic";
-import { CKEditorComponent } from "@ckeditor/ckeditor5-angular";
-import { ClientService } from "../../../../service/client.service";
-import { Client } from "../../../../../client";
-import { FormBuilderConfig } from "../../../../models/FormBuilderConfig";
-import { DialogUtil } from "../../../../util/dialog-util";
-import { FormBuilderComponent } from "../../../form-components/form-builder/form-builder.component";
-import { DialogOptions } from "../../../../util/dialog-options";
-import { MAT_DIALOG_DATA, MatDialog } from "@angular/material/dialog";
-import { ServiceKeyService } from "../../../../service/service-key.service";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { PopularKeyDto } from "../../../../models/dto/PopularKeyDto";
-import { AnalyticsService } from "../../../../service/analytics.service";
+} from '../../../../constant/const';
+import * as ClassicEditor from 'lib/ckeditor5-build-classic';
+import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
+import { ClientService } from '../../../../service/client.service';
+import { Client } from '../../../../../client';
+import { FormBuilderConfig } from '../../../../models/FormBuilderConfig';
+import { DialogUtil } from '../../../../util/dialog-util';
+import { FormBuilderComponent } from '../../../form-components/form-builder/form-builder.component';
+import { DialogOptions } from '../../../../util/dialog-options';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { ServiceKeyService } from '../../../../service/service-key.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { PopularKeyDto } from '../../../../models/dto/PopularKeyDto';
+import { AnalyticsService } from '../../../../service/analytics.service';
 
 @Component({
-  selector: "app-add-service-dialog",
-  templateUrl: "./add-service-dialog.component.html",
-  styleUrls: ["./add-service-dialog.component.sass"],
+  selector: 'app-add-service-dialog',
+  templateUrl: './add-service-dialog.component.html',
+  styleUrls: ['./add-service-dialog.component.sass'],
 })
 export class AddServiceDialogComponent
   extends DefaultComponent<Service>
-  implements OnInit {
-  @ViewChild("editor", { static: false }) editorComponent!: CKEditorComponent;
+  implements OnInit
+{
+  @ViewChild('editor', { static: false }) editorComponent!: CKEditorComponent;
   public Editor = ClassicEditor;
 
   listOfTopFivePopularKeys: PopularKeyDto[] | any[] = [];
@@ -50,7 +52,7 @@ export class AddServiceDialogComponent
   currentDate = moment();
 
   searchForm = new FormGroup({
-    search: new FormControl(""),
+    search: new FormControl(''),
     searchClient: new FormControl(),
   });
 
@@ -62,8 +64,8 @@ export class AddServiceDialogComponent
   });
 
   total = 0;
-  searchText = "";
-  searchClientText = "";
+  searchText = '';
+  searchClientText = '';
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Service,
@@ -93,13 +95,13 @@ export class AddServiceDialogComponent
           (item) => item.idKey
         );
         const clientRow: NodeListOf<any> =
-          document.querySelectorAll(".client-row");
+          document.querySelectorAll('.client-row');
         clientRow.forEach((item: Element) => {
           if (item.id === CLIENT_ID_PREFIX + this.data.idClient.id) {
             item.classList.add(SELECTED_CLASS_NAME);
           }
         });
-        const keyRow: NodeListOf<any> = document.querySelectorAll(".key-row");
+        const keyRow: NodeListOf<any> = document.querySelectorAll('.key-row');
         keyRow.forEach((item: Element) => {
           this.listOfSelectedKeys.filter((key) => {
             if (item.id === KEY_ID_PREFIX + key.id) {
@@ -156,29 +158,29 @@ export class AddServiceDialogComponent
           name: FormControlNames.FIRST_NAME_FORM_CONTROL,
           type: InputTypes.INPUT,
           validation: [Validators.required],
-          label: "Ime",
+          label: 'Ime',
         },
         {
           name: FormControlNames.LAST_NAME_FORM_CONTROL,
           type: InputTypes.INPUT,
           validation: [Validators.required],
-          label: "Prezime",
+          label: 'Prezime',
         },
         {
           name: FormControlNames.TELEPHONE_FORM_CONTROL,
           type: InputTypes.INPUT,
           validation: [Validators.required],
-          label: "Kontakt telefon",
+          label: 'Kontakt telefon',
         },
       ],
-      headerText: "Dodaj klijenta",
+      headerText: 'Dodaj klijenta',
       service: this.clientService,
     };
     DialogUtil.openDialog(
       FormBuilderComponent,
       DialogOptions.setDialogConfig({
-        position: { top: "6%" },
-        width: "30%",
+        position: { top: '6%' },
+        width: '30%',
         data: configData,
       }),
       this.dialog
@@ -191,9 +193,9 @@ export class AddServiceDialogComponent
 
   selectClient(client: Client, $event: any): void {
     const element: HTMLElement = $event.target;
-    const otherSelectedElements = document.querySelectorAll(".selected");
+    const otherSelectedElements = document.querySelectorAll('.selected');
     [].forEach.call(otherSelectedElements, (el: any) => {
-      el.classList.remove("selected");
+      el.classList.remove('selected');
     });
 
     if (element.classList.contains(SELECTED_CLASS_NAME)) {
@@ -218,11 +220,9 @@ export class AddServiceDialogComponent
 
     service.gross = 0;
 
-    service.serviceKeys.forEach(
-      (item) => {
-        service.gross += item.keyPrice;
-      }
-    );
+    service.serviceKeys.forEach((item) => {
+      service.gross += item.keyPrice;
+    });
 
     if (this.data) {
       service.id = this.data.id;

@@ -1,33 +1,45 @@
-<table [dataSource]='list' class='mat-elevation-z8 service-table' mat-table>
-
+<table [dataSource]="list" class="mat-elevation-z8 service-table" mat-table>
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
   <!-- Position Column -->
-  <ng-container matColumnDef='date'>
-    <th *matHeaderCellDef mat-header-cell> Datum</th>
-    <td *matCellDef='let element' mat-cell> {{element.date | date}} </td>
+  <ng-container matColumnDef="date">
+    <th *matHeaderCellDef mat-header-cell>Datum</th>
+    <td *matCellDef="let element" mat-cell>{{ element.date | date }}</td>
   </ng-container>
-
 
   <!-- Symbol Column -->
-  <ng-container matColumnDef='gross'>
-    <th *matHeaderCellDef mat-header-cell> Ukupno</th>
-    <td *matCellDef='let element' mat-cell> {{element.gross}} </td>
+  <ng-container matColumnDef="gross">
+    <th *matHeaderCellDef mat-header-cell>Ukupno</th>
+    <td *matCellDef="let element" mat-cell>{{ element.gross }}</td>
   </ng-container>
 
-  <ng-container matColumnDef='option'>
+  <ng-container matColumnDef="option">
     <th *matHeaderCellDef mat-header-cell></th>
-    <td *matCellDef='let element' mat-cell>
-      <div class='text-right'>
-        <button (click)='openServiceOverviewDialog(element)' class='green-border-btn' mat-button>Pregled</button>
-        <button (click)='openEditServiceDialog(element)' class='orange-border-btn' mat-button>Izmeni</button>
-        <button (click)='delete(element.id)' class='red-border-btn' mat-button>Obriši</button>
+    <td *matCellDef="let element" mat-cell>
+      <div class="text-right">
+        <button
+          (click)="openServiceOverviewDialog(element)"
+          class="green-border-btn"
+          mat-button
+        >
+          Pregled
+        </button>
+        <button
+          (click)="openEditServiceDialog(element)"
+          class="orange-border-btn"
+          mat-button
+        >
+          Izmeni
+        </button>
+        <button (click)="delete(element.id)" class="red-border-btn" mat-button>
+          Obriši
+        </button>
       </div>
     </td>
   </ng-container>
-  <tr *matHeaderRowDef='displayedColumns' mat-header-row></tr>
-  <tr *matRowDef='let row; columns: displayedColumns;' mat-row></tr>
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>
 </table>
 
-<mat-spinner #spinner diameter='25'></mat-spinner>
+<mat-spinner #spinner diameter="25"></mat-spinner>

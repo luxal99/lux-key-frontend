@@ -1,44 +1,58 @@
-<div class='row'>
-  <div class='col-6'>
+<div class="row">
+  <div class="col-6">
     <h4><b>Pregled servisa</b></h4>
   </div>
-  <div class='col-6 text-right'>
-    <h4>{{data.date | date}}</h4>
+  <div class="col-6 text-right">
+    <h4>{{ data.date | date }}</h4>
   </div>
 </div>
 <mat-divider></mat-divider>
-<div *ngIf='data.idClient' class='content'>
+<div *ngIf="data.idClient" class="content">
   <h5><b>Klijent</b></h5>
-  <h5>Ime i prezime: <b>{{data.idClient.firstName + ' ' + data.idClient.lastName}}</b></h5>
-  <h5>Telefon: <b>{{data.idClient.telephone}}</b></h5>
+  <h5>
+    Ime i prezime:
+    <b>{{ data.idClient.firstName + " " + data.idClient.lastName }}</b>
+  </h5>
+  <h5>
+    Telefon: <b>{{ data.idClient.telephone }}</b>
+  </h5>
 </div>
 <mat-divider></mat-divider>
-<div *ngIf='data.serviceKeys.length > 0' class='content'>
+<div *ngIf="data.serviceKeys.length > 0" class="content">
   <h5><b>Ključevi</b></h5>
-  <div (click)='openKeyOverviewDialog(serviceKey.idKey)' *ngFor='let serviceKey of data.serviceKeys'
-       class='row key-row'>
-    <div class='col'>
+  <div
+    (click)="openKeyOverviewDialog(serviceKey.idKey)"
+    *ngFor="let serviceKey of data.serviceKeys"
+    class="row key-row"
+  >
+    <div class="col">
       <h6>Šifra</h6>
-      <h5>{{serviceKey.idKey.code}}</h5>
+      <h5>{{ serviceKey.idKey.code }}</h5>
     </div>
-    <div class='col'>
+    <div class="col">
       <h6>Akutelna cena</h6>
-      <h5>{{serviceKey.keyPrice}}</h5>
+      <h5>{{ serviceKey.keyPrice }}</h5>
     </div>
   </div>
 </div>
-<div *ngIf='data.idWorkService' class='content'>
+<div *ngIf="data.idWorkService" class="content">
   <h5><b>Usluga</b></h5>
-  <h6>Naziv: <b>{{data.idWorkService.name}}</b></h6>
-  <h6>Cena: <b>{{data.idWorkService.price}}</b></h6>
+  <h6>
+    Naziv: <b>{{ data.idWorkService.name }}</b>
+  </h6>
+  <h6>
+    Cena: <b>{{ data.idWorkService.price }}</b>
+  </h6>
 </div>
 <mat-divider></mat-divider>
-<div *ngIf='data.notes' class='content'>
+<div *ngIf="data.notes" class="content">
   <h5><b>Beleška</b></h5>
-  <p [innerHTML]='data.notes'></p>
+  <p [innerHTML]="data.notes"></p>
 </div>
 
 <mat-divider></mat-divider>
-<div class='content text-right'>
-  <h5>Ukupno: <b>{{data.gross + ' RSD'}}</b></h5>
+<div class="content text-right">
+  <h5>
+    Ukupno: <b>{{ data.gross + " RSD" }}</b>
+  </h5>
 </div>

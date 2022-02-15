@@ -1,16 +1,19 @@
-<div class=' nvb'>
-  <div class='row'>
-    <div class='col-6'>
-      <div class='inline w-100'>
-
-        <button (click)='menuBtnClick.emit(true)' mat-icon-button>
+<div class="nvb">
+  <div class="row">
+    <div class="col-6">
+      <div class="inline w-100">
+        <button (click)="menuBtnClick.emit(true)" mat-icon-button>
           <mat-icon>drag_handle</mat-icon>
         </button>
-        <h4><b>{{header}}</b></h4>
+        <h4>
+          <b>{{ header }}</b>
+        </h4>
       </div>
     </div>
-    <div class='col-6 text-right'>
-      <button (click)='logout()' mat-button><i aria-hidden='true' class='fa fa-sign-out'></i> Logout</button>
+    <div class="col-6 text-right">
+      <button (click)="logout()" mat-button>
+        <i aria-hidden="true" class="fa fa-sign-out"></i> Logout
+      </button>
     </div>
   </div>
 </div>

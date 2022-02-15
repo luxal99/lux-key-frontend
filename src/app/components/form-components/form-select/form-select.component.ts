@@ -1,32 +1,32 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { Field } from "../../../models/Field";
-import { FieldConfig } from "../../../models/FieldConfig";
-import { FormControl, FormGroup } from "@angular/forms";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Field } from '../../../models/Field';
+import { FieldConfig } from '../../../models/FieldConfig';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: "app-form-select",
-  templateUrl: "./form-select.component.html",
-  styleUrls: ["./form-select.component.sass"],
+  selector: 'app-form-select',
+  templateUrl: './form-select.component.html',
+  styleUrls: ['./form-select.component.sass'],
 })
 export class FormSelectComponent implements Field, OnInit {
   @Input() config!: FieldConfig;
   @Input() group!: FormGroup;
-  @Input() label = "Izaberi opciju";
-  @Input() bindValue = "name";
+  @Input() label = 'Izaberi opciju';
+  @Input() bindValue = 'name';
   @Input() isRequired!: boolean;
   @Output() clickOnSelect = new EventEmitter();
-  @Input() width = "100%";
+  @Input() width = '100%';
   @Input() model: any;
   @Input() searchProperty: string | string[];
 
-  searchText = "";
+  searchText = '';
 
-  @Input() appearance = "outline";
+  @Input() appearance = 'outline';
   // tslint:disable-next-line:no-output-on-prefix
   @Output() onChange = new EventEmitter();
   @Input() isDisabled = false;
   searchForm = new FormGroup({
-    search: new FormControl(""),
+    search: new FormControl(''),
   });
 
   compareObjects(o1: any, o2: any): boolean {
@@ -37,9 +37,7 @@ export class FormSelectComponent implements Field, OnInit {
     }
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   onOptionClick(): void {
     this.onChange.emit(true);

@@ -1,11 +1,15 @@
-<div [formGroup]='group'>
-  <mat-form-field appearance='outline'>
-    <mat-label>{{config.label}}</mat-label>
-    <mat-select [(ngModel)]='model' [compareWith]='compareObjects' [formControlName]='config.name'>
+<div [formGroup]="group">
+  <mat-form-field appearance="outline">
+    <mat-label>{{ config.label }}</mat-label>
+    <mat-select
+      [(ngModel)]="model"
+      [compareWith]="compareObjects"
+      [formControlName]="config.name"
+    >
       <mat-option>-- None --</mat-option>
-      <mat-optgroup *ngFor='let group of groupList' [label]='group.name'>
-        <mat-option *ngFor='let item of group[itemList]' [value]='item'>
-          {{item.name}}
+      <mat-optgroup *ngFor="let group of groupList" [label]="group.name">
+        <mat-option *ngFor="let item of group[itemList]" [value]="item">
+          {{ item.name }}
         </mat-option>
       </mat-optgroup>
     </mat-select>

@@ -1,18 +1,42 @@
 <div>
   <h5><b>Kreiranje ključa</b></h5>
-  <app-form-select [config]='keyBrandSelectConfig' [group]='keyForm'></app-form-select>
-  <app-form-input [config]='amountInputConfig' [group]='keyForm'></app-form-input>
-  <app-form-input [config]='codeInputConfig' [group]='keyForm'></app-form-input>
-  <app-form-input [config]='priceInputConfig' [group]='keyForm'></app-form-input>
-  <app-form-select [config]='carBrandSelectConfig' [group]='keyForm' bindValue='name'
-                   searchProperty='name'></app-form-select>
-  <app-form-select-group [config]='idKeySubCategoriesGroupSelect' [groupList]='listOfKeyCategories'
-                         [group]='keyForm' [model]='data ? data.idKeySubCategory:null'
-                         itemList='keySubCategories'></app-form-select-group>
+  <app-form-select
+    [config]="keyBrandSelectConfig"
+    [group]="keyForm"
+  ></app-form-select>
+  <app-form-input
+    [config]="amountInputConfig"
+    [group]="keyForm"
+  ></app-form-input>
+  <app-form-input [config]="codeInputConfig" [group]="keyForm"></app-form-input>
+  <app-form-input
+    [config]="priceInputConfig"
+    [group]="keyForm"
+  ></app-form-input>
+  <app-form-select
+    [config]="carBrandSelectConfig"
+    [group]="keyForm"
+    bindValue="name"
+    searchProperty="name"
+  ></app-form-select>
+  <app-form-select-group
+    [config]="idKeySubCategoriesGroupSelect"
+    [groupList]="listOfKeyCategories"
+    [group]="keyForm"
+    [model]="data ? data.idKeySubCategory : null"
+    itemList="keySubCategories"
+  ></app-form-select-group>
   <app-image-upload></app-image-upload>
 
-  <div class='text-right'>
-    <button (click)='saveKey()' [disabled]='!keyForm.valid' class='default-btn' mat-button>Sačuvaj</button>
+  <div class="text-right">
+    <button
+      (click)="saveKey()"
+      [disabled]="!keyForm.valid"
+      class="default-btn"
+      mat-button
+    >
+      Sačuvaj
+    </button>
   </div>
 </div>
-<mat-spinner #spinner diameter='25'></mat-spinner>
+<mat-spinner #spinner diameter="25"></mat-spinner>

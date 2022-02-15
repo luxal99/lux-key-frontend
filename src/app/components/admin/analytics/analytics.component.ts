@@ -1,53 +1,50 @@
-import { Component, OnInit } from "@angular/core";
-import { AnalyticsService } from "../../../service/analytics.service";
-import { TotalEarning } from "../../../models/dto/TotalEarning";
-import { PopularKeyDto } from "../../../models/dto/PopularKeyDto";
-import { EarningByKeySubCategoryDto } from "../../../models/dto/EarningByKeySubCategoryDto";
+import { Component, OnInit } from '@angular/core';
+import { AnalyticsService } from '../../../service/analytics.service';
+import { TotalEarning } from '../../../models/dto/TotalEarning';
+import { PopularKeyDto } from '../../../models/dto/PopularKeyDto';
+import { EarningByKeySubCategoryDto } from '../../../models/dto/EarningByKeySubCategoryDto';
 //@ts-ignore
-import { ChartDataSets, ChartOptions, ChartType } from "chart.js";
-import { Color, Label } from "ng2-charts";
-import { DialogUtil } from "../../../util/dialog-util";
-import { KeyOverviewDialogComponent } from "../key/key-overview-dialog/key-overview-dialog.component";
-import { DialogOptions } from "../../../util/dialog-options";
-import { MatDialog } from "@angular/material/dialog";
-import { MonthAnalyticsDto } from "../../../models/dto/MonthAnalyticsDto";
+import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
+import { Color, Label } from 'ng2-charts';
+import { DialogUtil } from '../../../util/dialog-util';
+import { KeyOverviewDialogComponent } from '../key/key-overview-dialog/key-overview-dialog.component';
+import { DialogOptions } from '../../../util/dialog-options';
+import { MatDialog } from '@angular/material/dialog';
+import { MonthAnalyticsDto } from '../../../models/dto/MonthAnalyticsDto';
 
 @Component({
-  selector: "app-analytics",
-  templateUrl: "./analytics.component.html",
-  styleUrls: ["./analytics.component.sass"]
+  selector: 'app-analytics',
+  templateUrl: './analytics.component.html',
+  styleUrls: ['./analytics.component.sass'],
 })
 export class AnalyticsComponent implements OnInit {
-
   public barChartOptions: ChartOptions = {
     responsive: true,
   };
   public barChartLabels: Label[] = [];
-  public barChartType: ChartType = "bar";
+  public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   public barChartPlugins = [];
   public barChartColors: Color[] = [
     {
-      borderColor: "black",
-      backgroundColor: "rgb(128,9,225)",
+      borderColor: 'black',
+      backgroundColor: 'rgb(128,9,225)',
     },
   ];
 
   public barChartData: ChartDataSets[] = [
-    { data: [], label: "Zarada" },
-    { data: [], label: "Količina" },
+    { data: [], label: 'Zarada' },
+    { data: [], label: 'Količina' },
   ];
 
-  public lineChartData: ChartDataSets[] = [
-    { data: [] },
-  ];
+  public lineChartData: ChartDataSets[] = [{ data: [] }];
 
   public lineChartLabels: Label[] = [];
 
   public lineChartColors: Color[] = [
     {
-      borderColor: "white",
-      backgroundColor: "rgb(0,196,255)",
+      borderColor: 'white',
+      backgroundColor: 'rgb(0,196,255)',
     },
   ];
 
@@ -57,8 +54,10 @@ export class AnalyticsComponent implements OnInit {
   listOfTopFivePopularKeys: PopularKeyDto[] = [];
   listOfEarningsByKeySubCategory: EarningByKeySubCategoryDto[] = [];
 
-  constructor(private analyticsService: AnalyticsService, private dialog: MatDialog) {
-  }
+  constructor(
+    private analyticsService: AnalyticsService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.getAllTimeEarned();
@@ -80,7 +79,6 @@ export class AnalyticsComponent implements OnInit {
     });
   }
 
-
   getEarningByKeySubCategory() {
     this.analyticsService.getEarningByKeySubCategory().subscribe((resp) => {
       this.barChartLabels = resp.map((item) => item.name);
@@ -99,16 +97,19 @@ export class AnalyticsComponent implements OnInit {
     this.analyticsService.getEarningsByMonth().subscribe((resp) => {
       this.lineChartLabels = resp.map((item) => item.month);
       this.lineChartData[0].data = resp.map((item) => item.total);
-      this.listOfEarningsByMonth = resp
+      this.listOfEarningsByMonth = resp;
     });
   }
 
   openKeyOverviewDialog(id: number): void {
-    DialogUtil.openDialog(KeyOverviewDialogComponent, DialogOptions.setDialogConfig({
-      position: { top: "6%" },
-      width: "30%",
-      data: { id },
-    }), this.dialog);
+    DialogUtil.openDialog(
+      KeyOverviewDialogComponent,
+      DialogOptions.setDialogConfig({
+        position: { top: '6%' },
+        width: '30%',
+        data: { id },
+      }),
+      this.dialog
+    );
   }
-
 }

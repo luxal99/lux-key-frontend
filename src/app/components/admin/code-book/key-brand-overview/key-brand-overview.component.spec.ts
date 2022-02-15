@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { KeyBrandOverviewComponent } from "./key-brand-overview.component";
+import { KeyBrandOverviewComponent } from './key-brand-overview.component';
 
-describe("KeyBrandOverviewComponent", () => {
+describe('KeyBrandOverviewComponent', () => {
   let component: KeyBrandOverviewComponent;
   let fixture: ComponentFixture<KeyBrandOverviewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [KeyBrandOverviewComponent]
-    })
-      .compileComponents();
+      declarations: [KeyBrandOverviewComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe("KeyBrandOverviewComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

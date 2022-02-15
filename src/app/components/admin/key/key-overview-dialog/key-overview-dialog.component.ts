@@ -1,19 +1,19 @@
-import { Component, Inject, OnInit } from "@angular/core";
-import { MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { Key } from "../../../../models/key";
-import { isNumeric } from "rxjs/internal-compatibility";
-import { KeyService } from "../../../../service/key.service";
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Key } from '../../../../models/key';
+import { isNumeric } from 'rxjs/internal-compatibility';
+import { KeyService } from '../../../../service/key.service';
 
 @Component({
-  selector: "app-key-overview-dialog",
-  templateUrl: "./key-overview-dialog.component.html",
-  styleUrls: ["./key-overview-dialog.component.sass"]
+  selector: 'app-key-overview-dialog',
+  templateUrl: './key-overview-dialog.component.html',
+  styleUrls: ['./key-overview-dialog.component.sass'],
 })
 export class KeyOverviewDialogComponent implements OnInit {
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Key,
-              private keyService: KeyService) {
-  }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: Key,
+    private keyService: KeyService
+  ) {}
 
   ngOnInit(): void {
     this.findKeyIfDataIsNumber();
@@ -26,5 +26,4 @@ export class KeyOverviewDialogComponent implements OnInit {
       });
     }
   }
-
 }

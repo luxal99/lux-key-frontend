@@ -1,5 +1,5 @@
-<div *ngFor='let item of list' class='row'>
-  <div *ngFor='let attr of item|keyvalue' class='col-sm'>
-    <h6 *ngIf="attr.key !== 'id'">{{attr.value}}</h6>
+<div *ngFor="let item of list" class="row">
+  <div *ngFor="let attr of item | keyvalue" class="col-sm">
+    <h6 *ngIf="attr.key !== 'id'">{{ attr.value }}</h6>
   </div>
 </div>
