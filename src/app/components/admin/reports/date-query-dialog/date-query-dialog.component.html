@@ -1,0 +1,34 @@
+<form [formGroup]='dateForm'>
+  <mat-form-field appearance='outline' class='example-form-field'>
+    <mat-label>Željeni datumi</mat-label>
+    <mat-date-range-input [rangePicker]='rangePicker'>
+      <input
+        matStartDate
+        placeholder='Početni datum'
+        formControlName='startDate'
+      />
+      <input
+        matEndDate
+        placeholder='Krajnji datum'
+        formControlName='endDate'
+      />
+    </mat-date-range-input>
+    <mat-datepicker-toggle
+      matSuffix
+      [for]='rangePicker'
+    ></mat-datepicker-toggle>
+    <mat-date-range-picker #rangePicker>
+      <mat-date-range-picker-actions>
+        <button
+          mat-button
+          style='width: 100%'
+          class='red-border-btn'
+          (click)='getDateQuery()'
+          matDateRangePickerApply
+        >
+          Potvrdi datume
+        </button>
+      </mat-date-range-picker-actions>
+    </mat-date-range-picker>
+  </mat-form-field>
+</form>

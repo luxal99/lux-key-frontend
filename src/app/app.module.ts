@@ -75,6 +75,7 @@ import { AnalyticsComponent } from "./components/admin/analytics/analytics.compo
 import { ChartsModule } from "ng2-charts";
 import { ServiceHeaderToolComponent } from './components/admin/services/service-header-tool/service-header-tool.component';
 import { MomentDatePipe } from './pipes/moment-date.pipe';
+import { DateQueryDialogComponent } from './components/admin/reports/date-query-dialog/date-query-dialog.component';
 
 @NgModule({
   declarations: [
@@ -126,6 +127,7 @@ import { MomentDatePipe } from './pipes/moment-date.pipe';
     ServiceHeaderToolComponent,
     ServiceHeaderToolComponent,
     MomentDatePipe,
+    DateQueryDialogComponent,
   ],
   imports: [
     BrowserModule,
