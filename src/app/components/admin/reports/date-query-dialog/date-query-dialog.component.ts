@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
+import * as moment from "moment";
+import { FormControlNames } from "../../../../constant/const";
 
 @Component({
   selector: "app-date-query-dialog",
@@ -21,6 +23,9 @@ export class DateQueryDialogComponent implements OnInit {
   }
 
   getDateQuery() {
-    this.dialogRef.close(this.dateForm.getRawValue());
+    this.dialogRef.close({
+      startDate: moment(this.dateForm.get(FormControlNames.START_DATE_FORM_CONTROL).value),
+      endDate: moment(this.dateForm.get(FormControlNames.START_DATE_FORM_CONTROL).value)
+    });
   }
 }
