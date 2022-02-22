@@ -16,6 +16,11 @@
         <div class='col'>
           <h6 style='padding-top: 1em'>{{report.createdDate | date}}</h6>
         </div>
+        <div class='col'>
+          <h6><b>Početni i krajni datum</b></h6>
+          <h6>{{report.startDate | date}} - {{report.endDate | date}}</h6>
+        </div>
+
         <div class='col text-right'>
           <button mat-icon-button (click)='deleteReport(report.id)'>
             <mat-icon color='primary'>delete</mat-icon>
