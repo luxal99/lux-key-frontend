@@ -38,15 +38,17 @@ export class ReportsComponent implements OnInit {
     DialogUtil.openDialog(DateQueryDialogComponent, {}, this.dialog)
       .afterClosed()
       .subscribe((resp) => {
-        this.serviceService.generateBuiltInReport(resp).subscribe(
-          () => {
-            SnackBarUtil.openSnackBar(this.snackBar, 'Uspešno generisano');
-            this.getReports();
-          },
-          () => {
-            SnackBarUtil.openSnackBar(this.snackBar, 'Dogodila se greška');
-          }
-        );
+        if (resp.startDate){
+          this.serviceService.generateBuiltInReport(resp).subscribe(
+            () => {
+              SnackBarUtil.openSnackBar(this.snackBar, 'Uspešno generisano');
+              this.getReports();
+            },
+            () => {
+              SnackBarUtil.openSnackBar(this.snackBar, 'Dogodila se greška');
+            }
+          );
+        }
       });
   }
 
